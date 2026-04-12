@@ -1,0 +1,639 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Algemene Voorwaarden",
+  description:
+    "Algemene Voorwaarden van Communities Abroad — voorwaarden voor het gebruik van ons ecosysteem van platforms en diensten.",
+};
+
+const styleContent = `.ca-av {
+    font-family: 'Mulish', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.8em;
+    color: #2c2c2c;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+  }
+
+  .ca-av h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #800000;
+    font-size: 1.6rem;
+    margin: 0 0 0.5rem 0;
+    border-bottom: 3px solid #800000;
+    padding-bottom: 0.8rem;
+  }
+
+  .ca-av h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #800000;
+    font-size: 1.25rem;
+    margin: 2.2rem 0 0.8rem 0;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(128, 0, 0, 0.15);
+  }
+
+  .ca-av h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #800000;
+    font-size: 1.05rem;
+    margin: 1.4rem 0 0.4rem 0;
+  }
+
+  .ca-av p {
+    margin: 0 0 0.8rem 0;
+    font-size: 0.95rem;
+    text-align: justify;
+  }
+
+  .ca-av .ca-av-meta {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+
+  .ca-av .ca-av-toc {
+    background: rgba(128, 0, 0, 0.04);
+    border: 1px solid rgba(128, 0, 0, 0.12);
+    border-radius: 6px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0 2rem 0;
+  }
+
+  .ca-av .ca-av-toc-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #800000;
+    font-size: 1rem;
+    margin: 0 0 0.6rem 0;
+  }
+
+  .ca-av .ca-av-toc ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .ca-av .ca-av-toc li {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  .ca-av .ca-av-toc a {
+    color: #800000;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(128, 0, 0, 0.3);
+  }
+
+  .ca-av .ca-av-toc a:hover {
+    border-bottom-color: #800000;
+  }
+
+  .ca-av ul, .ca-av ol {
+    padding-left: 1.4rem;
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  .ca-av li {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .ca-av a { color: #800000; text-decoration: none; }
+  .ca-av a:hover { text-decoration: underline; }
+
+  .ca-av strong { color: #800000; }
+
+  .ca-av .ca-av-note {
+    background: rgba(128, 0, 0, 0.04);
+    border-left: 3px solid #800000;
+    padding: 0.8rem 1.2rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .ca-av .ca-av-footer {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 2px solid rgba(128, 0, 0, 0.2);
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .ca-av .ca-av-changelog {
+    background: rgba(128, 0, 0, 0.03);
+    border: 1px solid rgba(128, 0, 0, 0.10);
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0 0 0;
+    font-size: 0.85rem;
+  }
+
+  .ca-av .ca-av-changelog-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #800000;
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem 0;
+  }`;
+
+const bodyContent = `<div class="ca-av">
+
+<h1>Algemene Voorwaarden Communities Abroad</h1>
+
+<p class="ca-av-meta">
+  <strong>Versie:</strong> 2.1 — 12 april 2026<br>
+  <strong>Van toepassing op:</strong> het volledige ecosysteem van Communities Abroad<br>
+  <strong>Verantwoordelijke:</strong> Communities Abroad, KvK 55741509, Oirschot, Nederland
+</p>
+
+<div class="ca-av-toc">
+  <p class="ca-av-toc-title">Inhoudsopgave</p>
+  <ol>
+    <li><a href="#av-definities">Definities</a></li>
+    <li><a href="#av-toepasselijkheid">Toepasselijkheid</a></li>
+    <li><a href="#av-ecosysteem">Het ecosysteem</a></li>
+    <li><a href="#av-account">Account en registratie</a></li>
+    <li><a href="#av-forum">Forumgebruik (Nederlanders.fr)</a></li>
+    <li><a href="#av-abonnementen">Abonnementen (Infofrankrijk.com)</a></li>
+    <li><a href="#av-ai">AI-assistent (Café Claude)</a></li>
+    <li><a href="#av-correspondentie">Correspondentie-assistent</a></li>
+    <li><a href="#av-tools">Interactieve tools</a></li>
+    <li><a href="#av-dossier">Persoonlijk dossier (DossierFrankrijk)</a></li>
+    <li><a href="#av-directories">Directories (Nedergids &amp; DoctorsOnMaps)</a></li>
+    <li><a href="#av-advertenties">Advertenties</a></li>
+    <li><a href="#av-nieuwsbrief">Nieuwsbrief (Frankrijknieuws)</a></li>
+    <li><a href="#av-ip">Intellectuele eigendom</a></li>
+    <li><a href="#av-aansprakelijkheid">Aansprakelijkheid</a></li>
+    <li><a href="#av-herroeping">Herroepingsrecht</a></li>
+    <li><a href="#av-betaling">Betalingsvoorwaarden</a></li>
+    <li><a href="#av-privacy">Privacy</a></li>
+    <li><a href="#av-wijzigingen">Wijzigingen</a></li>
+    <li><a href="#av-recht">Toepasselijk recht en geschillen</a></li>
+    <li><a href="#av-slotbepalingen">Slotbepalingen</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<!-- DEEL I — ALGEMEEN                                             -->
+<!-- ============================================================ -->
+
+<h2 id="av-definities">Artikel 1. Definities</h2>
+
+<p>In deze Algemene Voorwaarden wordt verstaan onder:</p>
+
+<p><strong>1.1 Communities Abroad:</strong> de eenmanszaak ingeschreven in het Handelsregister van de Kamer van Koophandel onder dossiernummer 55741509, gevestigd te (5091 WE) Oirschot, Landgoed de Stille Wille 174. Hierna ook: "wij", "ons" of "onze".</p>
+
+<p><strong>1.2 Ecosysteem:</strong> het geheel van onderling gekoppelde platforms, websites, applicaties en diensten die door Communities Abroad worden geëxploiteerd, zoals omschreven in artikel 3.</p>
+
+<p><strong>1.3 Gebruiker:</strong> iedere natuurlijke persoon die gebruik maakt van één of meer onderdelen van het Ecosysteem, waaronder Forumgebruikers, Abonnees, Registranten en bezoekers.</p>
+
+<p><strong>1.4 Forumgebruiker:</strong> een Gebruiker die een account heeft aangemaakt op het forum Nederlanders.fr.</p>
+
+<p><strong>1.5 Abonnee:</strong> een Gebruiker die een betaald abonnement heeft afgesloten op Infofrankrijk.com, waardoor deze toegang heeft tot aanvullende diensten en tools, waaronder onbeperkt gebruik van Café Claude, de Correspondentie-assistent, de interactieve tools en DossierFrankrijk.</p>
+
+<p><strong>1.6 Adverteerder:</strong> ieder natuurlijk persoon of iedere rechtspersoon die één of meer Advertenties op media van Communities Abroad plaatst.</p>
+
+<p><strong>1.7 Advertentie:</strong> iedere commerciële en/of promotionele uiting die door de Adverteerder op media van Communities Abroad wordt geplaatst. Andere termen gehanteerd voor Advertentie zijn onder meer "Banner", "Advertorial" en "Menu-item".</p>
+
+<p><strong>1.8 Registrant:</strong> ieder natuurlijk persoon of iedere rechtspersoon die één of meer Vermeldingen in een Directory van Communities Abroad plaatst.</p>
+
+<p><strong>1.9 Vermelding:</strong> contactgegevens en overige informatie die door een Registrant op een Directory van Communities Abroad worden geplaatst.</p>
+
+<p><strong>1.10 Directory:</strong> een online bedrijvengids of dienstverlenergids geëxploiteerd door Communities Abroad, waaronder Nedergids.nl en DoctorsOnMaps.com.</p>
+
+<p><strong>1.11 AI-assistent:</strong> het geautomatiseerde systeem Café Claude dat via een click-funnel vooraf gecontroleerde en door AI gegenereerde antwoorden biedt over wonen, werken en ondernemen in Frankrijk.</p>
+
+<p><strong>1.12 Correspondentie-assistent:</strong> de interactieve tool op Infofrankrijk.com die gebruikers helpt bij het opstellen van juridische en administratieve brieven in het Frans, via klikstromen en op basis van geverifieerde bronnen en/of AI-generatie.</p>
+
+<p><strong>1.13 Dossier:</strong> de persoonlijke verzameling van opgeslagen tool-resultaten, gegenereerde brieven en chatgesprekken van een Abonnee in DossierFrankrijk.</p>
+
+<p><strong>1.14 Content:</strong> alle informatie, teksten, berichten, afbeeldingen en overige materialen die door een Gebruiker worden geplaatst op of via het Ecosysteem.</p>
+
+<p><strong>1.15 Overeenkomst:</strong> iedere overeenkomst tussen Communities Abroad en een Gebruiker, Adverteerder of Registrant, waaronder Advertentieovereenkomsten, Vermeldingsovereenkomsten en Abonnementen.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-toepasselijkheid">Artikel 2. Toepasselijkheid</h2>
+
+<p><strong>2.1</strong> Deze Voorwaarden zijn van toepassing op alle Overeenkomsten tussen Communities Abroad en een Gebruiker, Adverteerder of Registrant, alsmede op het gebruik van het Ecosysteem in het algemeen.</p>
+
+<p><strong>2.2</strong> Door het aanmaken van een account, het afsluiten van een abonnement, het plaatsen van een Advertentie of Vermelding, of het anderszins gebruik maken van het Ecosysteem, erkent de Gebruiker van de inhoud van deze Voorwaarden op de hoogte te zijn en verklaart hij zich daarmee akkoord.</p>
+
+<p><strong>2.3</strong> Algemene voorwaarden van de Gebruiker, Adverteerder of Registrant zijn niet van toepassing, tenzij schriftelijk uitdrukkelijk anders is overeengekomen.</p>
+
+<p><strong>2.4</strong> Afwijkingen van deze Voorwaarden zijn slechts van toepassing indien en voor zover deze uitdrukkelijk vooraf en schriftelijk zijn overeengekomen en gelden uitsluitend voor de betreffende Overeenkomst.</p>
+
+<p><strong>2.5</strong> Indien enige bepaling van deze Voorwaarden nietig is of vernietigd wordt, blijven de overige bepalingen onverminderd van kracht. De nietige of vernietigde bepaling wordt vervangen door een bepaling die zo dicht mogelijk aansluit bij de strekking van de oorspronkelijke bepaling.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-ecosysteem">Artikel 3. Het ecosysteem</h2>
+
+<p><strong>3.1</strong> Communities Abroad exploiteert een samenhangend digitaal ecosysteem ten behoeve van Nederlandstalige personen die in Frankrijk wonen, werken of van plan zijn daarheen te verhuizen. Dit ecosysteem bestaat uit de volgende onderdelen:</p>
+
+<ul>
+  <li><strong>Nederlanders.fr</strong> — Community en forum (gratis)</li>
+  <li><strong>Infofrankrijk.com</strong> — Informatieportaal, interactieve tools en abonnementenbeheer (freemium)</li>
+  <li><strong>Café Claude (cafeclaude.fr)</strong> — AI-gestuurde assistent (freemium)</li>
+  <li><strong>DossierFrankrijk (dossierfrankrijk.nl)</strong> — Persoonlijk dossier voor Abonnees</li>
+  <li><strong>Nedergids.nl</strong> — Directory voor dienstverleners</li>
+  <li><strong>DoctorsOnMaps.com</strong> — Directory voor medische dienstverleners</li>
+  <li><strong>Frankrijknieuws</strong> — Dagelijkse nieuwsbrief (gratis)</li>
+  <li><strong>CommunitiesAbroad.com</strong> — Bedrijfswebsite (informatief)</li>
+</ul>
+
+<p><strong>3.2</strong> Op Infofrankrijk.com is een groeiend pakket van interactieve tools beschikbaar als geïntegreerde onderdelen van het Ecosysteem. Deze tools vallen in de volgende categorieën:</p>
+
+<ul>
+  <li><strong>Simulatietools en calculators</strong> — berekeningen en scenario's op het gebied van belastingen, vastgoedkosten, energieprestatie, zorgvergoedingen en subsidies.</li>
+  <li><strong>Gidsen en dashboards</strong> — interactieve naslagwerken over onderwerpen als ondernemen, erfrecht, ouderenzorg, beroepskeuze en lokale overheidsdiensten.</li>
+  <li><strong>Correspondentie-assistent</strong> — hulp bij het opstellen van juridische en administratieve brieven in het Frans (zie artikel 8).</li>
+</ul>
+
+<p>Het actuele en volledige overzicht van beschikbare tools is te vinden op de <a href="https://infofrankrijk.com/categorie/toolbox-infofrankrijk/">Toolbox-pagina van Infofrankrijk.com</a>. Communities Abroad kan te allen tijde tools toevoegen, wijzigen of verwijderen. De bepalingen in deze Voorwaarden — waaronder de disclaimers, aansprakelijkheidsbeperkingen en de freemium-structuur — zijn van toepassing op alle interactieve tools in het Ecosysteem, ongeacht of zij bij naam worden genoemd in deze Voorwaarden.</p>
+
+<p><strong>3.3</strong> Deze Voorwaarden zijn van toepassing op alle onderdelen van het Ecosysteem. Voor specifieke onderdelen gelden aanvullende bepalingen zoals opgenomen in de artikelen 5 tot en met 13.</p>
+
+<p><strong>3.4</strong> Communities Abroad behoudt zich het recht voor onderdelen van het Ecosysteem toe te voegen, te wijzigen of te beëindigen. Bij beëindiging van een onderdeel waarvan een Abonnee actief gebruik maakt, zal Communities Abroad de Abonnee hiervan ten minste 30 dagen vooraf in kennis stellen.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-account">Artikel 4. Account en registratie</h2>
+
+<p><strong>4.1</strong> Voor het gebruik van bepaalde onderdelen van het Ecosysteem is het aanmaken van een account vereist. De Gebruiker is verantwoordelijk voor het verstrekken van juiste en actuele gegevens bij registratie.</p>
+
+<p><strong>4.2</strong> Het Ecosysteem kent gescheiden accountsystemen. Een account op Nederlanders.fr (forumaccount) staat los van een account op Infofrankrijk.com (portaalaccount). Het aanmaken van een forumaccount verleent geen toegang tot de betaalde diensten op Infofrankrijk.com en omgekeerd. De interactieve tools, Café Claude en DossierFrankrijk zijn gekoppeld aan het portaalaccount op Infofrankrijk.com via een eenmalige aanmelding (SSO).</p>
+
+<p><strong>4.3</strong> De Gebruiker is zelf verantwoordelijk voor het geheim houden van zijn inloggegevens en voor al het gebruik dat via zijn account plaatsvindt.</p>
+
+<p><strong>4.4</strong> Het is niet toegestaan om meer dan één account aan te maken per natuurlijk persoon per platform, tenzij Communities Abroad hiervoor uitdrukkelijk toestemming heeft verleend.</p>
+
+<p><strong>4.5</strong> Communities Abroad behoudt zich het recht voor een account op te schorten of te verwijderen indien de Gebruiker handelt in strijd met deze Voorwaarden, of indien het account langer dan 24 maanden inactief is. Voorafgaand aan verwijdering van een inactief account wordt de Gebruiker, indien mogelijk, per e-mail geïnformeerd.</p>
+
+<p><strong>4.6</strong> Bij het verwijderen van een account worden de persoonsgegevens verwerkt conform de Privacyverklaring van Communities Abroad.</p>
+
+<!-- ============================================================ -->
+<!-- DEEL II — SPECIFIEKE DIENSTEN                                  -->
+<!-- ============================================================ -->
+
+<h2 id="av-forum">Artikel 5. Forumgebruik (Nederlanders.fr)</h2>
+
+<h3>5.1 Toegang</h3>
+<p>Het forum Nederlanders.fr is gratis toegankelijk na het aanmaken van een forumaccount. Het forumaccount staat los van het portaalaccount op Infofrankrijk.com; een forumaccount verleent geen toegang tot betaalde diensten en een Infofrankrijk-abonnement is niet vereist voor deelname aan het forum.</p>
+
+<h3>5.2 Gedragsregels</h3>
+<p>De Forumgebruiker verbindt zich aan de volgende gedragsregels:</p>
+<ul>
+  <li>De geplaatste Content mag niet onrechtmatig, misleidend, beledigend, discriminerend, haatdragend, bedreigend, seksueel expliciet of anderszins in strijd met de wet of de goede zeden zijn.</li>
+  <li>Het is niet toegestaan om commerciële boodschappen te plaatsen zonder voorafgaande toestemming van Communities Abroad.</li>
+  <li>Het is niet toegestaan om persoonsgegevens van derden te publiceren zonder hun uitdrukkelijke toestemming.</li>
+  <li>Het is niet toegestaan om het forum te gebruiken voor het verspreiden van spam, malware of andere schadelijke inhoud.</li>
+  <li>De Forumgebruiker respecteert de aanwijzingen van de beheerder en moderators.</li>
+</ul>
+
+<h3>5.3 Moderatie</h3>
+<p>Communities Abroad behoudt zich het recht voor om Content te verwijderen, te bewerken of te verplaatsen zonder voorafgaande kennisgeving, indien deze naar het oordeel van Communities Abroad in strijd is met deze Voorwaarden of het belang van de community schaadt. Bij herhaaldelijke overtredingen kan het account worden opgeschort of verwijderd.</p>
+
+<h3>5.4 Eigendom van Content</h3>
+<p>De Forumgebruiker behoudt het auteursrecht op de door hem geplaatste Content. Door het plaatsen van Content op het forum verleent de Forumgebruiker aan Communities Abroad een niet-exclusieve, wereldwijde, royaltyvrije licentie om deze Content te gebruiken, weer te geven, op te slaan en te distribueren in het kader van de exploitatie van het Ecosysteem.</p>
+
+<h3>5.5 Beschikbaarheid</h3>
+<p>Communities Abroad streeft naar een zo hoog mogelijke beschikbaarheid van het forum, maar garandeert geen ononderbroken of foutloze toegang. Het forum wordt aangeboden "as is".</p>
+
+<h3>5.6 Content na accountverwijdering</h3>
+<p>Bij verwijdering van een account worden de door de Forumgebruiker geplaatste berichten standaard geanonimiseerd (de gebruikersnaam wordt vervangen) maar niet verwijderd, tenzij de Forumgebruiker uitdrukkelijk verzoekt om verwijdering van specifieke berichten. Communities Abroad behoudt zich het recht voor berichten te behouden die onderdeel zijn van actieve discussies, waarbij de auteursnaam wordt geanonimiseerd.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-abonnementen">Artikel 6. Abonnementen (Infofrankrijk.com)</h2>
+
+<h3>6.1 Freemium model</h3>
+<p>Infofrankrijk.com biedt een freemium model. Een deel van de content, artikelen en tools is gratis toegankelijk voor alle bezoekers. Gratis toegang omvat beperkt gebruik van de interactieve tools en de AI-assistent, met per tool een vastgesteld aantal gratis sessies of antwoorden. De specifieke limieten per tool worden vermeld in de betreffende tool-interface.</p>
+
+<p>Een betaald abonnement ontgrendelt volledige en onbeperkte toegang tot alle premium content, alle interactieve tools (Correspondentie-assistent, Financieel Kompas, EnergiePortaal), de AI-assistent Café Claude en het persoonlijk dossier DossierFrankrijk.</p>
+
+<h3>6.2 Abonnementsvormen en prijzen</h3>
+<p>De beschikbare abonnementsvormen en de bijbehorende prijzen worden vermeld op Infofrankrijk.com. Communities Abroad biedt ten minste een jaarabonnement aan. De actuele prijs van het jaarabonnement bedraagt € 49,- per jaar (inclusief BTW).</p>
+
+<h3>6.3 Totstandkoming</h3>
+<p>Een abonnement komt tot stand op het moment dat de Gebruiker het bestelproces op Infofrankrijk.com heeft voltooid en de betaling is ontvangen. Communities Abroad bevestigt het abonnement per e-mail.</p>
+
+<h3>6.4 Duur en verlenging</h3>
+<p>Een abonnement wordt aangegaan voor de op de website vermelde periode. Het abonnement wordt aan het einde van de periode automatisch verlengd, tenzij de Abonnee het abonnement vóór het einde van de lopende periode opzegt.</p>
+
+<h3>6.5 Opzegging</h3>
+<p>De Abonnee kan het abonnement te allen tijde opzeggen via de accountinstellingen op Infofrankrijk.com of per e-mail aan info@communitiesabroad.com. De opzegging gaat in aan het einde van de lopende abonnementsperiode. Reeds betaalde abonnementsgelden worden niet gerestitueerd, tenzij anders bepaald in artikel 16 (Herroepingsrecht).</p>
+
+<h3>6.6 Prijswijzigingen</h3>
+<p>Communities Abroad behoudt zich het recht voor abonnementsprijzen te wijzigen. Prijswijzigingen worden ten minste 30 dagen voor ingangsdatum aan Abonnees gecommuniceerd per e-mail. Bij een prijsverhoging heeft de Abonnee het recht het abonnement op te zeggen tegen de datum waarop de prijsverhoging ingaat.</p>
+
+<h3>6.7 Gevolgen van opzegging voor gekoppelde diensten</h3>
+<p>Na afloop van het abonnement vervalt de toegang tot premium content, onbeperkt gebruik van de tools en Café Claude, en DossierFrankrijk. Het Dossier wordt na 90 dagen na afloop van het abonnement automatisch en onomkeerbaar verwijderd (zie artikel 10.4). De Abonnee wordt aangeraden vóór afloop een export van het Dossier te maken.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-ai">Artikel 7. AI-assistent (Café Claude)</h2>
+
+<h3>7.1 Aard van de dienst</h3>
+<p>Café Claude is een AI-gestuurde assistent die vooraf gecontroleerde antwoorden biedt over wonen, werken en ondernemen in Frankrijk. De Gebruiker navigeert via een click-funnel door zes domeinen (Wonen, Geld, Zorg, Ondernemen, Verzekeren, Bureaucratie) naar steeds specifiekere onderwerpen. Het merendeel van de antwoorden is pre-gegenereerd en heeft een geautomatiseerde kwaliteitscontrole doorlopen. Bronnen worden geclassificeerd naar betrouwbaarheid en zijn zichtbaar bij elk antwoord.</p>
+
+<h3>7.2 Freemium</h3>
+<p>Café Claude biedt een beperkt aantal gratis antwoorden aan niet-ingelogde of niet-betalende Gebruikers. Het actuele aantal gratis antwoorden wordt vermeld in de interface. Onbeperkt gebruik is beschikbaar voor Abonnees van Infofrankrijk.com.</p>
+
+<h3>7.3 AI-transparantie</h3>
+<p>Café Claude is een AI-systeem. Er zit geen mens achter de antwoorden. Conform de Europese AI-verordening (Verordening (EU) 2024/1689) informeert Communities Abroad de Gebruiker hierover bij eerste gebruik en bij elk gegenereerd antwoord.</p>
+
+<h3>7.4 Geen persoonlijk advies</h3>
+<p>De informatie die Café Claude verstrekt is algemeen van aard en vormt uitdrukkelijk geen individueel juridisch, fiscaal, financieel of medisch advies. De AI-assistent kan onjuiste, onvolledige of verouderde informatie genereren. Dit is een inherente eigenschap van generatieve AI-technologie. Voor beslissingen met juridische, financiële of medische gevolgen dient de Gebruiker altijd een gekwalificeerde adviseur te raadplegen.</p>
+
+<h3>7.5 Aansprakelijkheid AI</h3>
+<p>Communities Abroad aanvaardt geen aansprakelijkheid voor schade die voortvloeit uit het gebruik van of het vertrouwen op door Café Claude gegenereerde informatie. Gebruik van de AI-assistent is geheel op eigen verantwoordelijkheid van de Gebruiker.</p>
+
+<h3>7.6 Gegevensverwerking</h3>
+<p>Door Café Claude te gebruiken stemt de Gebruiker ermee in dat ingevoerde vragen worden doorgestuurd naar het onderliggende AI-taalmodel van Anthropic (Claude) ten behoeve van het genereren van een antwoord. De Gebruiker dient geen bijzondere persoonsgegevens (zoals BSN, medische gegevens of strafrechtelijke gegevens) in te voeren bij Café Claude. Nadere informatie over de gegevensverwerking is opgenomen in de Privacyverklaring.</p>
+
+<h3>7.7 Beschikbaarheid</h3>
+<p>Communities Abroad streeft naar een zo hoog mogelijke beschikbaarheid van Café Claude, maar garandeert geen ononderbroken of foutloze werking. De beschikbaarheid is mede afhankelijk van externe dienstverleners.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-correspondentie">Artikel 8. Correspondentie-assistent</h2>
+
+<h3>8.1 Aard van de dienst</h3>
+<p>De Correspondentie-assistent is een interactieve tool op Infofrankrijk.com die Gebruikers helpt bij het opstellen van juridische en administratieve brieven in het Frans. De tool werkt via klikstromen (gestructureerde keuzevragen) en genereert brieven op basis van drie modi:</p>
+<ul>
+  <li><strong>Cache:</strong> de brief wordt samengesteld uit vooraf geverifieerde templates op basis van externe bronnen. Er vindt geen verwerking door een extern AI-model plaats.</li>
+  <li><strong>Basis:</strong> de brief wordt gegenereerd door AI op basis van een gesloten set van geverifieerde bronnen.</li>
+  <li><strong>Vrij:</strong> de brief wordt volledig door AI gegenereerd. De Gebruiker wordt expliciet gewaarschuwd dat de inhoud niet is geverifieerd.</li>
+</ul>
+
+<h3>8.2 Bronnen</h3>
+<p>De briefinhoud in de modi "cache" en "basis" is afkomstig van geverifieerde externe bronnen, waaronder modelbrieven van het Institut National de la Consommation (INC) en informatie van economie.gouv.fr. Communities Abroad garandeert niet dat deze bronnen te allen tijde actueel of volledig zijn.</p>
+
+<h3>8.3 Freemium</h3>
+<p>De Correspondentie-assistent biedt een beperkt aantal gratis sessies aan niet-betalende Gebruikers. Bepaalde niveaus en functies zijn uitsluitend beschikbaar voor Abonnees van Infofrankrijk.com. De specifieke limieten worden vermeld in de tool-interface.</p>
+
+<h3>8.4 Geen juridisch advies</h3>
+<p>De door de Correspondentie-assistent gegenereerde brieven vormen uitdrukkelijk geen individueel juridisch advies. De Gebruiker is te allen tijde zelf verantwoordelijk voor de inhoud van brieven die hij op basis van de gegenereerde output verstuurt aan derden. Communities Abroad aanvaardt geen aansprakelijkheid voor de gevolgen van het verzenden van gegenereerde brieven.</p>
+
+<h3>8.5 AI-auditeur</h3>
+<p>Elke gegenereerde brief doorloopt een geautomatiseerde kwaliteitscontrole (AI-auditeur). De uitkomst van deze controle wordt aan de Gebruiker getoond als een kwaliteitsbadge. Deze controle is indicatief en ontslaat de Gebruiker niet van de verantwoordelijkheid om de brief zelf te controleren alvorens deze te verzenden.</p>
+
+<h3>8.6 Contactkaarten</h3>
+<p>De Correspondentie-assistent biedt de mogelijkheid om contactgegevens van partijen waarmee de Gebruiker correspondeert op te slaan als contactkaarten. Deze worden standaard opgeslagen in de lokale opslag van de browser van de Gebruiker (localStorage) en worden niet naar de servers van Communities Abroad verzonden, tenzij de Gebruiker ervoor kiest deze te synchroniseren met DossierFrankrijk. Nadere informatie is opgenomen in de Privacyverklaring.</p>
+
+<h3>8.7 Gegevensverwerking</h3>
+<p>In de modi "basis" en "vrij" worden de invoer van de Gebruiker en de gegenereerde brief doorgestuurd naar het AI-taalmodel van Anthropic (Claude). De Gebruiker dient geen bijzondere persoonsgegevens in te voeren. Nadere informatie is opgenomen in de Privacyverklaring.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-tools">Artikel 9. Interactieve tools</h2>
+
+<h3>9.1 Aard van de diensten</h3>
+<p>Infofrankrijk.com biedt een groeiend pakket van interactieve tools aan. Deze tools omvatten onder meer simulatietools en calculators (op het gebied van belastingen, vastgoedkosten, energieprestatie, zorgvergoedingen en subsidies), interactieve gidsen en dashboards (over onderwerpen als ondernemen, erfrecht, ouderenzorg, beroepskeuze en lokale overheidsdiensten) en overige hulpmiddelen. Het actuele overzicht is te vinden op de <a href="https://infofrankrijk.com/categorie/toolbox-infofrankrijk/">Toolbox-pagina van Infofrankrijk.com</a>.</p>
+
+<p>De tools voeren berekeningen, simulaties en analyses uit op basis van door de Gebruiker ingevoerde gegevens en/of publiekelijk beschikbare parameters (tarieven, drempels, coëfficiënten) en/of gegevens van externe API's (zoals overheids­databases). De Correspondentie-assistent, waarvoor aanvullende bepalingen gelden, is beschreven in artikel 8.</p>
+
+<h3>9.2 Freemium</h3>
+<p>De interactieve tools bieden basisfunctionaliteit aan alle bezoekers. Uitgebreide functies en het opslaan van resultaten in DossierFrankrijk zijn beschikbaar voor Abonnees van Infofrankrijk.com. Per tool wordt in de interface aangegeven welke functies gratis beschikbaar zijn en welke een abonnement vereisen.</p>
+
+<h3>9.3 Geen professioneel advies</h3>
+<p>De door de interactieve tools berekende resultaten, gegenereerde analyses en weergegeven informatie zijn indicatief en vormen uitdrukkelijk geen individueel fiscaal, financieel, juridisch, energetisch of medisch advies. De berekeningen en analyses zijn gebaseerd op door de Gebruiker ingevoerde gegevens en op publiekelijk beschikbare parameters die aan verandering onderhevig zijn. Communities Abroad garandeert niet dat de gehanteerde parameters, brongegevens of externe data te allen tijde actueel, volledig of foutloos zijn. Voor beslissingen met financiële, juridische of medische gevolgen dient de Gebruiker altijd een gekwalificeerde adviseur te raadplegen.</p>
+
+<h3>9.4 Aansprakelijkheid</h3>
+<p>Communities Abroad aanvaardt geen aansprakelijkheid voor schade die voortvloeit uit het gebruik van of het vertrouwen op door de interactieve tools berekende resultaten, gegenereerde analyses of weergegeven informatie. Dit geldt voor alle interactieve tools in het Ecosysteem, ongeacht of zij bij naam worden genoemd in deze Voorwaarden.</p>
+
+<h3>9.5 Lokale opslag</h3>
+<p>Bepaalde tools slaan laatst gebruikte invoerwaarden op in de lokale opslag van de browser van de Gebruiker (localStorage). Deze gegevens worden niet naar de servers van Communities Abroad verzonden. Nadere informatie is opgenomen in de Privacyverklaring.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-dossier">Artikel 10. Persoonlijk dossier (DossierFrankrijk)</h2>
+
+<h3>10.1 Functie</h3>
+<p>DossierFrankrijk biedt Abonnees de mogelijkheid om resultaten van interactieve tools op Infofrankrijk.com, chatgesprekken met Café Claude en gegenereerde brieven uit de Correspondentie-assistent op te slaan in een persoonlijk, digitaal dossier.</p>
+
+<h3>10.2 Inhoud</h3>
+<p>In DossierFrankrijk worden uitsluitend opgeslagen: resultaten van tools en calculators op Infofrankrijk.com, chatgesprekken met Café Claude die de Abonnee kiest op te slaan, gegenereerde brieven uit de Correspondentie-assistent die de Abonnee kiest op te slaan, contactkaarten uit de Correspondentie-assistent (bij opt-in synchronisatie), door de Abonnee aangemaakte mappen en de daarin opgeslagen items, en AI-samenvattingen. De Abonnee kan geen eigen bestanden uploaden, geen vrije tekst invoeren en geen externe documenten toevoegen.</p>
+
+<h3>10.3 Eigendom en toegang</h3>
+<p>De in het Dossier opgeslagen gegevens zijn en blijven eigendom van de Abonnee. Het Dossier is uitsluitend toegankelijk voor de Abonnee zelf. Communities Abroad heeft als beheerder van de onderliggende database technisch toegang, maar verbindt zich deze uitsluitend te gebruiken voor technisch onderhoud, het uitvoeren van verzoeken van de Abonnee en het voldoen aan wettelijke verplichtingen.</p>
+
+<h3>10.4 Export en verwijdering</h3>
+<p>De Abonnee kan te allen tijde het volledige Dossier exporteren of individuele items en mappen verwijderen. Bij opzegging van het abonnement wordt het Dossier na 90 dagen automatisch en onomkeerbaar verwijderd, tenzij de Abonnee eerder om verwijdering verzoekt.</p>
+
+<h3>10.5 Beschikbaarheid</h3>
+<p>Communities Abroad streeft naar een zo hoog mogelijke beschikbaarheid van DossierFrankrijk, maar garandeert geen ononderbroken of foutloze werking. Communities Abroad is niet aansprakelijk voor verlies van opgeslagen gegevens als gevolg van technische storingen bij externe dienstverleners. De Abonnee wordt aangeraden regelmatig een export van het Dossier te maken.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-directories">Artikel 11. Directories (Nedergids &amp; DoctorsOnMaps)</h2>
+
+<h3>11.1 Vermeldingen</h3>
+<p>Een Registrant kan een Vermelding aanmaken in een Directory van Communities Abroad. De Vermelding bevat de door de Registrant verstrekte (zakelijke) contactgegevens en overige informatie. De Registrant is verantwoordelijk voor de juistheid en actualiteit van de verstrekte gegevens.</p>
+
+<h3>11.2 Vereisten</h3>
+<p>De inhoud van de Vermelding dient te voldoen aan de volgende vereisten:</p>
+<ul>
+  <li>De Registrant dient duidelijk en ondubbelzinnig te worden geïdentificeerd; het hanteren van een alias of pseudoniem is niet toegestaan.</li>
+  <li>De inhoud mag op geen enkele wijze misleidend, verwarrend, onbehoorlijk, haatdragend, discriminerend of aanstootgevend zijn.</li>
+  <li>De inhoud dient betrekking te hebben op de dienstverlening van de Registrant.</li>
+  <li>De inhoud dient in overeenstemming te zijn met toepasselijke wet- en regelgeving.</li>
+</ul>
+
+<h3>11.3 Duur</h3>
+<p>Niet-commerciële Vermeldingen (particulieren en non-profit) gelden voor onbeperkte duur. Commerciële Vermeldingen gelden voor de overeengekomen periode, doorgaans 12 maanden, waarna verlenging mogelijk is.</p>
+
+<h3>11.4 DoctorsOnMaps — aanvullende verificatie</h3>
+<p>Voor Vermeldingen in DoctorsOnMaps.com kan Communities Abroad ter verificatie van de medische bevoegdheid aanvullende gegevens opvragen. Deze gegevens zijn uitsluitend zichtbaar voor de beheerder en worden niet openbaar gemaakt.</p>
+
+<h3>11.5 Beheer en verwijdering</h3>
+<p>Registranten kunnen zelf hun Vermelding beheren, wijzigen en verwijderen via hun account. Desgewenst ondersteunt Communities Abroad hierbij.</p>
+
+<h3>11.6 Intellectuele eigendom Vermeldingen</h3>
+<p>De Registrant garandeert dat met de plaatsing van de Vermelding geen inbreuk wordt gemaakt op rechten van derden. De Registrant verleent Communities Abroad een niet-exclusieve licentie voor het tonen en distribueren van de Vermelding binnen het Ecosysteem voor de duur van de Vermeldingsovereenkomst.</p>
+
+<h3>11.7 Vrijwaring</h3>
+<p>De Registrant vrijwaart Communities Abroad van alle aanspraken van derden die verband houden met de inhoud van de Vermelding.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-advertenties">Artikel 12. Advertenties</h2>
+
+<h3>12.1 Vereisten aan de Advertentie</h3>
+<p>De inhoud van de Advertentie dient in overeenstemming te zijn met alle toepasselijke wet- en regelgeving, waaronder de Nederlandse Reclame Code. Meer specifiek geldt dat:</p>
+<ul>
+  <li>De inhoud niet mag concurreren met of in strijd zijn met de doeleinden van Communities Abroad, tenzij vooraf schriftelijk overeengekomen.</li>
+  <li>De inhoud op geen enkele wijze misleidend of verwarrend mag zijn.</li>
+  <li>De Adverteerder duidelijk en ondubbelzinnig in de Advertentie wordt geïdentificeerd.</li>
+  <li>De Advertentie herkenbaar is als commerciële communicatie.</li>
+  <li>Advertenties gericht op financiële diensten in overeenstemming zijn met de regelgeving van de AFM.</li>
+  <li>De inhoud niet onbehoorlijk, haatdragend, discriminerend, opruiend, schokkend of aanstootgevend is.</li>
+</ul>
+
+<h3>12.2 Media</h3>
+<p>Advertenties kunnen worden geplaatst op Infofrankrijk.com, Nederlanders.fr, in de nieuwsbrief Frankrijknieuws en op overige media van Communities Abroad, overeenkomstig het in de Advertentieovereenkomst bepaalde.</p>
+
+<h3>12.3 Garanties en vrijwaring</h3>
+<p>De Adverteerder garandeert dat de Advertentie geen inbreuk maakt op rechten van derden en het imago van Communities Abroad niet schaadt. De Adverteerder verleent Communities Abroad een onvoorwaardelijke, onherroepelijke licentie voor de plaatsing van de Advertentie voor de overeengekomen duur. De Adverteerder vrijwaart Communities Abroad van alle aanspraken van derden die verband houden met de Advertentie.</p>
+
+<h3>12.4 Offertes en aanbiedingen</h3>
+<p>Alle offertes en aanbiedingen van Communities Abroad zijn eenmalig, vrijblijvend en geldig gedurende 14 dagen, tenzij anders aangegeven. Prijzen en voorwaarden hebben uitsluitend betrekking op de betreffende Overeenkomst en gelden niet automatisch voor herplaatsingen of vernieuwingen.</p>
+
+<h3>12.5 Totstandkoming</h3>
+<p>Een Advertentieovereenkomst komt tot stand op het moment dat de Adverteerder via de aangeboden mogelijkheden op een van de media een Advertentie voor plaatsing heeft aangeboden, dan wel per e-mail opdracht tot plaatsing geeft.</p>
+
+<h3>12.6 Contractsduur</h3>
+<p>Een Advertentieovereenkomst wordt aangegaan voor minimaal 12 maanden, tenzij anders overeengekomen. Een aangegane Advertentieovereenkomst is bindend en kan niet worden herroepen.</p>
+
+<h3>12.7 Plaatsing</h3>
+<p>Communities Abroad zal de Advertentie met zorg plaatsen. Een bepaalde plaats op een medium kan nimmer worden gegarandeerd. Communities Abroad is gerechtigd een Advertentie niet te plaatsen of de plaatsing op te schorten wegens inhoudelijke, technische of andere bezwaren, zonder gehouden te zijn tot schadevergoeding.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-nieuwsbrief">Artikel 13. Nieuwsbrief (Frankrijknieuws)</h2>
+
+<p><strong>13.1</strong> De nieuwsbrief Frankrijknieuws is een kosteloos aanbod van Communities Abroad, los van het abonnement op Infofrankrijk.com. Aanmelding geschiedt op basis van uitdrukkelijke toestemming van de Gebruiker (opt-in).</p>
+
+<p><strong>13.2</strong> De nieuwsbrief verschijnt dagelijks en bevat een zorgvuldige selectie van nieuws uit en over Frankrijk, de in Nederlanders.fr geplaatste blogposts, verwijzingen naar artikelen op Infofrankrijk.com en, indien van toepassing, commerciële uitingen van adverteerders. Commerciële uitingen zijn als zodanig herkenbaar.</p>
+
+<p><strong>13.3</strong> Elke nieuwsbrief bevat een mogelijkheid om het abonnement op te zeggen (uitschrijflink). Uitschrijving wordt onverwijld verwerkt.</p>
+
+<p><strong>13.4</strong> De distributie van de nieuwsbrief vindt plaats via een externe dienstverlener (Mailchimp). Nadere informatie over de verwerking van het e-mailadres is opgenomen in de Privacyverklaring.</p>
+
+<p><strong>13.5</strong> Communities Abroad behoudt zich het recht voor de frequentie, inhoud of vorm van de nieuwsbrief te wijzigen of de nieuwsbrief te beëindigen.</p>
+
+<!-- ============================================================ -->
+<!-- DEEL III — ALGEMENE BEPALINGEN                                 -->
+<!-- ============================================================ -->
+
+<h2 id="av-ip">Artikel 14. Intellectuele eigendom</h2>
+
+<p><strong>14.1</strong> Alle intellectuele eigendomsrechten op het Ecosysteem en de daarin opgenomen content van Communities Abroad — waaronder teksten, artikelen, tools, software, ontwerpen en logo's — berusten bij Communities Abroad, tenzij uitdrukkelijk anders vermeld.</p>
+
+<p><strong>14.2</strong> Het is de Gebruiker niet toegestaan om zonder voorafgaande schriftelijke toestemming van Communities Abroad content van het Ecosysteem te verveelvoudigen, openbaar te maken of anderszins te exploiteren.</p>
+
+<p><strong>14.3</strong> De AI-gegenereerde antwoorden van Café Claude en de door de Correspondentie-assistent gegenereerde brieven mogen door de Gebruiker worden gebruikt voor persoonlijke doeleinden. Commercieel gebruik of publicatie van AI-gegenereerde content is niet toegestaan zonder toestemming van Communities Abroad.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-aansprakelijkheid">Artikel 15. Aansprakelijkheid</h2>
+
+<p><strong>15.1</strong> Communities Abroad stelt het Ecosysteem met zorg samen en onderhoudt het naar beste vermogen, maar biedt alle diensten aan "as is" en garandeert niet dat het Ecosysteem ononderbroken, foutloos of volledig beschikbaar is.</p>
+
+<p><strong>15.2</strong> Communities Abroad is uitsluitend aansprakelijk voor directe schade die het gevolg is van opzet of grove schuld van Communities Abroad. Onder directe schade wordt verstaan: vervangende schadevergoeding en redelijke kosten ter voorkoming of beperking van zodanige schade.</p>
+
+<p><strong>15.3</strong> De aansprakelijkheid van Communities Abroad is in alle gevallen beperkt tot het bedrag dat de Gebruiker in de 12 maanden voorafgaand aan de schadeveroorzakende gebeurtenis aan Communities Abroad heeft betaald, met een maximum van € 500,-. Voor niet-betalende Gebruikers (gratis forumleden, gratis Vermeldingen) is de aansprakelijkheid uitgesloten voor zover de wet dit toestaat.</p>
+
+<p><strong>15.4</strong> Communities Abroad is nimmer aansprakelijk voor indirecte schade, waaronder gevolgschade, gederfde winst, gemiste besparingen, schade door bedrijfsstagnatie, verminderde goodwill en claims van derden.</p>
+
+<p><strong>15.5</strong> Communities Abroad is niet aansprakelijk voor schade die voortvloeit uit het gebruik van of het vertrouwen op door AI-gestuurde of interactieve tools gegenereerde informatie, berekeningen of analyses. Dit omvat, maar is niet beperkt tot, antwoorden van Café Claude, gegenereerde brieven van de Correspondentie-assistent, en resultaten van alle simulatietools, calculators, gidsen en dashboards in het Ecosysteem (zie ook artikelen 7.5, 8.4 en 9.4).</p>
+
+<p><strong>15.6</strong> Communities Abroad is niet aansprakelijk voor de inhoud van websites van derden waarnaar vanuit het Ecosysteem wordt verwezen.</p>
+
+<p><strong>15.7</strong> Communities Abroad is niet aansprakelijk voor Content die door Gebruikers op het forum of in Directories wordt geplaatst. De Gebruiker die Content plaatst is hiervoor zelf verantwoordelijk.</p>
+
+<p><strong>15.8</strong> Schade dient binnen 14 dagen na ontdekking schriftelijk te worden gemeld aan Communities Abroad. Schade die niet tijdig is gemeld komt niet voor vergoeding in aanmerking.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-herroeping">Artikel 16. Herroepingsrecht</h2>
+
+<p><strong>16.1</strong> Op grond van de Wet Koop op Afstand heeft een consument het recht om een op afstand gesloten Overeenkomst voor een abonnement binnen 14 dagen na het sluiten van de Overeenkomst zonder opgave van redenen te ontbinden (herroepingsrecht).</p>
+
+<p><strong>16.2</strong> Indien de Abonnee uitdrukkelijk verzoekt dat de dienstverlening (toegang tot betaalde content, Café Claude, de Correspondentie-assistent, de interactieve tools en/of DossierFrankrijk) aanvangt vóór het verstrijken van de herroepingstermijn, en de Abonnee erkent daarmee zijn herroepingsrecht te verliezen, vervalt het herroepingsrecht zodra de dienst volledig is uitgevoerd. Indien de dienst gedeeltelijk is uitgevoerd, is de Abonnee een bedrag verschuldigd dat evenredig is aan het gedeelte van de dienst dat is geleverd op het moment van herroeping.</p>
+
+<p><strong>16.3</strong> Om het herroepingsrecht uit te oefenen, stuurt de Abonnee een ondubbelzinnige verklaring per e-mail aan info@communitiesabroad.com. Communities Abroad bevestigt de ontvangst onverwijld.</p>
+
+<p><strong>16.4</strong> Terugbetaling vindt plaats binnen 14 dagen na ontvangst van de herroepingsverklaring, via hetzelfde betaalmiddel als de oorspronkelijke transactie.</p>
+
+<p><strong>16.5</strong> Het herroepingsrecht is niet van toepassing op Advertentieovereenkomsten tussen Communities Abroad en een zakelijke Adverteerder (B2B).</p>
+
+<!-- ============================================================ -->
+<h2 id="av-betaling">Artikel 17. Betalingsvoorwaarden</h2>
+
+<p><strong>17.1</strong> Alle prijzen zijn inclusief de in Nederland geldende omzetbelasting (BTW) en andere heffingen van overheidswege, tenzij anders vermeld.</p>
+
+<p><strong>17.2</strong> Facturen dienen binnen 14 dagen na factuurdatum te worden voldaan, tenzij anders overeengekomen.</p>
+
+<p><strong>17.3</strong> Indien automatische incasso is overeengekomen, wordt het bedrag automatisch geïncasseerd ten laste van het opgegeven rekeningnummer van de Adverteerder of Registrant en ten gunste van IBAN NL20 RABO 0304 3907 39 ten name van Communities Abroad.</p>
+
+<p><strong>17.4</strong> Indien betaling niet tijdig wordt ontvangen, is de Gebruiker, Adverteerder of Registrant — zonder nadere ingebrekestelling — in verzuim. Na het verstrijken van 30 dagen na factuurdatum wordt het factuurbedrag verhoogd met administratiekosten van € 17,50. Vanaf het moment van verzuim is tevens de wettelijke handelsrente verschuldigd.</p>
+
+<p><strong>17.5</strong> Vanaf het moment van verzuim is de Adverteerder of Registrant tevens aansprakelijk voor buitengerechtelijke incassokosten ter hoogte van 15% van het factuurbedrag, met een minimum van € 40,- per factuur, of de daadwerkelijk gemaakte kosten indien deze hoger zijn.</p>
+
+<p><strong>17.6</strong> Alle prijzen op het Ecosysteem zijn onder voorbehoud van typefouten. Voor de gevolgen van typefouten wordt geen aansprakelijkheid aanvaard.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-privacy">Artikel 18. Privacy</h2>
+
+<p><strong>18.1</strong> Communities Abroad verwerkt persoonsgegevens conform de Algemene Verordening Gegevensbescherming (AVG) en de Privacyverklaring van Communities Abroad.</p>
+
+<p><strong>18.2</strong> De Privacyverklaring is beschikbaar op CommunitiesAbroad.com en Infofrankrijk.com en is van toepassing op alle onderdelen van het Ecosysteem. De Privacyverklaring vormt een integraal onderdeel van deze Voorwaarden.</p>
+
+<p><strong>18.3</strong> Door gebruik te maken van het Ecosysteem erkent de Gebruiker kennis te hebben genomen van de Privacyverklaring.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-wijzigingen">Artikel 19. Wijzigingen</h2>
+
+<p><strong>19.1</strong> Communities Abroad behoudt zich het recht voor deze Voorwaarden te wijzigen.</p>
+
+<p><strong>19.2</strong> Substantiële wijzigingen worden minimaal 30 dagen voor inwerkingtreding bekendgemaakt via het Ecosysteem en, indien van toepassing, per e-mail aan geregistreerde Gebruikers.</p>
+
+<p><strong>19.3</strong> Indien een Gebruiker niet instemt met de gewijzigde Voorwaarden, heeft hij het recht zijn account te beëindigen of het abonnement op te zeggen vóór de inwerkingtreding van de gewijzigde Voorwaarden.</p>
+
+<p><strong>19.4</strong> De meest recente versie van deze Voorwaarden is altijd beschikbaar op CommunitiesAbroad.com en Infofrankrijk.com.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-recht">Artikel 20. Toepasselijk recht en geschillen</h2>
+
+<p><strong>20.1</strong> Op deze Voorwaarden en alle Overeenkomsten tussen Communities Abroad en de Gebruiker is Nederlands recht van toepassing.</p>
+
+<p><strong>20.2</strong> Geschillen die voortvloeien uit of verband houden met deze Voorwaarden of een Overeenkomst worden bij uitsluiting voorgelegd aan de bevoegde rechter in het arrondissement Oost-Brabant, tenzij een dwingendrechtelijke bepaling anders voorschrijft.</p>
+
+<p><strong>20.3</strong> Alvorens een geschil aan de rechter voor te leggen, zullen partijen zich inspannen om het geschil in onderling overleg op te lossen.</p>
+
+<!-- ============================================================ -->
+<h2 id="av-slotbepalingen">Artikel 21. Slotbepalingen</h2>
+
+<p><strong>21.1</strong> Zonder voorafgaande schriftelijke toestemming van Communities Abroad is de Gebruiker, Adverteerder of Registrant niet gerechtigd zijn rechten en/of verplichtingen uit een Overeenkomst aan derden over te dragen.</p>
+
+<p><strong>21.2</strong> Indien twee of meer Adverteerders of Registranten gezamenlijk een Overeenkomst sluiten, is ieder van hen hoofdelijk verbonden ter zake de nakoming van de verplichtingen uit de Overeenkomst.</p>
+
+<p><strong>21.3</strong> Communities Abroad behoudt zich het recht voor aanwijzingen van bevoegde autoriteiten op te volgen, waaronder de Autoriteit Persoonsgegevens, de Reclame Code Commissie en de Autoriteit Financiële Markten.</p>
+
+<!-- ============================================================ -->
+<div class="ca-av-changelog">
+  <p class="ca-av-changelog-title">Wijzigingslog</p>
+  <p><strong>Versie 2.1</strong> — 12 april 2026<br>
+  Wijzigingen ten opzichte van versie 2.0 (24 februari 2026):</p>
+  <ul>
+    <li>Spelling "InfoFrankrijk" gecorrigeerd naar "Infofrankrijk" in het gehele document.</li>
+    <li>AI-verwerker gewijzigd van Google (Gemini) naar Anthropic (Claude) in artikelen 7.1, 7.6 en 8.7.</li>
+    <li>Café Claude-beschrijving geactualiseerd: "experts"-interface vervangen door click-funnel met zes domeinen (artikel 7.1).</li>
+    <li>Nieuw artikel 8: Correspondentie-assistent — aard van de dienst, drie generatiemodi, disclaimer, AI-auditeur, contactkaarten, freemium en gegevensverwerking.</li>
+    <li>Nieuw artikel 9: Interactieve tools — generieke bepalingen voor het volledige en groeiende toolpakket (simulatietools, calculators, gidsen, dashboards), met verwijzing naar de Toolbox-pagina op Infofrankrijk.com als actueel overzicht. Bepalingen gelden voor alle tools, ongeacht of zij bij naam worden genoemd.</li>
+    <li>Artikel 4 (Account) uitgebreid: gescheiden accountsystemen (NLFR forumaccount vs. IF portaalaccount) en SSO-koppeling verduidelijkt (artikel 4.2).</li>
+    <li>Artikel 5 (Forum) uitgebreid: gratis karakter en onafhankelijkheid van IF-abonnement expliciet vermeld (artikel 5.1).</li>
+    <li>Artikel 6 (Abonnementen) uitgebreid: freemium-structuur beschreven (6.1), concrete prijs jaarabonnement vermeld (6.2), gevolgen opzegging voor gekoppelde diensten (6.7), freemium per tool verduidelijkt (7.2, 8.3, 9.2).</li>
+    <li>Artikel 10 (DossierFrankrijk, voorheen art. 8) uitgebreid: opslag van Correspondentie-assistent-brieven en contactkaarten toegevoegd (10.1, 10.2).</li>
+    <li>Artikel 12 (Advertenties) uitgebreid: nieuwsbrief als advertentiemedium expliciet benoemd (12.2).</li>
+    <li>Artikel 13 (Nieuwsbrief, voorheen art. 11) uitgebreid: kosteloos karakter, frequentie, inhoud (inclusief blogposts en advertenties), Mailchimp als externe dienstverlener, wijzigingsrecht.</li>
+    <li>Artikel 14.3: Correspondentie-assistent-brieven toegevoegd aan IE-bepaling voor persoonlijk gebruik.</li>
+    <li>Artikel 15.5: aansprakelijkheidsbeperking uitgebreid naar alle AI-gestuurde tools (CC, Correspondentie-assistent, FK, EnergiePortaal).</li>
+    <li>Artikel 16.2: herroepingsrecht vermeldt nu alle diensten (incl. Correspondentie-assistent en interactieve tools).</li>
+    <li>Definitie 1.4 aangepast: Forumgebruiker betreft uitsluitend Nederlanders.fr (niet meer Infofrankrijk.com).</li>
+    <li>Definities 1.5 (Abonnee), 1.11 (AI-assistent), 1.12 (Correspondentie-assistent, nieuw), 1.13 (Dossier) bijgewerkt.</li>
+    <li>Artikelnummering doorgeteld: 19 → 21 artikelen.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<div class="ca-av-footer">
+  <p><strong>Communities Abroad</strong><br>
+  Landgoed de Stille Wille 174 · 5091 WE Oirschot · Nederland<br>
+  KvK 55741509 · info@communitiesabroad.com<br><br>
+  Deze Algemene Voorwaarden zijn van toepassing op het volledige ecosysteem: Infofrankrijk.com, Nederlanders.fr, Nedergids.nl, DoctorsOnMaps.com, CaféClaude.fr, DossierFrankrijk.nl, Frankrijknieuws en CommunitiesAbroad.com.</p>
+</div>
+
+</div>`;
+
+export default function AlgemeneVoorwaardenPage() {
+  return (
+    <section className="bg-white py-12">
+      <style dangerouslySetInnerHTML={{ __html: styleContent }} />
+      <div dangerouslySetInnerHTML={{ __html: bodyContent }} />
+    </section>
+  );
+}
