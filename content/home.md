@@ -1,6 +1,6 @@
 ---
 hero:
-  heading: "Alles over wonen, werken en ondernemen in Frankrijk. In het Nederlands."
+  heading: "Alles over wonen, werken en ondernemen in Frankrijk"
   subheading: "Communities Abroad ontwikkelt en onderhoudt het grootste Nederlandstalige digitale platform voor Nederlanders en Belgen in Frankrijk. Forum, kennisplatform, AI-assistent, interactieve tools, persoonlijk dossier en dienstverlenergids — samenhangend en vanuit één organisatie."
   cta1:
     label: "Ontdek de platforms"
