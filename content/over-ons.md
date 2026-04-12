@@ -1,6 +1,10 @@
 ---
 heading: "Over Communities Abroad"
 ---
+---
+title: "Over ons"
+heading: "Over Communities Abroad"
+---
 
 ## Het verhaal
 
