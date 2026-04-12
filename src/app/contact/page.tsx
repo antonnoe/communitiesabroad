@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with CommunitiesAbroad. We're here to help with your international relocation and community needs.",
+    "Neem contact op met CommunitiesAbroad. Wij staan klaar om u te helpen met uw internationale relocatie en community-behoeften.",
 };
 
-const contactMethods = [
+const contactMethoden = [
   {
-    title: "Email",
+    title: "E-mail",
     value: "info@communitiesabroad.com",
     href: "mailto:info@communitiesabroad.com",
     icon: (
@@ -28,7 +28,7 @@ const contactMethods = [
     ),
   },
   {
-    title: "Phone",
+    title: "Telefoon",
     value: "+31 (0)20 123 4567",
     href: "tel:+31201234567",
     icon: (
@@ -48,8 +48,8 @@ const contactMethods = [
     ),
   },
   {
-    title: "Office",
-    value: "Amsterdam, The Netherlands",
+    title: "Kantoor",
+    value: "Amsterdam, Nederland",
     href: null,
     icon: (
       <svg
@@ -77,15 +77,15 @@ const contactMethods = [
 export default function ContactPage() {
   return (
     <>
-      {/* Page header */}
-      <section className="bg-primary-900 py-20 text-white">
+      {/* Pagina header */}
+      <section className="bg-primary py-20 text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            Contact Us
+            Contact
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-primary-100">
-            Have questions or ready to get started? We&apos;d love to hear from
-            you. Reach out and our team will respond within 24 hours.
+          <p className="mt-6 max-w-2xl text-lg text-white/80">
+            Heeft u vragen of wilt u aan de slag? Wij horen graag van u. Ons
+            team reageert binnen 24 uur.
           </p>
         </div>
       </section>
@@ -93,10 +93,10 @@ export default function ContactPage() {
       <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
-            {/* Contact form */}
+            {/* Contactformulier */}
             <div>
               <h2 className="text-2xl font-bold text-gray-900">
-                Send Us a Message
+                Stuur Ons een Bericht
               </h2>
               <form className="mt-8 space-y-6">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -105,14 +105,14 @@ export default function ContactPage() {
                       htmlFor="firstName"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      First name
+                      Voornaam
                     </label>
                     <input
                       type="text"
                       id="firstName"
                       name="firstName"
-                      className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-primary-500 focus:outline-none"
-                      placeholder="John"
+                      className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary focus:outline-none"
+                      placeholder="Jan"
                     />
                   </div>
                   <div>
@@ -120,14 +120,14 @@ export default function ContactPage() {
                       htmlFor="lastName"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Last name
+                      Achternaam
                     </label>
                     <input
                       type="text"
                       id="lastName"
                       name="lastName"
-                      className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-primary-500 focus:outline-none"
-                      placeholder="Doe"
+                      className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary focus:outline-none"
+                      placeholder="de Vries"
                     />
                   </div>
                 </div>
@@ -136,14 +136,14 @@ export default function ContactPage() {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Email
+                    E-mail
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-primary-500 focus:outline-none"
-                    placeholder="john@example.com"
+                    className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary focus:outline-none"
+                    placeholder="jan@voorbeeld.nl"
                   />
                 </div>
                 <div>
@@ -151,19 +151,19 @@ export default function ContactPage() {
                     htmlFor="subject"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Subject
+                    Onderwerp
                   </label>
                   <select
                     id="subject"
                     name="subject"
-                    className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 focus:outline-none"
+                    className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-primary focus:ring-primary focus:outline-none"
                   >
-                    <option value="">Select a topic</option>
-                    <option value="relocation">Relocation Support</option>
+                    <option value="">Kies een onderwerp</option>
+                    <option value="relocatie">Relocatie Ondersteuning</option>
                     <option value="community">Community Building</option>
-                    <option value="cultural">Cultural Integration</option>
-                    <option value="corporate">Corporate Programs</option>
-                    <option value="other">Other</option>
+                    <option value="cultureel">Culturele Integratie</option>
+                    <option value="zakelijk">Zakelijke Programma&apos;s</option>
+                    <option value="overig">Overig</option>
                   </select>
                 </div>
                 <div>
@@ -171,53 +171,54 @@ export default function ContactPage() {
                     htmlFor="message"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Message
+                    Bericht
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
-                    className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-primary-500 focus:outline-none"
-                    placeholder="Tell us how we can help..."
+                    className="mt-2 block w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary focus:outline-none"
+                    placeholder="Vertel ons hoe we u kunnen helpen..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full rounded-lg bg-primary-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-700 sm:w-auto"
+                  className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/85 sm:w-auto"
                 >
-                  Send Message
+                  Verstuur Bericht
                 </button>
               </form>
             </div>
 
-            {/* Contact info */}
+            {/* Contactgegevens */}
             <div>
               <h2 className="text-2xl font-bold text-gray-900">
-                Get in Touch
+                Bereik Ons Direct
               </h2>
               <p className="mt-4 text-gray-600">
-                Prefer to reach out directly? Use any of the methods below.
+                Liever direct contact opnemen? Gebruik een van onderstaande
+                mogelijkheden.
               </p>
               <div className="mt-8 space-y-6">
-                {contactMethods.map((method) => (
-                  <div key={method.title} className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
-                      {method.icon}
+                {contactMethoden.map((methode) => (
+                  <div key={methode.title} className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      {methode.icon}
                     </div>
                     <div>
                       <h3 className="text-sm font-semibold text-gray-900">
-                        {method.title}
+                        {methode.title}
                       </h3>
-                      {method.href ? (
+                      {methode.href ? (
                         <a
-                          href={method.href}
-                          className="mt-1 text-sm text-gray-600 transition-colors hover:text-primary-600"
+                          href={methode.href}
+                          className="mt-1 text-sm text-gray-600 transition-colors hover:text-primary"
                         >
-                          {method.value}
+                          {methode.value}
                         </a>
                       ) : (
                         <p className="mt-1 text-sm text-gray-600">
-                          {method.value}
+                          {methode.value}
                         </p>
                       )}
                     </div>
@@ -225,17 +226,17 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              <div className="mt-12 rounded-xl bg-gray-50 p-8">
+              <div className="mt-12 rounded-xl bg-primary/5 p-8">
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Office Hours
+                  Openingstijden
                 </h3>
                 <div className="mt-4 space-y-2 text-sm text-gray-600">
-                  <p>Monday – Friday: 9:00 – 18:00 CET</p>
-                  <p>Saturday – Sunday: Closed</p>
+                  <p>Maandag – Vrijdag: 9:00 – 18:00</p>
+                  <p>Zaterdag – Zondag: Gesloten</p>
                 </div>
                 <p className="mt-4 text-sm text-gray-500">
-                  We aim to respond to all inquiries within 24 hours during
-                  business days.
+                  Wij streven ernaar alle berichten binnen 24 uur te
+                  beantwoorden op werkdagen.
                 </p>
               </div>
             </div>

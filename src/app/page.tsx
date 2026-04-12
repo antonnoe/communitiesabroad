@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-const services = [
+const diensten = [
   {
-    title: "Relocation Support",
+    title: "Relocatie Ondersteuning",
     description:
-      "End-to-end guidance for individuals and families moving abroad, from visa assistance to settling in.",
+      "Begeleiding van A tot Z bij internationale verhuizingen, van visumaanvraag tot het opbouwen van een nieuw thuis.",
     icon: (
       <svg
-        className="h-8 w-8 text-primary-600"
+        className="h-8 w-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
@@ -24,10 +24,10 @@ const services = [
   {
     title: "Community Building",
     description:
-      "Creating vibrant expat communities that foster connection, support, and shared experiences.",
+      "Het creëren van levendige expat-gemeenschappen die verbinding, steun en gedeelde ervaringen bevorderen.",
     icon: (
       <svg
-        className="h-8 w-8 text-primary-600"
+        className="h-8 w-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
@@ -42,12 +42,12 @@ const services = [
     ),
   },
   {
-    title: "Cultural Integration",
+    title: "Culturele Integratie",
     description:
-      "Programs and resources to help navigate cultural differences and build meaningful local connections.",
+      "Programma's en begeleiding om culturele verschillen te overbruggen en lokale connecties op te bouwen.",
     icon: (
       <svg
-        className="h-8 w-8 text-primary-600"
+        className="h-8 w-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
@@ -62,12 +62,12 @@ const services = [
     ),
   },
   {
-    title: "Corporate Programs",
+    title: "Zakelijke Programma's",
     description:
-      "Tailored solutions for businesses managing international talent mobility and global teams.",
+      "Maatwerkoplossingen voor bedrijven die internationaal talent beheren en mondiale teams ondersteunen.",
     icon: (
       <svg
-        className="h-8 w-8 text-primary-600"
+        className="h-8 w-8 text-primary"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
@@ -83,120 +83,120 @@ const services = [
   },
 ];
 
-const stats = [
-  { value: "50+", label: "Countries served" },
-  { value: "10,000+", label: "People relocated" },
-  { value: "200+", label: "Corporate partners" },
-  { value: "15+", label: "Years of experience" },
+const cijfers = [
+  { value: "50+", label: "Landen wereldwijd" },
+  { value: "10.000+", label: "Mensen begeleid" },
+  { value: "200+", label: "Zakelijke partners" },
+  { value: "15+", label: "Jaar ervaring" },
 ];
 
 export default function Home() {
   return (
     <>
-      {/* Hero section */}
-      <section className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
+      {/* Hero sectie */}
+      <section className="bg-primary text-white">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="max-w-2xl">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              Building Thriving Communities{" "}
-              <span className="text-accent-300">Across Borders</span>
+              Bloeiende Gemeenschappen{" "}
+              <span className="text-white/70">Over Grenzen Heen</span>
             </h1>
-            <p className="mt-6 text-lg leading-8 text-primary-100">
-              We help individuals, families, and organizations navigate the
-              complexities of international relocation and build meaningful
-              connections in their new communities.
+            <p className="mt-6 text-lg leading-8 text-white/80">
+              Wij helpen individuen, gezinnen en organisaties bij de
+              complexiteit van internationale verhuizingen en het opbouwen van
+              betekenisvolle connecties in hun nieuwe gemeenschap.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/services"
-                className="rounded-lg bg-white px-6 py-3 text-center text-sm font-semibold text-primary-700 shadow-sm transition-colors hover:bg-primary-50"
+                href="/diensten"
+                className="rounded-lg bg-white px-6 py-3 text-center text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-white/90"
               >
-                Our Services
+                Onze Diensten
               </Link>
               <Link
                 href="/contact"
                 className="rounded-lg border border-white/30 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-white/10"
               >
-                Contact Us
+                Neem Contact Op
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats section */}
+      {/* Cijfers sectie */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-3xl font-bold text-primary-700 sm:text-4xl">
-                  {stat.value}
+            {cijfers.map((item) => (
+              <div key={item.label} className="text-center">
+                <p className="text-3xl font-bold text-primary sm:text-4xl">
+                  {item.value}
                 </p>
-                <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
+                <p className="mt-1 text-sm text-gray-600">{item.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services overview */}
-      <section className="bg-gray-50 py-20">
+      {/* Diensten overzicht */}
+      <section className="bg-primary/5 py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              How We Help
+              Hoe Wij Helpen
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              Comprehensive support for every stage of your international
-              journey.
+              Uitgebreide ondersteuning bij elke fase van uw internationale
+              reis.
             </p>
           </div>
           <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service) => (
+            {diensten.map((dienst) => (
               <div
-                key={service.title}
+                key={dienst.title}
                 className="rounded-xl bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-50">
-                  {service.icon}
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  {dienst.icon}
                 </div>
                 <h3 className="mt-6 text-lg font-semibold text-gray-900">
-                  {service.title}
+                  {dienst.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600">
-                  {service.description}
+                <p className="mt-2 text-sm text-gray-600">
+                  {dienst.description}
                 </p>
               </div>
             ))}
           </div>
           <div className="mt-12 text-center">
             <Link
-              href="/services"
-              className="text-sm font-semibold text-primary-600 transition-colors hover:text-primary-800"
+              href="/diensten"
+              className="text-sm font-semibold text-primary transition-colors hover:text-primary/80"
             >
-              Learn more about our services &rarr;
+              Meer over onze diensten &rarr;
             </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA section */}
-      <section className="bg-primary-700 py-20">
+      {/* CTA sectie */}
+      <section className="bg-primary py-20">
         <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Ready to Start Your Journey?
+            Klaar om te Beginnen?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-100">
-            Whether you&apos;re an individual planning a move or a corporation
-            managing global talent, we&apos;re here to help.
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
+            Of u nu als individu een verhuizing plant of als bedrijf
+            internationaal talent wilt ondersteunen — wij staan voor u klaar.
           </p>
           <div className="mt-10">
             <Link
               href="/contact"
-              className="rounded-lg bg-white px-8 py-3 text-sm font-semibold text-primary-700 shadow-sm transition-colors hover:bg-primary-50"
+              className="rounded-lg bg-white px-8 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-white/90"
             >
-              Get in Touch
+              Neem Contact Op
             </Link>
           </div>
         </div>

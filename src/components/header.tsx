@@ -5,8 +5,8 @@ import { useState } from "react";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "About", href: "/about" },
+  { name: "Diensten", href: "/diensten" },
+  { name: "Over Ons", href: "/over-ons" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -14,39 +14,39 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white border-b border-gray-100">
+    <header className="bg-white border-b border-primary/10">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-primary-700">
-            Communities<span className="text-accent-600">Abroad</span>
+          <span className="text-xl font-bold text-primary">
+            Communities<span className="text-primary/60">Abroad</span>
           </span>
         </Link>
 
-        {/* Desktop navigation */}
+        {/* Desktop navigatie */}
         <div className="hidden md:flex md:items-center md:gap-x-8">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-gray-700 transition-colors hover:text-primary-600"
+              className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
             >
               {item.name}
             </Link>
           ))}
           <Link
             href="/contact"
-            className="rounded-lg bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-700"
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/85"
           >
-            Get in Touch
+            Neem Contact Op
           </Link>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobiel menu knop */}
         <button
           type="button"
           className="md:hidden rounded-md p-2 text-gray-700"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Menu openen"
         >
           <svg
             className="h-6 w-6"
@@ -72,15 +72,15 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobiel menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-100 px-6 py-4">
+        <div className="md:hidden border-t border-primary/10 px-6 py-4">
           <div className="flex flex-col gap-4">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary-600"
+                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
@@ -88,10 +88,10 @@ export default function Header() {
             ))}
             <Link
               href="/contact"
-              className="rounded-lg bg-primary-600 px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary-700"
+              className="rounded-lg bg-primary px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary/85"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Get in Touch
+              Neem Contact Op
             </Link>
           </div>
         </div>

@@ -1,44 +1,45 @@
 import Link from "next/link";
 
 const footerLinks = {
-  company: [
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
+  bedrijf: [
+    { name: "Over Ons", href: "/over-ons" },
+    { name: "Diensten", href: "/diensten" },
     { name: "Contact", href: "/contact" },
   ],
-  services: [
-    { name: "Relocation Support", href: "/services#relocation" },
-    { name: "Community Building", href: "/services#community" },
-    { name: "Cultural Integration", href: "/services#cultural" },
-    { name: "Corporate Programs", href: "/services#corporate" },
+  diensten: [
+    { name: "Relocatie Ondersteuning", href: "/diensten#relocatie" },
+    { name: "Community Building", href: "/diensten#community" },
+    { name: "Culturele Integratie", href: "/diensten#cultureel" },
+    { name: "Zakelijke Programma's", href: "/diensten#zakelijk" },
   ],
 };
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-primary text-white/80">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {/* Brand */}
+          {/* Merk */}
           <div>
             <span className="text-xl font-bold text-white">
-              Communities<span className="text-accent-400">Abroad</span>
+              Communities<span className="text-white/60">Abroad</span>
             </span>
-            <p className="mt-4 text-sm leading-6 text-gray-400">
-              Helping individuals and organizations thrive in international
-              communities. Building bridges across cultures and borders.
+            <p className="mt-4 text-sm leading-7 text-white/60">
+              Wij helpen individuen en organisaties om te floreren in
+              internationale gemeenschappen. Bruggen bouwen tussen culturen en
+              grenzen.
             </p>
           </div>
 
-          {/* Company links */}
+          {/* Bedrijf links */}
           <div>
-            <h3 className="text-sm font-semibold text-white">Company</h3>
+            <h3 className="text-sm font-semibold text-white">Bedrijf</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.company.map((link) => (
+              {footerLinks.bedrijf.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-400 transition-colors hover:text-white"
+                    className="text-sm text-white/60 transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -47,15 +48,15 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services links */}
+          {/* Diensten links */}
           <div>
-            <h3 className="text-sm font-semibold text-white">Services</h3>
+            <h3 className="text-sm font-semibold text-white">Diensten</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.services.map((link) => (
+              {footerLinks.diensten.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-400 transition-colors hover:text-white"
+                    className="text-sm text-white/60 transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -65,10 +66,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-800 pt-8">
-          <p className="text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} CommunitiesAbroad. All rights
-            reserved.
+        <div className="mt-12 border-t border-white/20 pt-8">
+          <p className="text-center text-sm text-white/40">
+            &copy; {new Date().getFullYear()} CommunitiesAbroad. Alle rechten
+            voorbehouden.
           </p>
         </div>
       </div>
