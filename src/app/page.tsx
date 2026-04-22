@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { getContent } from "@/lib/content";
 
 interface Platform {
@@ -8,6 +9,13 @@ interface Platform {
   url: string | null;
 }
 
+interface Pijler {
+  letter: string;
+  heading: string;
+  subheading: string;
+  text: string;
+}
+
 interface HomeContent {
   hero: {
     heading: string;
@@ -15,17 +23,21 @@ interface HomeContent {
     cta1: { label: string; href: string };
     cta2: { label: string; href: string };
   };
+  pijlers: {
+    intro: string;
+    items: Pijler[];
+  };
   platforms: {
     intro: string;
     items: Platform[];
   };
-  samenhang: string;
-  professionals: {
-    intro: string;
+  samenhang: {
     heading: string;
-    subheading: string;
-    features: string[];
-    outro: string;
+    text: string;
+  };
+  partnersCta: {
+    heading: string;
+    text: string;
     cta: { label: string; href: string };
   };
 }
@@ -64,28 +76,21 @@ const platformIcons: Record<string, React.ReactNode> = {
   ),
 };
 
-function renderMarkdownBold(text: string) {
-  const parts = text.split(/\*\*(.*?)\*\*/g);
-  return parts.map((part, i) =>
-    i % 2 === 1 ? (
-      <strong key={i} className="text-primary">
-        {part}
-      </strong>
-    ) : (
-      part
-    )
-  );
-}
-
 export default function Home() {
   const content = getContent<HomeContent>("home");
 
   return (
     <>
+      {/* Globe-loader web component */}
+      <Script
+        src="https://cdn.jsdelivr.net/gh/antonnoe/anton-ui-blocks@main/globe-loader/globe-loader.js"
+        strategy="afterInteractive"
+      />
+
       {/* Hero */}
       <section className="bg-primary text-white">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <div className="max-w-3xl">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 lg:grid-cols-5 lg:items-center lg:px-8 lg:py-32">
+          <div className="lg:col-span-3">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
               {content.hero.heading}
             </h1>
@@ -107,11 +112,56 @@ export default function Home() {
               </Link>
             </div>
           </div>
+          <div className="hidden justify-center lg:col-span-2 lg:flex">
+            <div
+              className="rounded-xl bg-white/5 p-6 ring-1 ring-white/10"
+              dangerouslySetInnerHTML={{
+                __html: `<globe-loader lang="nl" size="240" color="#ffffff"></globe-loader>`,
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* De pijlers — Hart en Hoofd */}
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+              Hart en hoofd
+            </h2>
+            <p className="mx-auto mt-4 text-lg text-gray-600">
+              {content.pijlers.intro}
+            </p>
+          </div>
+          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
+            {content.pijlers.items.map((pijler, i) => (
+              <div
+                key={i}
+                className="relative overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 to-white p-10"
+              >
+                <div className="absolute -top-8 -right-8 select-none text-[10rem] font-bold leading-none text-primary/5">
+                  {i === 0 ? "H" : "H"}
+                </div>
+                <div className="relative">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">
+                    {pijler.subheading}
+                  </p>
+                  <h3 className="mt-3 text-2xl font-bold text-gray-900">
+                    {pijler.heading}
+                  </h3>
+                  <p className="mt-4 text-base leading-relaxed text-gray-600">
+                    {pijler.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* De platforms */}
-      <section id="platforms" className="bg-white py-20">
+      <section id="platforms" className="bg-primary/5 py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900">
@@ -125,7 +175,7 @@ export default function Home() {
             {content.platforms.items.map((platform) => (
               <div
                 key={platform.name}
-                className="group relative rounded-xl border border-primary/10 bg-white p-8 transition-all hover:border-primary/25 hover:shadow-md"
+                className="group relative rounded-xl border border-primary/10 bg-white p-8 transition-all hover:border-primary/30 hover:shadow-md"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   {platformIcons[platform.name]}
@@ -136,7 +186,7 @@ export default function Home() {
                 <p className="text-sm font-medium text-primary/70">
                   {platform.subtitle}
                 </p>
-                <p className="mt-3 text-sm text-gray-600">
+                <p className="mt-3 text-sm leading-relaxed text-gray-600">
                   {platform.description}
                 </p>
                 {platform.url && (
@@ -159,14 +209,14 @@ export default function Home() {
       </section>
 
       {/* De samenhang */}
-      <section className="bg-primary/5 py-20">
+      <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-              De samenhang
+              {content.samenhang.heading}
             </h2>
-            {content.samenhang.split("\n\n").map((paragraph, i) => (
-              <p key={i} className="mt-6 text-lg text-gray-600">
+            {content.samenhang.text.split("\n\n").map((paragraph, i) => (
+              <p key={i} className="mt-6 text-lg leading-relaxed text-gray-700">
                 {paragraph}
               </p>
             ))}
@@ -174,46 +224,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Voor professionals en adverteerders */}
-      <section className="bg-white py-20">
+      {/* Partners CTA */}
+      <section className="bg-primary py-20 text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-              {content.professionals.heading}
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight">
+              {content.partnersCta.heading}
             </h2>
-            <p className="mt-6 text-lg text-gray-600">
-              {content.professionals.intro}
-            </p>
-            <h3 className="mt-10 text-xl font-semibold text-gray-900">
-              {content.professionals.subheading}
-            </h3>
-            <ul className="mt-6 space-y-4">
-              {content.professionals.features.map((feature, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <svg
-                    className="mt-1 h-5 w-5 flex-shrink-0 text-primary/70"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                  <span className="text-gray-700">
-                    {renderMarkdownBold(feature)}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-gray-600">
-              {content.professionals.outro}
+            <p className="mt-6 text-lg text-white/85">
+              {content.partnersCta.text}
             </p>
             <div className="mt-10">
               <Link
-                href={content.professionals.cta.href}
-                className="rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary/85"
+                href={content.partnersCta.cta.href}
+                className="inline-block rounded-lg bg-white px-8 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-white/90"
               >
-                {content.professionals.cta.label}
+                {content.partnersCta.cta.label}
               </Link>
             </div>
           </div>
