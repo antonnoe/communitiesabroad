@@ -5,11 +5,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "CommunitiesAbroad — Internationale Gemeenschappen Verbinden",
-    template: "%s | CommunitiesAbroad",
+    default: "Communities Abroad — Nederlandstalig netwerk van platforms voor Frankrijk",
+    template: "%s · Communities Abroad",
   },
   description:
-    "CommunitiesAbroad helpt individuen en organisaties om te floreren in internationale gemeenschappen door relocatie-ondersteuning, community building en culturele integratie.",
+    "Communities Abroad ontwikkelt en onderhoudt het Nederlandstalige netwerk van platforms voor Nederlanders en Belgen in Frankrijk: forum, kennisplatform, AI-assistent, persoonlijk dossier, dienstverlenergids en dagelijkse nieuwsbrief. Sinds 2002.",
 };
 
 export default function RootLayout({
