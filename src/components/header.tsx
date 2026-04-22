@@ -6,7 +6,8 @@ import { useState } from "react";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Diensten", href: "/diensten" },
-  { name: "Over Ons", href: "/over-ons" },
+  { name: "Partners", href: "/partners" },
+  { name: "Over ons", href: "/over-ons" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -14,9 +15,9 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white border-b border-primary/10">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-primary/10">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2" aria-label="Communities Abroad — home">
           <span className="text-xl font-bold text-primary">
             Communities<span className="text-primary/60">Abroad</span>
           </span>
@@ -34,10 +35,10 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href="/partners"
             className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/85"
           >
-            Neem Contact Op
+            Voor partners
           </Link>
         </div>
 
@@ -47,6 +48,7 @@ export default function Header() {
           className="md:hidden rounded-md p-2 text-gray-700"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Menu openen"
+          aria-expanded={mobileMenuOpen}
         >
           <svg
             className="h-6 w-6"
@@ -87,11 +89,11 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href="/partners"
               className="rounded-lg bg-primary px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary/85"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Neem Contact Op
+              Voor partners
             </Link>
           </div>
         </div>
