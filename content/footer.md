@@ -1,5 +1,5 @@
 ---
-brand: "Het grootste Nederlandstalige digitale platform voor wonen, werken en ondernemen in Frankrijk."
+brand: "Het Nederlandstalige netwerk van platforms voor Nederlanders en Belgen in Frankrijk. Sinds 2002."
 
 platforms:
   - name: "Nederlanders.fr"
@@ -18,6 +18,8 @@ paginas:
     href: "/over-ons"
   - name: "Diensten"
     href: "/diensten"
+  - name: "Voor partners"
+    href: "/partners"
   - name: "Contact"
     href: "/contact"
 
@@ -27,7 +29,7 @@ juridisch:
   - name: "Algemene Voorwaarden"
     href: "/algemene-voorwaarden"
 
-copyright: "© 2026 Communities Abroad. Alle rechten voorbehouden."
+copyright: "© 2026 Communities Abroad · KvK 55741509 · Oirschot, Nederland"
 
 social:
   - name: "Facebook"
