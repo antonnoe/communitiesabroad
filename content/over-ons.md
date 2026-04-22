@@ -1,17 +1,29 @@
 ---
 heading: "Over Communities Abroad"
+intro: "Een eenmansbedrijf met een groot netwerk. Sinds 2002 werken we aan één ding: betrouwbare, Nederlandstalige informatie voor Nederlanders en Belgen in Frankrijk."
 
 verhaal:
   heading: "Het verhaal"
-  text: "Nederlanders.fr werd in 2002 opgericht als forum voor Nederlanders in Frankrijk. Wat begon als een plek om ervaringen te delen, groeide in ruim twintig jaar uit tot het grootste Nederlandstalige digitale platform voor wonen, werken en ondernemen in Frankrijk. In 2015 werd het forum overgenomen door Communities Abroad. In de jaren daarna werd het platform stap voor stap uitgebreid: eerst met de overname van het eveneens in 2002 opgerichte Infofrankrijk.com (kennisartikelen en interactieve tools), vervolgens met NederGids.nl (dienstverlenergids, gelanceerd in 2019). In 2025 werd besloten de websites klaar te maken voor de toekomst en minder afhankelijk te maken van donateurs, adverteerders en sponsors.\n\nVandaag omvat het aanbod naast Nederlanders.fr en NederGids.nl ook Infofrankrijk.com met bijbehorende instrumenten: Café Claude (AI-assistent), DossierFrankrijk (persoonlijk dossier) en geavanceerde embedded tools. Infofrankrijk is inmiddels volledig onafhankelijk — de bekostiging van de websites en slimme tools, en in de toekomst ook het forum, wordt primair gebaseerd op abonnementsinkomsten.\n\nElk onderdeel is gebouwd vanuit dezelfde overtuiging: Nederlandstaligen in Frankrijk verdienen toegang tot betrouwbare, praktische informatie in hun eigen taal."
+  paragrafen:
+    - "Nederlanders.fr werd in 2002 opgericht als forum voor Nederlanders in Frankrijk. Wat begon als een plek om ervaringen te delen, groeide in ruim twintig jaar uit tot het grootste Nederlandstalige platform voor wonen, werken en ondernemen in Frankrijk."
+    - "Infofrankrijk.com werd eveneens in 2002 gelanceerd, als zusterplatform met redactionele artikelen. In 2015 werden beide platforms ondergebracht bij Communities Abroad. In 2019 kwam NederGids.nl erbij, een geodirectory voor Nederlandstalige dienstverleners in Frankrijk."
+    - "Vanaf 2024 is het netwerk substantieel uitgebreid met interactieve tools (Financieel Kompas, EnergiePortaal, Correspondentie-assistent), een AI-assistent (Café Claude) en een persoonlijk dossier (DossierFrankrijk). Sinds 2025 wordt de dienstverlening primair bekostigd uit abonnementsinkomsten — niet uit advertenties, donaties of subsidies."
+
+principes:
+  heading: "Waar wij voor staan"
+  items:
+    - heading: "Eigenaarschap en continuïteit"
+      text: "Communities Abroad is opgericht en wordt geleid door Anton Noë. Eén eigenaar, één verantwoordelijke. Dat maakt het netwerk wendbaar en beslissingen snel — en het zorgt voor directe aanspreekbaarheid voor leden, abonnees en partners."
+    - heading: "Onafhankelijkheid"
+      text: "De redactionele inhoud wordt niet beïnvloed door adverteerders of commerciële partners. De interactieve tools zijn gebouwd op basis van officiële bronnen en openbare data. Advertenties zijn als zodanig herkenbaar. Gesponsorde content bestaat niet."
+    - heading: "Bronverificatie"
+      text: "Feitelijke claims — cijfers, wetsartikelen, tarieven, termijnen, codes — worden geverifieerd tegen primaire bronnen zoals service-public.fr, legifrance.gouv.fr, impots.gouv.fr en DGFiP-publicaties. Bij twijfel melden wij expliciet dat een bron niet bevestigd is."
+    - heading: "AI met bronvermelding"
+      text: "Café Claude is geen generieke chatbot. Elk antwoord draagt een bronverwijzing, krijgt een kwaliteitsscore en is terug te vinden op een publiek kwaliteitsdashboard. Hallucinatie-risico wordt afgedekt via vooraf gecontroleerde antwoorden en een kritische auditeur."
 
 missie:
   heading: "Missie"
-  text: "Nederlanders en Belgen in Frankrijk toegang geven tot betrouwbare, Nederlandstalige informatie en tools voor alle praktische aspecten van het leven in Frankrijk."
-
-onafhankelijkheid:
-  heading: "Onafhankelijkheid"
-  text: "Communities Abroad is een onafhankelijke organisatie. De redactionele inhoud wordt niet beïnvloed door adverteerders of commerciële partners. De interactieve tools zijn gebouwd op basis van officiële bronnen en openbare data. De AI-assistent werkt met bronvermelding en een publiek kwaliteitsdashboard."
+  text: "Nederlandstaligen in Frankrijk toegang geven tot betrouwbare, praktische informatie en gereedschappen in hun eigen taal — voor alle aspecten van wonen, werken, leven en ondernemen in Frankrijk."
 
 bedrijfsgegevens:
   heading: "Bedrijfsgegevens"
@@ -21,4 +33,5 @@ bedrijfsgegevens:
   plaats: "Oirschot"
   land: "Nederland"
   kvk: "55741509"
+  email: "info@communitiesabroad.com"
 ---
