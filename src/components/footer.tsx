@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getContent } from "@/lib/content";
 
@@ -37,22 +38,38 @@ export default function Footer() {
   const content = getContent<FooterContent>("footer");
 
   return (
-    <footer className="bg-primary text-white/80">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+    <footer className="border-t border-primary/10 bg-white">
+      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-8">
           {/* Merk */}
-          <div>
-            <span className="text-xl font-bold text-white">
-              Communities<span className="text-white/60">Abroad</span>
-            </span>
-            <p className="mt-4 text-sm leading-7 text-white/60">
+          <div className="md:col-span-1">
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src="/logo/ca-mark-120.png"
+                alt=""
+                width={120}
+                height={74}
+                className="h-10 w-auto"
+              />
+              <span className="flex flex-col leading-tight">
+                <span className="font-heading text-base font-bold" style={{ color: "#FE0000" }}>
+                  Communities
+                </span>
+                <span className="font-heading text-sm font-semibold" style={{ color: "#0071C1" }}>
+                  Abroad
+                </span>
+              </span>
+            </Link>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-gray-600">
               {content.brand}
             </p>
           </div>
 
           {/* Platforms */}
           <div>
-            <h3 className="text-sm font-semibold text-white">Platforms</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-primary">
+              Platforms
+            </h3>
             <ul className="mt-4 space-y-3">
               {content.platforms.map((link) => (
                 <li key={link.name}>
@@ -60,7 +77,7 @@ export default function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-gray-700 transition-colors hover:text-primary"
                   >
                     {link.name}
                   </a>
@@ -71,13 +88,15 @@ export default function Footer() {
 
           {/* Pagina's */}
           <div>
-            <h3 className="text-sm font-semibold text-white">Pagina&apos;s</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-primary">
+              Pagina&apos;s
+            </h3>
             <ul className="mt-4 space-y-3">
               {content.paginas.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-gray-700 transition-colors hover:text-primary"
                   >
                     {link.name}
                   </Link>
@@ -88,13 +107,15 @@ export default function Footer() {
 
           {/* Juridisch */}
           <div>
-            <h3 className="text-sm font-semibold text-white">Juridisch</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-primary">
+              Juridisch
+            </h3>
             <ul className="mt-4 space-y-3">
               {content.juridisch.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-gray-700 transition-colors hover:text-primary"
                   >
                     {link.name}
                   </Link>
@@ -104,8 +125,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/20 pt-8 sm:flex-row sm:justify-between">
-          <p className="text-sm text-white/40">{content.copyright}</p>
+        <div className="mt-14 flex flex-col items-center gap-4 border-t border-primary/10 pt-8 sm:flex-row sm:justify-between">
+          <p className="text-sm text-gray-500">{content.copyright}</p>
           <div className="flex gap-4">
             {content.social.map((link) => (
               <a
@@ -113,7 +134,7 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/40 transition-colors hover:text-white"
+                className="text-gray-400 transition-colors hover:text-primary"
                 aria-label={link.name}
               >
                 {socialIcons[link.name]}
