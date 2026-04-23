@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -15,11 +16,28 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-primary/10">
+    <header className="sticky top-0 z-40 border-b border-primary/10 bg-white/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <Link href="/" className="flex items-center gap-2" aria-label="Communities Abroad — home">
-          <span className="text-xl font-bold text-primary">
-            Communities<span className="text-primary/60">Abroad</span>
+        <Link
+          href="/"
+          className="flex items-center gap-3"
+          aria-label="Communities Abroad — home"
+        >
+          <Image
+            src="/logo/ca-mark-120.png"
+            alt=""
+            width={120}
+            height={74}
+            priority
+            className="h-11 w-auto"
+          />
+          <span className="flex flex-col leading-tight">
+            <span className="font-heading text-lg font-bold" style={{ color: "#FE0000" }}>
+              Communities
+            </span>
+            <span className="font-heading text-sm font-semibold" style={{ color: "#0071C1" }}>
+              Abroad
+            </span>
           </span>
         </Link>
 
@@ -36,7 +54,7 @@ export default function Header() {
           ))}
           <Link
             href="/partners"
-            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/85"
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/85 hover:text-white"
           >
             Voor partners
           </Link>
@@ -45,7 +63,7 @@ export default function Header() {
         {/* Mobiel menu knop */}
         <button
           type="button"
-          className="md:hidden rounded-md p-2 text-gray-700"
+          className="rounded-md p-2 text-gray-700 md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Menu openen"
           aria-expanded={mobileMenuOpen}
@@ -76,7 +94,7 @@ export default function Header() {
 
       {/* Mobiel menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-primary/10 px-6 py-4">
+        <div className="border-t border-primary/10 px-6 py-4 md:hidden">
           <div className="flex flex-col gap-4">
             {navigation.map((item) => (
               <Link
@@ -90,7 +108,7 @@ export default function Header() {
             ))}
             <Link
               href="/partners"
-              className="rounded-lg bg-primary px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary/85"
+              className="rounded-lg bg-primary px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary/85 hover:text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
               Voor partners
