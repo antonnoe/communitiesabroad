@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import { getContent } from "@/lib/content";
 
 interface Platform {
@@ -42,6 +42,9 @@ interface HomeContent {
   };
 }
 
+const LOGO_RED = "#FE0000";
+const LOGO_BLUE = "#0071C1";
+
 const platformIcons: Record<string, React.ReactNode> = {
   "Nederlanders.fr": (
     <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -58,18 +61,18 @@ const platformIcons: Record<string, React.ReactNode> = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
     </svg>
   ),
-  "DossierFrankrijk": (
+  DossierFrankrijk: (
     <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
     </svg>
   ),
-  "NederGids": (
+  NederGids: (
     <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
     </svg>
   ),
-  "Frankrijknieuws": (
+  Frankrijknieuws: (
     <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
     </svg>
@@ -81,49 +84,48 @@ export default function Home() {
 
   return (
     <>
-      {/* Globe-loader web component */}
-      <Script
-        src="https://cdn.jsdelivr.net/gh/antonnoe/anton-ui-blocks@main/globe-loader/globe-loader.js"
-        strategy="afterInteractive"
-      />
-
-      {/* Hero */}
-      <section className="bg-primary text-white">
+      {/* Hero — transparante bordeaux tint, logo rechts, bordeaux tekst */}
+      <section
+        className="border-b border-primary/10"
+        style={{ backgroundColor: "rgba(128,0,0,0.10)" }}
+      >
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 lg:grid-cols-5 lg:items-center lg:px-8 lg:py-32">
           <div className="lg:col-span-3">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight text-primary sm:text-4xl lg:text-5xl">
               {content.hero.heading}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-white/80">
+            <p className="mt-6 text-lg leading-relaxed text-primary/85">
               {content.hero.subheading}
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
                 href={content.hero.cta1.href}
-                className="rounded-lg bg-white px-6 py-3 text-center text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-white/90"
+                className="rounded-lg bg-primary px-6 py-3 text-center text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary/85 hover:text-white"
               >
                 {content.hero.cta1.label}
               </Link>
               <Link
                 href={content.hero.cta2.href}
-                className="rounded-lg border border-white/30 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                className="rounded-lg border-2 border-primary bg-white px-6 py-3 text-center text-sm font-semibold text-primary transition-colors hover:bg-primary/5"
               >
                 {content.hero.cta2.label}
               </Link>
             </div>
           </div>
-          <div className="hidden justify-center lg:col-span-2 lg:flex">
-            <div
-              className="rounded-xl bg-white/5 p-6 ring-1 ring-white/10"
-              dangerouslySetInnerHTML={{
-                __html: `<globe-loader lang="nl" size="240" color="#ffffff"></globe-loader>`,
-              }}
+          <div className="flex justify-center lg:col-span-2">
+            <Image
+              src="/logo/ca-logo-480.png"
+              alt="Communities Abroad"
+              width={480}
+              height={378}
+              priority
+              className="h-auto w-full max-w-sm"
             />
           </div>
         </div>
       </section>
 
-      {/* De pijlers — Hart en Hoofd */}
+      {/* Hart en hoofd — blauw/rood accenten */}
       <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
@@ -135,27 +137,45 @@ export default function Home() {
             </p>
           </div>
           <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
-            {content.pijlers.items.map((pijler, i) => (
-              <div
-                key={i}
-                className="relative overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 to-white p-10"
-              >
-                <div className="absolute -top-8 -right-8 select-none text-[10rem] font-bold leading-none text-primary/5">
-                  {i === 0 ? "H" : "H"}
+            {content.pijlers.items.map((pijler, i) => {
+              const isHart = i === 0;
+              const accent = isHart ? LOGO_BLUE : LOGO_RED;
+              return (
+                <div
+                  key={i}
+                  className="relative overflow-hidden rounded-2xl border-2 bg-white p-10"
+                  style={{
+                    borderColor: isHart ? "rgba(0,113,193,0.18)" : "rgba(254,0,0,0.15)",
+                    background: isHart
+                      ? "linear-gradient(135deg, rgba(0,113,193,0.05) 0%, #fff 60%)"
+                      : "linear-gradient(135deg, rgba(254,0,0,0.04) 0%, #fff 60%)",
+                  }}
+                >
+                  <div
+                    className="pointer-events-none absolute -right-8 -top-8 select-none font-heading text-[10rem] font-bold leading-none"
+                    style={{
+                      color: isHart ? "rgba(0,113,193,0.08)" : "rgba(254,0,0,0.06)",
+                    }}
+                  >
+                    {pijler.letter}
+                  </div>
+                  <div className="relative">
+                    <p
+                      className="text-xs font-bold uppercase tracking-widest"
+                      style={{ color: accent }}
+                    >
+                      {pijler.subheading}
+                    </p>
+                    <h3 className="mt-3 text-2xl font-bold text-gray-900">
+                      {pijler.heading}
+                    </h3>
+                    <p className="mt-4 text-base leading-relaxed text-gray-600">
+                      {pijler.text}
+                    </p>
+                  </div>
                 </div>
-                <div className="relative">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">
-                    {pijler.subheading}
-                  </p>
-                  <h3 className="mt-3 text-2xl font-bold text-gray-900">
-                    {pijler.heading}
-                  </h3>
-                  <p className="mt-4 text-base leading-relaxed text-gray-600">
-                    {pijler.text}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
