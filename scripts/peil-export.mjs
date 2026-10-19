@@ -15,8 +15,11 @@ if (!bron) {
 const register = JSON.parse(readFileSync(bron, "utf8"));
 const stand = register.meta?.peildatum ?? register.meta?.versiedatum;
 
+// Tijdelijk niet openbaar tot de lopende keuring klaar is (naam misleidend zonder toelichting).
+const TIJDELIJK_UIT = new Set(["p.fr.ps.taux_global"]);
+
 const parameters = register.parameters
-  .filter((p) => p.status === "vastgesteld")
+  .filter((p) => p.status === "vastgesteld" && !TIJDELIJK_UIT.has(p.id))
   .map((p) => {
     const u = {
       id: p.id,
