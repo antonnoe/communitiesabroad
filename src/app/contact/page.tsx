@@ -40,7 +40,19 @@ interface ContactContent {
   };
 }
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ onderwerp?: string | string[] }>;
+}) {
+  const sp = await searchParams;
+  const rawOnderwerp = Array.isArray(sp.onderwerp) ? sp.onderwerp[0] : sp.onderwerp;
+  // Alleen platte tekst, maximaal 200 tekens, zonder stuurtekens.
+  const onderwerp = (rawOnderwerp ?? "")
+    // eslint-disable-next-line no-control-regex
+    .replace(/[\u0000-\u001f\u007f]/g, " ")
+    .trim()
+    .slice(0, 200);
   const content = getContent<ContactContent>("contact");
 
   return (
@@ -90,6 +102,20 @@ export default function ContactPage() {
                 </a>
               </div>
             </div>
+            {onderwerp && (
+              <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-6">
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">
+                  Uw melding
+                </p>
+                <p className="mt-2 text-base font-medium text-gray-900">{onderwerp}</p>
+                <a
+                  href={`mailto:${content.algemeen.email}?subject=${encodeURIComponent(onderwerp)}`}
+                  className="mt-4 inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-primary/90"
+                >
+                  Stuur deze melding per e-mail
+                </a>
+              </div>
+            )}
             <p className="mt-6 text-sm text-gray-600">
               {content.algemeen.reactietijd}
             </p>

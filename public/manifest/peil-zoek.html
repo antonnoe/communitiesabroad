@@ -15,6 +15,11 @@ body{background:#fff;color:#333;font-family:Mulish,system-ui,sans-serif;font-siz
 label{display:block;font-family:Poppins,sans-serif;font-weight:600;color:#800000;margin-bottom:6px}
 input{width:100%;min-height:48px;padding:10px 14px;font:inherit;color:#333;background:#fff;border:2px solid #800000;border-radius:12px}
 input:focus{outline:3px solid rgba(128,0,0,.25);outline-offset:1px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.filters button{font:inherit;font-size:.92rem;min-height:44px;padding:6px 14px;color:#800000;background:#fff;border:2px solid #800000;border-radius:22px;cursor:pointer}
+.filters button[aria-pressed=true]{background:#800000;color:#fff}
+.filters button:focus-visible{outline:3px solid rgba(128,0,0,.25);outline-offset:1px}
+.melden{margin-top:6px}
 .kop{margin:16px 0 8px;font-size:.9rem;color:#666}
 #res{margin-top:12px;display:grid;gap:12px}
 .kaart{border:1px solid #e3d8d8;border-radius:14px;padding:14px 16px;background:#fff}
@@ -32,11 +37,16 @@ input:focus{outline:3px solid rgba(128,0,0,.25);outline-offset:1px}
 <div class="wrap">
   <label for="q">Zoek een bedrag</label>
   <input id="q" type="search" autocomplete="off" placeholder="bijvoorbeeld schenking kind, woonlandfactor, IFI">
+  <div class="filters" id="cat" role="group" aria-label="Categorie"></div>
+  <div class="filters" id="land" role="group" aria-label="Land"></div>
   <div class="kop" id="kop"></div>
   <div id="res" aria-live="polite"></div>
 </div>
 <script>
 (function(){
+var CATS=['Alles','Inkomstenbelasting','Erven en schenken','Vastgoed en wonen','Zorg, sociaal en administratie','Ondernemen','Energie en verbouwen'];
+var LANDEN=[['Beide','Beide'],['FR','Frankrijk'],['NL','Nederland']];
+var cat='Alles',lnd='Beide';
 var data=[],q=document.getElementById('q'),res=document.getElementById('res'),kop=document.getElementById('kop');
 var LAND={FR:'Frankrijk',NL:'Nederland',XB:'Nederland en Frankrijk'};
 var MND=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
@@ -46,13 +56,18 @@ function datum(s){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');return m?(+m[3])+
 function jaar(p){if(p.geldig_jaar)return p.geldig_jaar;if(p.geldig_van&&p.geldig_tot)return datum(p.geldig_van)+' tot '+datum(p.geldig_tot);if(p.geldig_van)return 'vanaf '+datum(p.geldig_van);return ''}
 function kaart(p){
   var g=jaar(p),land=LAND[p.land]||p.land||'';
-  var geldt=(g?'Geldt in '+esc(g):'')+(g&&land?', ':'')+esc(land);
+  var gt=g?'Geldt in '+esc(g):'';
+  if(/^\d{4}$/.test(String(p.geldig_jaar||''))&&/Brochure pratique IR 2026/i.test(p.bron_kenmerk||'')){gt='Geldt voor inkomsten '+esc(p.geldig_jaar)+', aangifte '+(+p.geldig_jaar+1)}
+  var geldt=gt+(gt&&land?', ':'')+esc(land);
   var bron='';
   if(p.bron_url){var t=p.bron_kenmerk;if(!t){try{t=new URL(p.bron_url).hostname.replace(/^www\./,'')}catch(e){t=p.bron_url}}
     bron='<div class="klein">Bron: <a href="'+esc(p.bron_url)+'" target="_blank" rel="noopener">'+esc(t)+'</a></div>'}
+  else if(p.bron_kenmerk){bron='<div class="klein">Bron: '+esc(p.bron_kenmerk)+'</div>'}
   var d=datum(p.verificatiedatum);
+  var meld='https://www.communitiesabroad.com/contact?onderwerp='+encodeURIComponent('Peil: '+p.naam+' ('+p.id+')');
   return '<article class="kaart"><div class="rij"><div class="naam">'+esc(p.naam)+'</div><div class="waarde">'+esc(p.waarde_weergave)+'</div></div>'+
-   (geldt?'<div class="klein">'+geldt+'</div>':'')+bron+(d?'<div class="klein">Gecontroleerd op '+esc(d)+'</div>':'')+'</article>';
+   (geldt?'<div class="klein">'+geldt+'</div>':'')+bron+(d?'<div class="klein">Gecontroleerd op '+esc(d)+'</div>':'')+
+   '<div class="klein melden"><a href="'+esc(meld)+'" target="_blank" rel="noopener">Klopt dit niet? Meld het</a></div></article>';
 }
 function voorbeelden(){
   var ids=['abattement_per_kind','woonlandfactor','ir.schijven'],out=[];
@@ -76,13 +91,15 @@ function score(p,t){
 }
 function render(){
   var t=norm(q.value).trim(),html;
-  if(!t){
+  function pas(p){return (cat==='Alles'||p.categorie===cat)&&(lnd==='Beide'||p.land===lnd||p.land==='XB')}
+  if(!t&&cat==='Alles'&&lnd==='Beide'){
     kop.textContent='Voorbeelden';
     html=voorbeelden().map(kaart).join('');
   }else{
-    var woorden=t.split(/\s+/);
+    var woorden=t?t.split(/\s+/):[];
     var r=[];
     data.forEach(function(p){
+      if(!pas(p))return;
       var s=0;
       for(var k=0;k<woorden.length;k++){
         var x=score(p,woorden[k]);
@@ -91,16 +108,23 @@ function render(){
       }
       if(s>=0)r.push([s,p]);
     });
-    r.sort(function(a,b){return a[0]-b[0]});
-    r=r.slice(0,8);
-    kop.textContent=r.length?(r.length+' gevonden'):'';
+    r.sort(function(a,b){return a[0]-b[0]||(a[1].naam<b[1].naam?-1:1)});
+    var tot=r.length;
+    if(t)r=r.slice(0,20);
+    kop.textContent=tot?(tot>r.length?(r.length+' van '+tot+' getoond, verfijn uw zoekterm'):(tot+' gevonden')):'';
     html=r.length?r.map(function(x){return kaart(x[1])}).join(''):
       '<div class="leeg">Geen bedrag gevonden. Mist u een bedrag? Laat het ons weten via het <a href="https://www.communitiesabroad.com/contact" target="_blank" rel="noopener">contactformulier</a>.</div>';
   }
   res.innerHTML=html;
   melden();
 }
+function knoppen(el,lijst,get,set){
+  el.innerHTML=lijst.map(function(x){return '<button type="button" data-w="'+esc(x[0])+'" aria-pressed="'+(get()===x[0])+'">'+esc(x[1])+'</button>'}).join('');
+  el.onclick=function(e){var b=e.target.closest('button');if(!b)return;set(b.getAttribute('data-w'));knoppen(el,lijst,get,set);render()};
+}
 function melden(){try{window.parent.postMessage({type:'ca-hoogte',id:'peil-zoek',hoogte:document.documentElement.scrollHeight},'*')}catch(e){}}
+knoppen(document.getElementById('cat'),CATS.map(function(c){return[c,c]}),function(){return cat},function(v){cat=v});
+knoppen(document.getElementById('land'),LANDEN,function(){return lnd},function(v){lnd=v});
 q.addEventListener('input',render);
 if(window.ResizeObserver)new ResizeObserver(melden).observe(document.body);
 window.addEventListener('load',melden);
