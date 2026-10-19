@@ -9,10 +9,33 @@ import { trefwoordenVoor } from "./peil-trefwoorden.mjs";
 
 const bron = process.argv[2];
 if (!bron) {
-  console.error("Gebruik: node scripts/peil-export.mjs /pad/naar/register.json");
+  console.error("Gebruik: node scripts/peil-export.mjs /pad/naar/register.json [/pad/naar/tools.json]");
   process.exit(1);
 }
 const register = JSON.parse(readFileSync(bron, "utf8"));
+const toolsBron = process.argv[3] ?? join(dirname(bron), "tools.json");
+const toolsBestand = JSON.parse(readFileSync(toolsBron, "utf8"));
+// Koppelregel (repo-namen case-insensitief): een tool hoort bij een parameter als (a) minstens één gebruikt_in-regel
+// van die repo afwijkend:false heeft met waarde_in_tool niet "niet doorgerekend", (b) dezelfde repo bij die parameter
+// geen regel met afwijkend:true heeft en (c) de tool in tools.json een openbaar-veld met naam en url heeft.
+// Alleen naam en url gaan mee naar buiten, nooit repo, locatie of waarde_in_tool.
+const openbaarPerRepo = new Map();
+for (const t of toolsBestand.tools ?? []) {
+  if (t.repo && t.openbaar?.naam && t.openbaar?.url) openbaarPerRepo.set(String(t.repo).toLowerCase(), { naam: t.openbaar.naam, url: t.openbaar.url });
+}
+function toolsVoor(p) {
+  const regels = (p.gebruikt_in ?? []).map((g) => ({ ...g, repo: String(g.repo ?? "").toLowerCase() }));
+  const gevonden = new Map();
+  for (const repo of new Set(regels.map((g) => g.repo))) {
+    const openbaar = openbaarPerRepo.get(repo);
+    if (!openbaar) continue;
+    const eigen = regels.filter((g) => g.repo === repo);
+    if (eigen.some((g) => g.afwijkend === true)) continue;
+    if (!eigen.some((g) => g.afwijkend === false && !/niet doorgerekend/i.test(String(g.waarde_in_tool ?? "")))) continue;
+    gevonden.set(openbaar.naam + "|" + openbaar.url, openbaar);
+  }
+  return [...gevonden.values()].sort((a, b) => a.naam.localeCompare(b.naam, "nl"));
+}
 const stand = register.meta?.peildatum ?? register.meta?.versiedatum;
 
 // Tijdelijk niet openbaar tot de lopende keuring klaar is (naam misleidend zonder toelichting).
@@ -53,10 +76,15 @@ const parameters = register.parameters
       verificatiedatum: p.verificatiedatum ?? null,
       trefwoorden: trefwoordenVoor(p.id),
       categorie: categorieVoor(p.id),
+      tools: toolsVoor(p),
     };
     return u;
   });
 
+const metTools = parameters.filter((p) => p.tools.length);
+const perTool = {};
+for (const p of metTools) for (const t of p.tools) perTool[t.naam] = (perTool[t.naam] ?? 0) + 1;
+console.log(`${metTools.length} van ${parameters.length} parameters hebben minstens één tool`, perTool);
 const uit = { stand, aantal: parameters.length, parameters };
 const doel = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "manifest", "peil-zoek.json");
 writeFileSync(doel, JSON.stringify(uit) + "\n");

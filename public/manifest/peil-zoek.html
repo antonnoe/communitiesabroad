@@ -76,10 +76,12 @@ function kaart(p){
     bron='<div class="klein">Bron: <a href="'+esc(p.bron_url)+'" target="_blank" rel="noopener">'+esc(t)+'</a></div>'}
   else if(kort){bron='<div class="klein">Bron: '+esc(kort)+'</div>'}
   if(vol&&vol!==kort)bron+='<details class="vind"><summary>Volledige vindplaats</summary><div>'+esc(vol)+'</div></details>';
+  var gebruikt='';
+  if(p.tools&&p.tools.length){gebruikt='<div class="klein">Gebruikt in: '+p.tools.map(function(t){return '<a href="'+esc(t.url)+'" target="_blank" rel="noopener">'+esc(t.naam)+'</a>'}).join(', ')+'</div>'}
   var d=datum(p.verificatiedatum);
   var meld='mailto:'+MAIL+'?subject='+encodeURIComponent('Peil: '+p.naam)+'&body='+encodeURIComponent('Bedrag: '+p.naam+'\nWaarde volgens Peil: '+p.waarde_weergave+'\nWat klopt er volgens u niet, en wat is uw bron?\n\n(kenmerk: '+p.id+')');
   return '<article class="kaart"><div class="rij"><div class="naam">'+esc(p.naam)+'</div><div class="waarde">'+esc(p.waarde_weergave)+'</div></div>'+
-   (geldt?'<div class="klein">'+geldt+'</div>':'')+bron+(d?'<div class="klein">Gecontroleerd op '+esc(d)+'</div>':'')+
+   (geldt?'<div class="klein">'+geldt+'</div>':'')+bron+gebruikt+(d?'<div class="klein">Gecontroleerd op '+esc(d)+'</div>':'')+
    '<div class="klein melden"><a href="'+esc(meld)+'">Klopt dit niet? Meld het</a></div></article>';
 }
 function voorbeelden(){
