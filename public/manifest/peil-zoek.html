@@ -133,13 +133,20 @@ function render(){
     var tot=r.length;
     if(t&&!alle)r=r.slice(0,20);
     kop.textContent=tot?(tot>r.length?(r.length+' van '+tot+' getoond'):(tot+' gevonden')):'';
+    var elders=0;
+    if(!tot&&t&&(cat!=='Alles'||lnd!=='Beide')){
+      data.forEach(function(p){for(var k=0;k<woorden.length;k++){if(score(p,woorden[k])<0)return}elders++});
+    }
+    function label(l,w){for(var i=0;i<l.length;i++)if(l[i][0]===w)return l[i][1];return w}
     html=r.length?r.map(function(x){return kaart(x[1])}).join(''):
-      '<div class="leeg">Geen bedrag gevonden. Mist u een bedrag? Laat het ons weten per <a href="mailto:'+MAIL+'?subject='+encodeURIComponent('Peil: ontbrekend bedrag')+'">e-mail</a>.</div>';
+      (elders?'<div class="leeg">Niets gevonden binnen de gekozen filters ('+esc([cat!=='Alles'?label(CATS,cat):'',lnd!=='Beide'?label(LANDEN,lnd):''].filter(Boolean).join(', '))+'). Zonder filters zijn er '+elders+' resultaten. <button type="button" class="meer" id="wis">Zoek in alle onderwerpen en landen</button></div>':
+      '<div class="leeg">Geen bedrag gevonden. Mist u een bedrag? Laat het ons weten per <a href="mailto:'+MAIL+'?subject='+encodeURIComponent('Peil: ontbrekend bedrag')+'">e-mail</a>.</div>');
     if(tot>r.length)html+='<button type="button" class="meer" id="meer">Toon alle '+tot+'</button>';
     if(r.length)html+='<div class="voet">Geen mailprogramma? Mail naar '+MAIL+'.</div>';
   }
   res.innerHTML=html;
   var mb=document.getElementById('meer');if(mb)mb.onclick=function(){alle=true;render()};
+  var wb=document.getElementById('wis');if(wb)wb.onclick=function(){cat='Alles';lnd='Beide';alle=false;knoppen(document.getElementById('cat'),CATS,function(){return cat},function(v){cat=v});knoppen(document.getElementById('land'),LANDEN,function(){return lnd},function(v){lnd=v});render()};
   melden();
 }
 function knoppen(el,lijst,get,set){
