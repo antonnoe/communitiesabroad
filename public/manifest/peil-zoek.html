@@ -59,13 +59,19 @@ function voorbeelden(){
   ids.forEach(function(k){for(var i=0;i<data.length;i++){if(data[i].id.indexOf(k)>-1){out.push(data[i]);break}}});
   return out;
 }
-function score(p,t){
-  var n=norm(p.naam),f=norm(p.naam_fr),i=norm(p.id);
+function score1(p,t){
+  var n=norm(p.naam),f=norm(p.naam_fr),i=norm(p.id),w=norm(p.trefwoorden);
   if(n.indexOf(t)===0)return 0;
   if(new RegExp('(^|[^a-z0-9])'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).test(n))return 1;
   if(n.indexOf(t)>-1)return 2;
   if(f.indexOf(t)>-1)return 3;
-  if(i.indexOf(t)>-1)return 4;
+  if(w.indexOf(t)>-1)return 4;
+  if(i.indexOf(t)>-1)return 5;
+  return -1;
+}
+function score(p,t){
+  var x=score1(p,t);if(x>=0||t.length<6)return x;
+  var kort=t.replace(/(en|s)$/,'');if(kort!==t){x=score1(p,kort);if(x>=0)return x+1}
   return -1;
 }
 function render(){

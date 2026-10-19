@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { trefwoordenVoor } from "./peil-trefwoorden.mjs";
 
 const bron = process.argv[2];
 if (!bron) {
@@ -30,6 +31,7 @@ const parameters = register.parameters
       bron_url: p.bron_url ?? null,
       bron_kenmerk: p.bron_kenmerk ?? null,
       verificatiedatum: p.verificatiedatum ?? null,
+      trefwoorden: trefwoordenVoor(p.id),
     };
     return u;
   });
