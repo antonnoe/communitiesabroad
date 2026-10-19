@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zoek een bedrag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{background:#fff;color:#333;font-family:Mulish,system-ui,sans-serif;font-size:16px;line-height:1.6}
+.wrap{padding:16px;max-width:820px;margin:0 auto}
+label{display:block;font-family:Poppins,sans-serif;font-weight:600;color:#800000;margin-bottom:6px}
+input{width:100%;min-height:48px;padding:10px 14px;font:inherit;color:#333;background:#fff;border:2px solid #800000;border-radius:12px}
+input:focus{outline:3px solid rgba(128,0,0,.25);outline-offset:1px}
+.kop{margin:16px 0 8px;font-size:.9rem;color:#666}
+#res{margin-top:12px;display:grid;gap:12px}
+.kaart{border:1px solid #e3d8d8;border-radius:14px;padding:14px 16px;background:#fff}
+.rij{display:flex;gap:12px;justify-content:space-between;align-items:flex-start}
+.naam{font-weight:700;min-width:0;overflow-wrap:anywhere}
+.waarde{font-weight:700;color:#800000;text-align:right;max-width:55%;overflow-wrap:anywhere}
+.klein{font-size:.92rem;margin-top:4px;overflow-wrap:anywhere}
+.klein a{color:#800000;text-decoration:underline;display:inline-block;padding:2px 0}
+.leeg{padding:14px 16px;border-radius:14px;background:#f7f1f1}
+.leeg a{color:#800000;text-decoration:underline;display:inline-block;min-height:44px;line-height:44px}
+@media(max-width:480px){.rij{flex-direction:column;gap:2px}.waarde{text-align:left;max-width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <label for="q">Zoek een bedrag</label>
+  <input id="q" type="search" autocomplete="off" placeholder="bijvoorbeeld schenking kind, woonlandfactor, IFI">
+  <div class="kop" id="kop"></div>
+  <div id="res" aria-live="polite"></div>
+</div>
+<script>
+(function(){
+var data=[],q=document.getElementById('q'),res=document.getElementById('res'),kop=document.getElementById('kop');
+var LAND={FR:'Frankrijk',NL:'Nederland',XB:'Nederland en Frankrijk'};
+var MND=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+function norm(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function datum(s){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');return m?(+m[3])+' '+MND[+m[2]-1]+' '+m[1]:''}
+function jaar(p){if(p.geldig_jaar)return p.geldig_jaar;if(p.geldig_van&&p.geldig_tot)return datum(p.geldig_van)+' tot '+datum(p.geldig_tot);if(p.geldig_van)return 'vanaf '+datum(p.geldig_van);return ''}
+function kaart(p){
+  var g=jaar(p),land=LAND[p.land]||p.land||'';
+  var geldt=(g?'Geldt in '+esc(g):'')+(g&&land?', ':'')+esc(land);
+  var bron='';
+  if(p.bron_url){var t=p.bron_kenmerk;if(!t){try{t=new URL(p.bron_url).hostname.replace(/^www\./,'')}catch(e){t=p.bron_url}}
+    bron='<div class="klein">Bron: <a href="'+esc(p.bron_url)+'" target="_blank" rel="noopener">'+esc(t)+'</a></div>'}
+  var d=datum(p.verificatiedatum);
+  return '<article class="kaart"><div class="rij"><div class="naam">'+esc(p.naam)+'</div><div class="waarde">'+esc(p.waarde_weergave)+'</div></div>'+
+   (geldt?'<div class="klein">'+geldt+'</div>':'')+bron+(d?'<div class="klein">Gecontroleerd op '+esc(d)+'</div>':'')+'</article>';
+}
+function voorbeelden(){
+  var ids=['abattement_per_kind','woonlandfactor','ir.schijven'],out=[];
+  ids.forEach(function(k){for(var i=0;i<data.length;i++){if(data[i].id.indexOf(k)>-1){out.push(data[i]);break}}});
+  return out;
+}
+function score(p,t){
+  var n=norm(p.naam),f=norm(p.naam_fr),i=norm(p.id);
+  if(n.indexOf(t)===0)return 0;
+  if(new RegExp('(^|[^a-z0-9])'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).test(n))return 1;
+  if(n.indexOf(t)>-1)return 2;
+  if(f.indexOf(t)>-1)return 3;
+  if(i.indexOf(t)>-1)return 4;
+  return -1;
+}
+function render(){
+  var t=norm(q.value).trim(),html;
+  if(!t){
+    kop.textContent='Voorbeelden';
+    html=voorbeelden().map(kaart).join('');
+  }else{
+    var woorden=t.split(/\s+/);
+    var r=[];
+    data.forEach(function(p){
+      var s=0;
+      for(var k=0;k<woorden.length;k++){
+        var x=score(p,woorden[k]);
+        if(x<0){s=-1;break}
+        s+=x;
+      }
+      if(s>=0)r.push([s,p]);
+    });
+    r.sort(function(a,b){return a[0]-b[0]});
+    r=r.slice(0,8);
+    kop.textContent=r.length?(r.length+' gevonden'):'';
+    html=r.length?r.map(function(x){return kaart(x[1])}).join(''):
+      '<div class="leeg">Geen bedrag gevonden. Mist u een bedrag? Laat het ons weten via het <a href="https://www.communitiesabroad.com/contact" target="_blank" rel="noopener">contactformulier</a>.</div>';
+  }
+  res.innerHTML=html;
+  melden();
+}
+function melden(){try{window.parent.postMessage({type:'ca-hoogte',id:'peil-zoek',hoogte:document.documentElement.scrollHeight},'*')}catch(e){}}
+q.addEventListener('input',render);
+if(window.ResizeObserver)new ResizeObserver(melden).observe(document.body);
+window.addEventListener('load',melden);
+fetch('peil-zoek.json').then(function(r){return r.json()}).then(function(j){data=j.parameters||[];render()})
+ .catch(function(){res.innerHTML='<div class="leeg">De bedragen konden niet worden geladen. Probeer het later opnieuw.</div>';melden()});
+melden();
+})();
+</script>
+</body>
+</html>
