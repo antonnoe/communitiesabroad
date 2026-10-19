@@ -16,8 +16,8 @@ const register = JSON.parse(readFileSync(bron, "utf8"));
 const stand = register.meta?.peildatum ?? register.meta?.versiedatum;
 
 // Tijdelijk niet openbaar tot de lopende keuring klaar is (naam misleidend zonder toelichting).
-// Keuring 19-10-2026: afwijking of onzeker, niet openbaar tot een tweede onafhankelijke controle de juiste waarde bevestigt.
-const TIJDELIJK_UIT = new Set(["p.fr.bouw.drempels_bijgebouw", "p.fr.bouw.drempels_uitbreiding", "p.fr.csi.tarief_en_minimum", "p.fr.dmto.departementaal_primo", "p.fr.dmto.taxe_communale", "p.fr.don.voorwaarden_geldschenking", "p.fr.dpe.co2_emissiefactoren", "p.fr.elec.beheerbijdrage_weigeren_linky", "p.fr.elec.consuel_contre_visite", "p.fr.elec.consuel_geel_elektronisch", "p.fr.elec.consuel_indexering", "p.fr.elec.consuel_overige_formulieren", "p.fr.elec.tariefoptiewissel_zonder_linky", "p.fr.elec.vermogenstrappen", "p.fr.elec.wijziging_puissance_souscrite", "p.fr.ps.taux_global", "p.fr.vefa.tpf_tarief", "p.xb.deruyter.csg_crds_geschrapt"]);
+// Leeg: na de keuring van 19-10-2026 staan twijfelgevallen in Peil zelf op te_verifieren.
+const TIJDELIJK_UIT = new Set([]);
 
 // Indeling in categorieën: ÉÉN plek, op het begin van de id (p.<land>.<onderwerp>).
 const CATEGORIEEN = {
