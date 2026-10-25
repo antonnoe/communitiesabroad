@@ -151,7 +151,8 @@ function bouwKaart(slug, repos, openbaar) {
     omschrijving: r.omschrijving ?? "",
     volgorde: r.volgorde ?? "",
     bron_kenmerk: r.bron_kenmerk ?? null,
-    status: r.status === "vastgesteld" ? "gecontroleerd" : "nog in controle",
+    // Alleen "gecontroleerd" als de regel vastgesteld is én geen enkele gebruikt_in-regel van deze tool afwijkt; de reden komt nooit in de uitvoer.
+    status: r.status === "vastgesteld" && !(r.gebruikt_in ?? []).some((g) => repos.includes(String(g.repo ?? "").toLowerCase()) && g.afwijkend === true) ? "gecontroleerd" : "nog in controle",
     gebruikte_bedragen: (r.gebruikt_parameters ?? []).filter((id) => ids.has(id)),
   }));
   // Bedragen: eerst die in de eerste rekenstap gebruikt worden, enzovoort; de rest daarna.

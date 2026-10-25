@@ -134,3 +134,20 @@ test("peil-zoek.json en tools/index.json dragen stand en versie van Peil (de Pei
   assert.equal(data.versie, index.versie);
   assert.equal(data.stand, index.stand);
 });
+
+test("toolkaarten: een rekenstap is alleen gecontroleerd als de regel vastgesteld is en de tool niet afwijkt", () => {
+  const dataMap = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "peil-nl-fr", "data");
+  if (!existsSync(join(dataMap, "rekenregels.json")) || !existsSync(join(dataMap, "tools.json"))) return;
+  const regels = JSON.parse(readFileSync(join(dataMap, "rekenregels.json"), "utf8")).rekenregels;
+  const tools = JSON.parse(readFileSync(join(dataMap, "tools.json"), "utf8")).tools;
+
+  for (const { k } of kaarten) {
+    const repos = tools.filter((t) => t.peil_slug === k.slug).map((t) => String(t.repo).toLowerCase());
+    for (const s of k.rekenstappen) {
+      const r = regels.find((x) => x.id === s.id);
+      const wijkt = (r.gebruikt_in ?? []).some((g) => repos.includes(String(g.repo).toLowerCase()) && g.afwijkend === true);
+
+      assert.equal(s.status, r.status === "vastgesteld" && !wijkt ? "gecontroleerd" : "nog in controle", `${k.slug}: ${s.id}`);
+    }
+  }
+});
