@@ -93,7 +93,7 @@ const metTools = parameters.filter((p) => p.tools.length);
 const perTool = {};
 for (const p of metTools) for (const t of p.tools) perTool[t.naam] = (perTool[t.naam] ?? 0) + 1;
 console.log(`${metTools.length} van ${parameters.length} parameters hebben minstens één tool`, perTool);
-const uit = { stand, aantal: parameters.length, parameters };
+const uit = { stand, versie: register.meta?.versie ?? null, aantal: parameters.length, parameters };
 const doel = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "manifest", "peil-zoek.json");
 writeFileSync(doel, JSON.stringify(uit) + "\n");
 console.log(`${parameters.length} parameters, stand ${stand}, geschreven naar ${doel}`);
@@ -205,6 +205,7 @@ const kaarten = [...perSlug].map(([slug, e]) => bouwKaart(slug, e.repos, e.openb
 for (const k of kaarten) writeFileSync(join(toolsMap, `${k.slug}.json`), JSON.stringify(k) + "\n");
 const index = {
   stand,
+  versie: register.meta?.versie ?? null,
   aantal: kaarten.length,
   tools: kaarten.map((k) => ({
     slug: k.slug,

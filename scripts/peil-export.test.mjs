@@ -124,3 +124,13 @@ test("toolkaarten: volgende controle ligt na de stand en volgt het land", () => 
     if (landen.has("FR") && !landen.has("NL")) assert.match(k.volgende_controle.label, /april/, k.slug);
   }
 });
+
+test("peil-zoek.json en tools/index.json dragen stand en versie van Peil (de Peil-run vergelijkt die)", () => {
+  const index = JSON.parse(readFileSync(join(dirname(pad), "tools", "index.json"), "utf8"));
+  for (const d of [data, index]) {
+    assert.match(d.stand, /^\d{4}-\d{2}-\d{2}$/);
+    assert.match(d.versie, /^\d+\.\d+\.\d+$/);
+  }
+  assert.equal(data.versie, index.versie);
+  assert.equal(data.stand, index.stand);
+});
