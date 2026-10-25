@@ -26,12 +26,8 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 | `npm run start` | Start production server  |
 | `npm run lint`  | Run ESLint               |
 
-## Peil-export voor de zoekpagina
+## Peil-export (zoekpagina en toolkaarten)
 
-`public/manifest/peil-zoek.json` is een openbare export van het privé-register van Peil (alleen status "vastgesteld", alleen openbare velden). Opnieuw maken:
-
-```bash
-node scripts/peil-export.mjs /pad/naar/peil-nl-fr/data/register.json
-```
-
-Commit daarna het bijgewerkte JSON-bestand. `peil-zoek.html` en `kennispiramide.html` in dezelfde map worden vanuit Infofrankrijk in een iframe getoond.
+Draai na elke nieuwe Peil-versie: `node scripts/peil-export.mjs ../peil-nl-fr/data/register.json`, dan `npm run test:peil`, en commit de bijgewerkte bestanden.
+Dat maakt `public/manifest/peil-zoek.json` (alleen status "vastgesteld", alleen openbare velden) en per tool met een `openbaar`-veld in `tools.json` een toolkaart-dataset in `public/manifest/tools/<peil_slug>.json` plus `index.json`.
+De pagina's `/manifest/tools` en `/manifest/tool/<slug>` worden bij de build uit die JSON gemaakt; `peil-zoek.html` en `kennispiramide.html` worden vanuit Infofrankrijk in een iframe getoond.

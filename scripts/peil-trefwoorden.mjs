@@ -19,6 +19,7 @@ export const TREFWOORDEN = {
   "p.fr.dpe": "dpe energielabel energieprestatie diagnostic performance energetique",
   "p.fr.efact": "e-facturatie elektronische factuur facture electronique",
   "p.fr.elec": "elektriciteit stroom aansluiting vermogen kva electricite",
+  "p.fr.energie": "energie energieprijs elektriciteit stookolie fioul gas gasprijs trve tarif reglemente u-waarde isolatie",
   "p.fr.erf": "erfenis erven erfbelasting erfrecht succession",
   "p.fr.gite": "gite vakantiewoning verhuur meuble chambre d'hotes",
   "p.fr.handel": "handel handelshuur bail commercial",

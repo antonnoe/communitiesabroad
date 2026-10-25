@@ -1,0 +1,142 @@
+/* Toolkaart en overzicht van de toolkaarten; opmaak volgt de goedgekeurde mock-up. */
+.tk {
+  --merk: #800000;
+  --merk-zacht: #f6eaea;
+  --merk-rand: #e3c4c4;
+  --bg: #f3f1ee;
+  --vlak: #ffffff;
+  --tekst: #1f1b1a;
+  --tekst-2: #5a5350;
+  --lijn: #e6e1dd;
+  --let: #7a5a00;
+  --let-bg: #fbf5e3;
+  --let-rand: #e8d7a6;
+  --chip: #f4efec;
+  background: var(--bg);
+  color: var(--tekst);
+  font-size: 17px;
+  line-height: 1.55;
+  padding: 24px max(16px, env(safe-area-inset-left, 0px)) 56px;
+  -webkit-text-size-adjust: 100%;
+}
+.tk a { color: var(--merk); }
+.tk h1, .tk h2, .tk h3 { line-height: 1.25; margin: 0; }
+.tk-scherm { container-type: inline-size; max-width: 900px; margin: 0 auto; }
+.tk-terug { max-width: 900px; margin: 0 auto 14px; font-size: 0.95rem; }
+.tk-terug a { font-weight: 700; text-decoration: none; }
+
+.tk .kaart { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; overflow: hidden; overflow-wrap: anywhere; }
+.tk .kop { padding: 22px 18px 20px; border-top: 6px solid var(--merk); background: var(--vlak); }
+.tk .bovenregel { margin: 0 0 6px; font-size: 0.85rem; font-weight: 700; color: var(--merk); letter-spacing: 0.02em; }
+.tk .kop h1 { font-size: 1.45rem; font-weight: 600; }
+.tk .wat { margin: 0.5rem 0 1rem; }
+.tk .naartool { display: inline-block; background: var(--merk); color: #fff; text-decoration: none; font-weight: 700; padding: 10px 18px; border-radius: 8px; margin-top: 0.75rem; }
+.tk .kop .wat + .naartool { margin-top: 0; }
+.tk a.naartool { color: #fff; }
+
+.tk .samen { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--lijn); border-block: 1px solid var(--lijn); }
+.tk .tegel { background: var(--vlak); padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tk .tegel .getal { font-family: var(--font-heading), Poppins, system-ui, sans-serif; font-weight: 600; font-size: 1.7rem; color: var(--merk); line-height: 1.15; }
+.tk .tegel .getal.klein { font-size: 1.1rem; padding-top: 0.35rem; }
+.tk .tegel .uitleg { font-size: 0.92rem; color: var(--tekst-2); line-height: 1.35; }
+.tk .tegel.let { background: var(--let-bg); }
+.tk .tegel.let .getal { color: var(--let); }
+.tk .tegel.let strong { color: var(--let); font-weight: 700; }
+.tk .stand { margin: 0; padding: 10px 18px; font-size: 0.88rem; color: var(--tekst-2); }
+
+.tk .blok { padding: 22px 18px; border-top: 1px solid var(--lijn); }
+.tk .blok h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+.tk .intro { margin: 0 0 0.8rem; color: var(--tekst-2); }
+.tk .rijen { border-top: 1px solid var(--lijn); }
+.tk .rij { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "naam" "waarde" "bron" "datum"; gap: 4px 12px; padding: 14px 0; border-bottom: 1px solid var(--lijn); scroll-margin-top: 90px; }
+.tk .rij:target { background: var(--merk-zacht); box-shadow: -10px 0 0 var(--merk-zacht), 10px 0 0 var(--merk-zacht); }
+.tk .koprij { display: none; }
+.tk .naam { grid-area: naam; font-weight: 700; min-width: 0; }
+.tk .naam i { font-weight: 400; color: var(--tekst-2); }
+.tk .waarde { grid-area: waarde; font-family: var(--font-heading), Poppins, system-ui, sans-serif; font-weight: 600; font-size: 1rem; line-height: 1.35; min-width: 0; }
+.tk .bron { grid-area: bron; font-size: 0.95rem; }
+.tk .bron small, .tk .wet { color: var(--tekst-2); }
+.tk .bron small { margin-left: 0.4em; }
+.tk .datum { grid-area: datum; font-size: 0.9rem; color: var(--tekst-2); display: flex; align-items: center; gap: 6px; }
+.tk .datum::before { content: "Gecontroleerd"; }
+.tk .vink { order: -1; width: 16px; height: 16px; border-radius: 50%; background: var(--merk); display: inline-block; position: relative; flex: none; }
+.tk .vink::after { content: ""; position: absolute; left: 5px; top: 2.5px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.tk .meer { margin-top: 12px; }
+.tk .meer summary { cursor: pointer; font-weight: 700; color: var(--merk); padding: 10px 0; list-style-position: inside; }
+.tk .meer .rijen { border-top: 0; }
+
+.tk .incontrole { border: 1px solid var(--let-rand); background: var(--let-bg); border-radius: 10px; padding: 12px 14px; margin: 0.3rem 0 1.2rem; }
+.tk .incontrole .label { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--let); }
+.tk .incontrole .label::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; flex: none; }
+.tk .incontrole p { margin: 0.3rem 0 0; font-size: 0.95rem; }
+.tk .eerlijk { margin: 0; padding: 12px 14px; border: 1px dashed #d6d0cb; border-radius: 8px; color: var(--tekst-2); font-size: 0.95rem; }
+.tk .stappen { list-style: none; margin: 0; padding: 0; counter-reset: st; }
+.tk .stappen li { counter-increment: st; position: relative; padding: 0 0 22px 40px; }
+.tk .stappen li::before { content: counter(st); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--merk); color: #fff; font-family: var(--font-heading), Poppins, system-ui, sans-serif; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.tk .stappen li:not(:last-child)::after { content: ""; position: absolute; left: 14px; top: 34px; bottom: 4px; width: 2px; background: var(--lijn); }
+.tk .stappen li.levert::after { background: var(--merk); }
+.tk .stappen h3 { font-size: 1.05rem; font-weight: 600; padding-top: 3px; margin-bottom: 0.3rem; }
+.tk .stappen p { margin: 0.3rem 0; }
+.tk .gebruikt { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.88rem; }
+.tk .gebruikt span { color: var(--tekst-2); margin-right: 2px; }
+.tk .gebruikt a { background: var(--chip); border: 1px solid var(--lijn); border-radius: 12px; padding: 2px 10px; text-decoration: none; line-height: 1.35; }
+.tk .gebruikt a:hover { border-color: var(--merk); }
+.tk .wet { font-size: 0.88rem; }
+.tk .pijl { font-size: 0.92rem; font-weight: 700; color: var(--merk); }
+
+.tk .voet { display: grid; gap: 0; border-top: 1px solid var(--lijn); background: var(--merk-zacht); }
+.tk .voetvak { padding: 20px 18px; border-bottom: 1px solid var(--merk-rand); }
+.tk .voetvak h2 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+.tk .voetvak p { margin: 0 0 0.6rem; font-size: 0.95rem; }
+.tk .voetvak > a { font-weight: 700; }
+.tk .disclaimer { margin: 0; padding: 14px 18px 18px; font-size: 0.85rem; color: var(--tekst-2); grid-column: 1 / -1; }
+
+.tk .meld summary { display: inline-block; border: 1.5px solid var(--merk); color: var(--merk); font-weight: 700; padding: 8px 16px; border-radius: 8px; cursor: pointer; list-style: none; background: var(--vlak); }
+.tk .meld summary::-webkit-details-marker { display: none; }
+.tk .meld[open] summary { background: var(--merk); color: #fff; }
+.tk .meld form { margin-top: 12px; display: grid; gap: 8px; }
+.tk .meld label { font-weight: 700; font-size: 0.95rem; }
+.tk .meld textarea { width: 100%; min-height: 110px; padding: 10px 12px; font: inherit; font-size: 1rem; line-height: 1.45; border: 1.5px solid var(--merk-rand); border-radius: 8px; background: var(--vlak); color: var(--tekst); resize: vertical; }
+.tk .meld textarea:focus { outline: 2px solid var(--merk); outline-offset: 1px; }
+.tk .meld .hulp, .tk .meld .teller { font-size: 0.85rem; color: var(--tekst-2); margin: 0; }
+.tk .meld button { justify-self: start; background: var(--merk); color: #fff; font: inherit; font-weight: 700; padding: 10px 18px; border: 0; border-radius: 8px; cursor: pointer; }
+.tk .meld button:disabled { opacity: 0.6; cursor: default; }
+.tk .meld .pot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.tk .meld .uitslag { margin: 0; font-weight: 700; }
+.tk .meld .uitslag.fout { color: #9b1c1c; }
+
+/* overzichtspagina */
+.tk .lijst { max-width: 900px; margin: 0 auto; display: grid; gap: 16px; }
+.tk .lijst-kop { max-width: 900px; margin: 0 auto 20px; }
+.tk .lijst-kop h1 { font-size: 1.6rem; font-weight: 600; }
+.tk .lijst-kop p { color: var(--tekst-2); margin: 0.4rem 0 0; max-width: 62ch; }
+.tk .lijstkaart { background: var(--vlak); border: 1px solid var(--lijn); border-top: 6px solid var(--merk); border-radius: 16px; overflow: hidden; }
+.tk .lijstkaart > .in { padding: 18px 18px 16px; }
+.tk .lijstkaart h2 { font-size: 1.2rem; font-weight: 600; }
+.tk .lijstkaart .acties { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin-top: 12px; }
+.tk .lijstkaart .acties a.naartool { margin-top: 0; padding: 8px 16px; }
+.tk .lijstkaart .acties a.tweede { font-weight: 700; }
+.tk .lijstkaart .samen { border-bottom: 0; }
+
+@container (min-width: 700px) {
+  .tk .kaart { font-size: 18px; }
+  .tk .kop { padding: 34px 40px 28px; }
+  .tk .kop h1 { font-size: 1.9rem; }
+  .tk .wat { max-width: 60ch; }
+  .tk .samen { grid-template-columns: repeat(4, 1fr); }
+  .tk .tegel { padding: 18px 22px; }
+  .tk .stand, .blok { padding-inline: 40px; }
+  .tk .blok { padding-block: 30px; }
+  .tk .rij { grid-template-columns: 2fr 1.15fr 1.45fr 0.9fr; grid-template-areas: "naam waarde bron datum"; align-items: start; gap: 16px; padding: 14px 0; }
+  .tk .koprij { display: grid; font-size: 0.8rem; font-weight: 700; color: var(--tekst-2); padding: 8px 0; }
+  .tk .koprij span { grid-area: auto; }
+  .tk .waarde { text-align: left; }
+  .tk .bron small { display: block; margin-left: 0; }
+  .tk .datum::before { content: none; }
+  .tk .stappen li { padding-left: 50px; }
+  .tk .voet { grid-template-columns: 1fr 1fr; }
+  .tk .voetvak { padding: 26px 40px; border-bottom: none; }
+  .tk .voetvak + .voetvak { border-left: 1px solid var(--merk-rand); }
+  .tk .disclaimer { padding: 0 40px 24px; }
+  .tk .lijstkaart > .in { padding: 22px 40px 18px; }
+}
