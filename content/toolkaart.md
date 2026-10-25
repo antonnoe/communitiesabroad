@@ -9,6 +9,8 @@ tegels:
   stappenWoord: "rekenstappen"
   laatste: "laatst gecontroleerd"
   volgende: "volgende controle"
+peilUitleg: "Peil is ons register van de officiële bedragen, tarieven en grenzen. Elk bedrag wordt bij de officiële bron opgezocht en door een tweede, onafhankelijke controle bevestigd voordat het hier staat."
+zoWerkenLink: "Zo werken wij"
 standRegel: "Deze kaart hoort bij de stand van Peil van"
 bedragen:
   kop: "De bedragen"

@@ -13,6 +13,8 @@ interface KaartTekst {
   naarTool: string;
   tegels: Record<string, string>;
   standRegel: string;
+  peilUitleg: string;
+  zoWerkenLink: string;
   bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string };
   rekenwijze: { kop: string; label: string; zin: string; leeg: string; gebruikt: string; gecontroleerd: string };
   zoWerkenWij: { kop: string; tekst: string; linkLabel: string; linkHref: string };
@@ -128,6 +130,12 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
               <span className="uitleg">{t.tegels.volgende}</span>
             </div>
           </section>
+          <p className="peiluitleg">
+            {t.peilUitleg}{" "}
+            <a href={t.zoWerkenWij.linkHref} rel="noopener noreferrer">
+              {t.zoWerkenLink}
+            </a>
+          </p>
           <p className="stand">
             {t.standRegel} {datumLang(k.stand)}.
           </p>
@@ -171,7 +179,13 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
               <>
                 {inControle && (
                   <div className="incontrole">
-                    <span className="label">{t.rekenwijze.label}</span>
+                    <span className="label">
+                      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                        <path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                      </svg>
+                      {t.rekenwijze.label}
+                    </span>
                     <p>{t.rekenwijze.zin}</p>
                   </div>
                 )}

@@ -42,6 +42,7 @@
 .tk .tegel.let { background: var(--let-bg); }
 .tk .tegel.let .getal { color: var(--let); }
 .tk .tegel.let strong { color: var(--let); font-weight: 700; }
+.tk .peiluitleg { margin: 0; padding: 0 18px 14px; font-size: 0.92rem; color: var(--tekst-2); }
 .tk .stand { margin: 0; padding: 10px 18px; font-size: 0.88rem; color: var(--tekst-2); }
 
 .tk .blok { padding: 22px 18px; border-top: 1px solid var(--lijn); }
@@ -56,7 +57,7 @@
 .tk .waarde { grid-area: waarde; font-family: var(--font-heading), Poppins, system-ui, sans-serif; font-weight: 600; font-size: 1rem; line-height: 1.35; min-width: 0; }
 .tk .bron { grid-area: bron; font-size: 0.95rem; }
 .tk .bron small, .tk .wet { color: var(--tekst-2); }
-.tk .bron small { margin-left: 0.4em; }
+.tk .bron small { display: block; margin-left: 0; font-size: 0.82rem; line-height: 1.4; margin-top: 2px; }
 .tk .datum { grid-area: datum; font-size: 0.9rem; color: var(--tekst-2); display: flex; align-items: center; gap: 6px; }
 .tk .datum::before { content: "Gecontroleerd"; }
 .tk .vink { order: -1; width: 16px; height: 16px; border-radius: 50%; background: var(--merk); display: inline-block; position: relative; flex: none; }
@@ -67,7 +68,7 @@
 
 .tk .incontrole { border: 1px solid var(--let-rand); background: var(--let-bg); border-radius: 10px; padding: 12px 14px; margin: 0.3rem 0 1.2rem; }
 .tk .incontrole .label { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--let); }
-.tk .incontrole .label::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; flex: none; }
+.tk .incontrole .label svg { flex: none; }
 .tk .incontrole p { margin: 0.3rem 0 0; font-size: 0.95rem; }
 .tk .eerlijk { margin: 0; padding: 12px 14px; border: 1px dashed #d6d0cb; border-radius: 8px; color: var(--tekst-2); font-size: 0.95rem; }
 .tk .stappen { list-style: none; margin: 0; padding: 0; counter-reset: st; }
@@ -131,7 +132,6 @@
   .tk .koprij { display: grid; font-size: 0.8rem; font-weight: 700; color: var(--tekst-2); padding: 8px 0; }
   .tk .koprij span { grid-area: auto; }
   .tk .waarde { text-align: left; }
-  .tk .bron small { display: block; margin-left: 0; }
   .tk .datum::before { content: none; }
   .tk .stappen li { padding-left: 50px; }
   .tk .voet { grid-template-columns: 1fr 1fr; }
