@@ -203,6 +203,26 @@ function bouwKaart(slug, repos, openbaar) {
       verandert: veranderingTekst(p),
       volgende_controle: controleVan(p),
     }));
+  // Schattingen (status raming) van deze tool: nooit onder de gecontroleerde bedragen, altijd met het label schatting.
+  // Alleen de bandbreedte, de toelichting en de herzieningsdatum gaan mee; geen bron, geen klasse, geen interne tekst.
+  const schattingen = register.parameters
+    // Alleen ramingen met een openbare toelichting (opt-in in Peil); zonder toelichting blijft een raming buiten de kaart.
+    .filter((p) => p.status === "raming" && typeof p.toelichting_openbaar === "string" && p.toelichting_openbaar && repos.some((r) => hoortBij(p, r)))
+    .map((p) => {
+      const w = p.waarde;
+      const eur = (n) => Number(n).toLocaleString("nl-NL");
+      const bandbreedte = w && typeof w === "object" && "gangbaar_van" in w && "gangbaar_tot" in w
+        ? `${eur(w.gangbaar_van)} tot ${eur(w.gangbaar_tot)} euro`
+        : p.waarde_weergave;
+      return {
+        id: p.id,
+        naam: p.naam_nl,
+        ...(p.naam_fr ? { naam_fr: p.naam_fr } : {}),
+        bandbreedte,
+        toelichting: p.toelichting_openbaar,
+        herziening: controleVan(p).datum,
+      };
+    });
   const datums = bedragen.map((b) => b.verificatiedatum).filter(Boolean).sort();
   const landen = new Set(bedragen.map((b) => b.land));
   return {
@@ -215,6 +235,7 @@ function bouwKaart(slug, repos, openbaar) {
     laatste_controle: datums.length ? datums[datums.length - 1] : null,
     volgende_controle: volgendeControle(landen),
     bedragen,
+    schattingen,
     rekenstappen,
   };
 }

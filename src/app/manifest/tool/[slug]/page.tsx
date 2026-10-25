@@ -18,6 +18,7 @@ interface KaartTekst {
   peilUitleg: string;
   zoWerkenLink: string;
   bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; volgende: string; vaststeller: string };
+  schattingen: { kop: string; intro: string; label: string; herziening: string };
   rekenwijze: { kop: string; stapGecontroleerd: string; stapInControle: string; bronLink: string; leeg: string; gebruikt: string; gecontroleerd: string; laatsteStap: string; volgendeStap: string };
   zoWerkenWij: { kop: string; tekst: string; linkLabel: string; linkHref: string };
   melding: Record<string, string>;
@@ -187,6 +188,35 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
               </>
             )}
           </section>
+
+          {k.schattingen.length > 0 && (
+            <section className="blok schattingen" aria-labelledby="schattingen-kop">
+              <h2 id="schattingen-kop">{t.schattingen.kop}</h2>
+              <p className="intro">{t.schattingen.intro}</p>
+              <ul className="schatlijst">
+                {k.schattingen.map((x) => (
+                  <li key={x.id} id={bedragAnker(x.id)}>
+                    <p className="schatnaam">
+                      <span className="schatlabel">{t.schattingen.label}</span> {x.naam}
+                      {x.naam_fr ? (
+                        <>
+                          {" "}
+                          <i lang="fr">({x.naam_fr})</i>
+                        </>
+                      ) : null}
+                    </p>
+                    <p className="schatwaarde">{x.bandbreedte}</p>
+                    <p className="schattoelichting">{x.toelichting}</p>
+                    {x.herziening ? (
+                      <p className="schatherziening">
+                        {t.schattingen.herziening}: <b>{datumKort(x.herziening)}</b>
+                      </p>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <section className="blok">
             <h2>{t.rekenwijze.kop}</h2>

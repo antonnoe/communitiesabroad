@@ -22,6 +22,15 @@ export interface VolgendeControle {
   reden: string;
 }
 
+export interface Schatting {
+  id: string;
+  naam: string;
+  naam_fr?: string;
+  bandbreedte: string;
+  toelichting: string;
+  herziening: string | null;
+}
+
 export interface Rekenstap {
   id: string;
   naam_nl: string;
@@ -46,6 +55,7 @@ export interface Toolkaart {
   laatste_controle: string | null;
   volgende_controle: { datum: string; label: string } | null;
   bedragen: Bedrag[];
+  schattingen: Schatting[];
   rekenstappen: Rekenstap[];
 }
 

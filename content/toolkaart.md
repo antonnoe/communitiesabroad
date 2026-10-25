@@ -22,6 +22,11 @@ bedragen:
   vaststeller: "Vastgesteld door {x}"
   toonAlle: "Toon alle {n} bedragen"
   toonRest: "Toon de overige {n} bedragen"
+schattingen:
+  kop: "Schattingen in deze tool"
+  intro: "Voor deze bedragen bestaat geen officieel tarief. De tool rekent met een schatting en toont die apart, dus niet als gecontroleerd bedrag."
+  label: "schatting"
+  herziening: "Herziening"
 rekenwijze:
   kop: "Hoe de tool rekent"
   stapGecontroleerd: "gecontroleerd"

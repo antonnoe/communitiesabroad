@@ -44,7 +44,7 @@ const index = JSON.parse(readFileSync(join(toolsMap, "index.json"), "utf8"));
 const kaarten = index.tools.map((t) => ({ t, k: JSON.parse(readFileSync(join(toolsMap, `${t.slug}.json`), "utf8")) }));
 const kaartTekst = [...readdirSync(toolsMap)].map((f) => readFileSync(join(toolsMap, f), "utf8")).join("\n");
 
-const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "rekenstappen"].sort();
+const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "schattingen", "rekenstappen"].sort();
 const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum", "verandert", "volgende_controle"]);
 const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "laatste_controle", "volgende_controle", "gebruikte_bedragen"];
 // Alleen bij een stap die nog in controle is komen er een toelichting en een bron bij.
@@ -180,6 +180,25 @@ test("toolkaarten: een rekenstap is alleen gecontroleerd als de regel vastgestel
       const wijkt = (r.gebruikt_in ?? []).some((g) => repos.includes(String(g.repo).toLowerCase()) && g.afwijkend === true);
 
       assert.equal(s.status, r.status === "vastgesteld" && !wijkt ? "gecontroleerd" : "nog in controle", `${k.slug}: ${s.id}`);
+    }
+  }
+});
+
+test("toolkaarten: schattingen staan apart, met toelichting, en nooit onder de gecontroleerde bedragen", () => {
+  const SLEUTELS = ["bandbreedte", "herziening", "id", "naam", "naam_fr", "toelichting"];
+  const vastgoed = kaarten.find(({ k }) => k.slug === "vastgoedtransacties-in-frankrijk").k;
+  assert.ok(Array.isArray(vastgoed.schattingen));
+  const debours = vastgoed.schattingen.find((x) => x.id === "p.fr.notaris.debours_forfait");
+  assert.ok(debours, "debours ontbreekt als schatting");
+  assert.equal(debours.bandbreedte, "800 tot 1.500 euro");
+  assert.ok(debours.toelichting.startsWith("Waarschijnlijke bandbreedte, geen officieel bedrag"));
+  assert.ok(/^\d{4}-\d{2}-\d{2}$/.test(debours.herziening));
+  for (const { k } of kaarten) {
+    const bedragIds = new Set(k.bedragen.map((b) => b.id));
+    for (const x of k.schattingen) {
+      for (const key of Object.keys(x)) assert.ok(SLEUTELS.includes(key), `${k.slug}: ${key}`);
+      assert.ok(!bedragIds.has(x.id), `${k.slug}: ${x.id} staat ook bij de gecontroleerde bedragen`);
+      assert.ok(x.toelichting.length > 0 && x.bandbreedte.length > 0);
     }
   }
 });
