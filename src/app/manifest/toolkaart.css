@@ -49,7 +49,7 @@
 .tk .blok h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
 .tk .intro { margin: 0 0 0.8rem; color: var(--tekst-2); }
 .tk .rijen { border-top: 1px solid var(--lijn); }
-.tk .rij { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "naam" "waarde" "bron" "datum"; gap: 4px 12px; padding: 14px 0; border-bottom: 1px solid var(--lijn); scroll-margin-top: 90px; }
+.tk .rij { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "naam" "waarde" "bron" "datum" "controle"; gap: 4px 12px; padding: 14px 0; border-bottom: 1px solid var(--lijn); scroll-margin-top: 90px; }
 .tk .rij:target { background: var(--merk-zacht); box-shadow: -10px 0 0 var(--merk-zacht), 10px 0 0 var(--merk-zacht); }
 .tk .koprij { display: none; }
 .tk .naam { grid-area: naam; font-weight: 700; min-width: 0; }
@@ -60,6 +60,10 @@
 .tk .bron small { display: block; margin-left: 0; font-size: 0.82rem; line-height: 1.4; margin-top: 2px; }
 .tk .datum { grid-area: datum; font-size: 0.9rem; color: var(--tekst-2); display: flex; align-items: center; gap: 6px; }
 .tk .datum::before { content: "Gecontroleerd"; }
+.tk .controle { grid-area: controle; display: flex; flex-direction: column; gap: 1px; font-size: 0.82rem; line-height: 1.4; color: var(--tekst-2); min-width: 0; }
+.tk .controle b { font-weight: 700; color: var(--tekst); }
+.tk .controlezin { margin: 0 0 1rem; font-size: 0.9rem; color: var(--tekst-2); }
+.tk .stappen .stapcontrole { font-size: 0.82rem; color: var(--tekst-2); margin: 0.1rem 0 0.3rem; }
 .tk .vink { order: -1; width: 16px; height: 16px; border-radius: 50%; background: var(--merk); display: inline-block; position: relative; flex: none; }
 .tk .vink::after { content: ""; position: absolute; left: 5px; top: 2.5px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 .tk .meer { margin-top: 12px; }
@@ -130,7 +134,7 @@
   .tk .tegel { padding: 18px 22px; }
   .tk .stand, .blok { padding-inline: 40px; }
   .tk .blok { padding-block: 30px; }
-  .tk .rij { grid-template-columns: 2fr 1.15fr 1.45fr 0.9fr; grid-template-areas: "naam waarde bron datum"; align-items: start; gap: 16px; padding: 14px 0; }
+  .tk .rij { grid-template-columns: 2fr 1.15fr 1.45fr 0.9fr; grid-template-areas: "naam waarde bron datum" "controle controle controle controle"; align-items: start; gap: 16px; padding: 14px 0; }
   .tk .koprij { display: grid; font-size: 0.8rem; font-weight: 700; color: var(--tekst-2); padding: 8px 0; }
   .tk .koprij span { grid-area: auto; }
   .tk .waarde { text-align: left; }

@@ -4,19 +4,21 @@ import Link from "next/link";
 import "../../toolkaart.css";
 import { getContent } from "@/lib/content";
 import { bedragAnker, datumKort, datumLang, getToolIndex, getToolkaart, volgordeZin } from "@/lib/toolkaart";
-import type { Bedrag } from "@/lib/toolkaart";
+import type { Bedrag, VolgendeControle } from "@/lib/toolkaart";
 import MeldingFormulier from "@/components/melding-formulier";
 import OpenBijAnker from "@/components/open-bij-anker";
 
 interface KaartTekst {
   bovenregel: string;
+  controleZin: string;
+  zoSnelMogelijk: string;
   naarTool: string;
   tegels: Record<string, string>;
   standRegel: string;
   peilUitleg: string;
   zoWerkenLink: string;
-  bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string };
-  rekenwijze: { kop: string; stapGecontroleerd: string; stapInControle: string; bronLink: string; leeg: string; gebruikt: string; gecontroleerd: string };
+  bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; volgende: string; vaststeller: string };
+  rekenwijze: { kop: string; stapGecontroleerd: string; stapInControle: string; bronLink: string; leeg: string; gebruikt: string; gecontroleerd: string; laatsteStap: string; volgendeStap: string };
   zoWerkenWij: { kop: string; tekst: string; linkLabel: string; linkHref: string };
   melding: Record<string, string>;
   disclaimer: string;
@@ -44,7 +46,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function Rij({ b }: { b: Bedrag }) {
+function volgendeTekst(v: VolgendeControle, t: KaartTekst): string {
+  return v.datum ? datumKort(v.datum) : t.zoSnelMogelijk;
+}
+
+function Rij({ b, t }: { b: Bedrag; t: KaartTekst }) {
   return (
     <div className="rij" id={bedragAnker(b.id)}>
       <span className="naam">
@@ -70,6 +76,13 @@ function Rij({ b }: { b: Bedrag }) {
       <span className="datum">
         <span className="vink" aria-hidden="true" />
         {datumKort(b.verificatiedatum)}
+      </span>
+      <span className="controle">
+        <span>
+          {t.bedragen.volgende}: <b>{volgendeTekst(b.volgende_controle, t)}</b> &middot; {b.verandert}
+          {b.instantie ? <> &middot; {t.bedragen.vaststeller.replace("{x}", b.instantie)}</> : null}
+        </span>
+        <span>{b.volgende_controle.reden}</span>
       </span>
     </div>
   );
@@ -100,6 +113,7 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
             <p className="bovenregel">{t.bovenregel}</p>
             <h1>{k.naam}</h1>
             {k.omschrijving ? <p className="wat">{k.omschrijving}</p> : null}
+            <p className="controlezin">{t.controleZin}</p>
             <a className="naartool" href={k.url} rel="noopener noreferrer">
               {t.naarTool} <span aria-hidden="true">&#8599;</span>
             </a>
@@ -157,7 +171,7 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
                     ))}
                   </div>
                   {eerste.map((b) => (
-                    <Rij key={b.id} b={b} />
+                    <Rij key={b.id} b={b} t={t} />
                   ))}
                 </div>
                 {rest.length > 0 && (
@@ -165,7 +179,7 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
                     <summary>{t.bedragen.toonRest.replace("{n}", String(rest.length))}</summary>
                     <div className="rijen">
                       {rest.map((b) => (
-                        <Rij key={b.id} b={b} />
+                        <Rij key={b.id} b={b} t={t} />
                       ))}
                     </div>
                   </details>
@@ -200,6 +214,9 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
                             {t.rekenwijze.stapInControle}
                           </p>
                         ) : null}
+                        <p className="stapcontrole">
+                          {t.rekenwijze.laatsteStap} {datumKort(s.laatste_controle) || "onbekend"} &middot; {t.rekenwijze.volgendeStap} {volgendeTekst(s.volgende_controle, t)}
+                        </p>
                         {s.omschrijving ? <p>{s.omschrijving}</p> : null}
                         {s.status !== "gecontroleerd" && s.toelichting ? (
                           <p className="toelichting">

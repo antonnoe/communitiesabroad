@@ -45,8 +45,8 @@ const kaarten = index.tools.map((t) => ({ t, k: JSON.parse(readFileSync(join(too
 const kaartTekst = [...readdirSync(toolsMap)].map((f) => readFileSync(join(toolsMap, f), "utf8")).join("\n");
 
 const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "rekenstappen"].sort();
-const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum"]);
-const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "gebruikte_bedragen"];
+const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum", "verandert", "volgende_controle"]);
+const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "laatste_controle", "volgende_controle", "gebruikte_bedragen"];
 // Alleen bij een stap die nog in controle is komen er een toelichting en een bron bij.
 const STAP_SLEUTELS_IN_CONTROLE = new Set([...STAP_SLEUTELS, "toelichting", "bron_url"]);
 
@@ -70,6 +70,28 @@ test("toolkaarten: alleen de vaste openbare velden", () => {
     }
     assert.equal(k.aantal_bedragen, k.bedragen.length);
     assert.ok(/^https:\/\//.test(k.url));
+  }
+});
+
+test("toolkaarten: elk bedrag en elke rekenstap toont laatste en volgende controle met reden", () => {
+  const SOORTEN = ["controle", "bronbewaking", "zo_snel_mogelijk", "vervallen"];
+  const controleer = (x, wat) => {
+    const v = x.volgende_controle;
+    assert.deepEqual(Object.keys(v).sort(), ["datum", "reden", "soort"], wat);
+    assert.ok(SOORTEN.includes(v.soort), wat);
+    assert.ok(typeof v.reden === "string" && v.reden.length > 0, wat);
+    assert.ok(v.datum === null ? ["zo_snel_mogelijk", "vervallen"].includes(v.soort) : /^\d{4}-\d{2}-\d{2}$/.test(v.datum), wat);
+  };
+  for (const { k } of kaarten) {
+    for (const b of k.bedragen) {
+      controleer(b, `${k.slug}: ${b.id}`);
+      assert.ok(typeof b.verandert === "string" && b.verandert.length > 0, `${k.slug}: ${b.id} verandert`);
+      if (b.volgende_controle.datum) assert.ok(b.volgende_controle.datum > k.stand, `${k.slug}: ${b.id} datum niet na de stand`);
+    }
+    for (const s of k.rekenstappen) {
+      controleer(s, `${k.slug}: ${s.id}`);
+      assert.ok(s.laatste_controle === null || /^\d{4}-\d{2}-\d{2}$/.test(s.laatste_controle), `${k.slug}: ${s.id} laatste_controle`);
+    }
   }
 });
 

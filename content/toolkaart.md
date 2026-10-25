@@ -1,5 +1,6 @@
 ---
 bovenregel: "Toolkaart, wat er gecontroleerd is"
+controleZin: "Per bedrag ziet u wanneer het voor het laatst is gecontroleerd en wanneer de volgende controle is."
 naarTool: "Naar de tool"
 tegels:
   bedragen: "bedragen gecontroleerd bij de officiële bron"
@@ -17,6 +18,8 @@ bedragen:
   leeg: "Voor deze tool staan nog geen gecontroleerde bedragen in ons register."
   kolommen: ["Wat", "Waarde", "Bron", "Gecontroleerd"]
   gecontroleerd: "Gecontroleerd"
+  volgende: "Volgende controle"
+  vaststeller: "Vastgesteld door {x}"
   toonAlle: "Toon alle {n} bedragen"
   toonRest: "Toon de overige {n} bedragen"
 rekenwijze:
@@ -27,6 +30,8 @@ rekenwijze:
   leeg: "De rekenwijze van deze tool staat nog niet in ons register; de bedragen hierboven zijn wel gecontroleerd."
   gebruikt: "Gebruikt:"
   gecontroleerd: "Rekenwijze gecontroleerd"
+  laatsteStap: "Laatst gecontroleerd"
+  volgendeStap: "volgende controle"
 zoWerkenWij:
   kop: "Zo werken wij"
   tekst: "Elk bedrag controleren wij half april (Franse bedragen) en half december (Nederlandse bedragen en CAK). Daarnaast kijken wij elke twee maanden automatisch of de bronnen veranderd zijn."
@@ -51,5 +56,6 @@ overzicht:
   intro: "Per tool laten wij zien welke bedragen wij hebben gecontroleerd, bij welke officiële bron, en hoe de tool daarmee rekent."
   bekijk: "Bekijk de toolkaart"
   bedragenWoord: "bedragen"
+zoSnelMogelijk: "zo snel mogelijk"
 terug: "Alle toolkaarten"
 ---

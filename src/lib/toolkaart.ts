@@ -12,6 +12,14 @@ export interface Bedrag {
   bron_kenmerk: string | null;
   instantie: string | null;
   verificatiedatum: string | null;
+  verandert: string;
+  volgende_controle: VolgendeControle;
+}
+
+export interface VolgendeControle {
+  datum: string | null;
+  soort: "controle" | "bronbewaking" | "zo_snel_mogelijk" | "vervallen";
+  reden: string;
 }
 
 export interface Rekenstap {
@@ -21,6 +29,8 @@ export interface Rekenstap {
   volgorde: string;
   bron_kenmerk: string | null;
   status: "gecontroleerd" | "nog in controle";
+  laatste_controle: string | null;
+  volgende_controle: VolgendeControle;
   gebruikte_bedragen: string[];
   toelichting?: string;
   bron_url?: string | null;

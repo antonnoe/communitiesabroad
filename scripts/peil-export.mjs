@@ -108,6 +108,25 @@ const ijkmomenten = leesOptioneel("ijkkalender.json", { ijkmomenten: [] }).ijkmo
 const MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
 const vastgesteldePerId = new Map(register.parameters.filter((p) => p.status === "vastgesteld" && !TIJDELIJK_UIT.has(p.id)).map((p) => [p.id, p]));
 
+// Volgende controle komt kant-en-klaar uit Peil (afgeleid in de bouw, vanaf Peil 1.9.1). Alleen datum, soort en reden gaan mee.
+// Geen volgende_controle in de invoer betekent dat het verkeerde bestand is aangewezen: gebruik dist-intern/data/register.json van Peil.
+function controleVan(x) {
+  const v = x.volgende_controle;
+  if (!v || typeof v.soort !== "string" || typeof v.reden !== "string" || !("datum" in v)) {
+    console.error(`FOUT: ${x.id} heeft geen volgende_controle. Draai in peil-nl-fr "npm run bouw" en wijs dist-intern/data/register.json aan.`);
+    process.exit(1);
+  }
+  return { datum: v.datum ?? null, soort: v.soort, reden: v.reden };
+}
+// Hoe vaak een bedrag verandert, in gewone taal (een zin die met een hoofdletter begint).
+const BIJ_WET = /bij wet\b|wetswijziging/i;
+function veranderingTekst(p) {
+  const f = p.levensduur_a?.aanpassingsfrequentie ?? "onbekend";
+  const wet = BIJ_WET.test(p.publicatiemoment ?? "");
+  if (f === "zelden" || f === "onregelmatig") return wet ? "Verandert alleen bij een wetswijziging" : f === "zelden" ? "Verandert zelden" : "Verandert onregelmatig";
+  return { jaarlijks: "Verandert jaarlijks", halfjaarlijks: "Verandert twee keer per jaar", doorlopend: "Wordt doorlopend bijgewerkt", meerjaarlijks: "Verandert om de paar jaar" }[f] ?? "Nog niet bekend hoe vaak het verandert";
+}
+
 // Eerstvolgend controlemoment: Frankrijk half april, Nederland (en CAK) half december, gezien vanaf de peildatum.
 function volgendeControle(landen) {
   // Grensoverschrijdende bedragen (XB) bepalen het moment niet zelf; alleen XB: beide momenten gelden.
@@ -155,6 +174,8 @@ function bouwKaart(slug, repos, openbaar) {
       volgorde: r.volgorde ?? "",
       bron_kenmerk: r.bron_kenmerk ?? null,
       status,
+      laatste_controle: r.verificatiedatum ?? null,
+      volgende_controle: controleVan(r),
       gebruikte_bedragen: (r.gebruikt_parameters ?? []).filter((id) => ids.has(id)),
       // Toelichting en officiële bron alleen bij een stap die nog in controle is.
       ...(status !== "gecontroleerd" && r.toelichting_openbaar ? { toelichting: r.toelichting_openbaar, bron_url: r.bron_url ?? null } : {}),
@@ -179,6 +200,8 @@ function bouwKaart(slug, repos, openbaar) {
       bron_kenmerk: p.bron_kenmerk ?? null,
       instantie: p.instantie ?? null,
       verificatiedatum: p.verificatiedatum ?? null,
+      verandert: veranderingTekst(p),
+      volgende_controle: controleVan(p),
     }));
   const datums = bedragen.map((b) => b.verificatiedatum).filter(Boolean).sort();
   const landen = new Set(bedragen.map((b) => b.land));
