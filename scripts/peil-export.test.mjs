@@ -97,6 +97,7 @@ test("toolkaarten: index klopt met de kaarten", () => {
     assert.equal(t.naam, k.naam);
     assert.equal(t.aantal_bedragen, k.bedragen.length);
     assert.equal(t.aantal_rekenstappen, k.rekenstappen.length);
+    assert.equal(t.aantal_gecontroleerde_stappen, k.rekenstappen.filter((s) => s.status === "gecontroleerd").length);
   }
 });
 

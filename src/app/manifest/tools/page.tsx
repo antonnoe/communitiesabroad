@@ -10,9 +10,6 @@ interface OverzichtTekst {
     beschrijving: string;
     intro: string;
     bekijk: string;
-    rekenwijzeLeeg: string;
-    rekenwijzeControle: string;
-    rekenwijzeGecontroleerd: string;
     bedragenWoord: string;
   };
   naarTool: string;
@@ -45,7 +42,7 @@ export default function ToolkaartenPage() {
       <div className="lijst">
         {index.tools.map((k) => {
           const leeg = k.rekenwijze === "niet in register";
-          const controle = k.rekenwijze === "nog in controle";
+          const controle = k.aantal_gecontroleerde_stappen < k.aantal_rekenstappen;
           return (
             <div className="tk-scherm" key={k.slug} style={{ width: "100%" }}>
               <article className="lijstkaart">
@@ -69,8 +66,14 @@ export default function ToolkaartenPage() {
                   <div className={"tegel" + (leeg || controle ? " let" : "")}>
                     <span className="getal">{k.aantal_rekenstappen}</span>
                     <span className="uitleg">
-                      {t.tegels.stappenWoord},{" "}
-                      <strong>{leeg ? o.rekenwijzeLeeg : controle ? o.rekenwijzeControle : o.rekenwijzeGecontroleerd}</strong>
+                      {t.tegels.stappenWoord}{", "}
+                      {leeg ? (
+                        <strong>{t.tegels.stappenLeeg}</strong>
+                      ) : controle ? (
+                        <strong>{t.tegels.stappenAantal.replace("{n}", String(k.aantal_gecontroleerde_stappen))}</strong>
+                      ) : (
+                        t.tegels.stappenAantal.replace("{n}", String(k.aantal_gecontroleerde_stappen))
+                      )}
                     </span>
                   </div>
                   <div className="tegel">

@@ -221,6 +221,7 @@ const index = {
     stand: k.stand,
     aantal_bedragen: k.aantal_bedragen,
     aantal_rekenstappen: k.rekenstappen.length,
+    aantal_gecontroleerde_stappen: k.rekenstappen.filter((s) => s.status === "gecontroleerd").length,
     rekenwijze: k.rekenstappen.length === 0 ? "niet in register" : k.rekenstappen.every((s) => s.status === "gecontroleerd") ? "gecontroleerd" : "nog in controle",
     laatste_controle: k.laatste_controle,
     volgende_controle: k.volgende_controle,

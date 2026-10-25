@@ -47,6 +47,7 @@ export interface ToolIndexItem {
   stand: string;
   aantal_bedragen: number;
   aantal_rekenstappen: number;
+  aantal_gecontroleerde_stappen: number;
   rekenwijze: "gecontroleerd" | "nog in controle" | "niet in register";
   laatste_controle: string | null;
   volgende_controle: { datum: string; label: string } | null;

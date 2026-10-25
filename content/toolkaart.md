@@ -50,9 +50,6 @@ overzicht:
   beschrijving: "Per tool van Communities Abroad: welke bedragen wij hebben gecontroleerd, bij welke officiële bron, en hoe de tool rekent."
   intro: "Per tool laten wij zien welke bedragen wij hebben gecontroleerd, bij welke officiële bron, en hoe de tool daarmee rekent."
   bekijk: "Bekijk de toolkaart"
-  rekenwijzeLeeg: "rekenwijze nog niet in ons register"
-  rekenwijzeControle: "rekenwijze nog in controle"
-  rekenwijzeGecontroleerd: "rekenwijze gecontroleerd"
   bedragenWoord: "bedragen"
 terug: "Alle toolkaarten"
 ---
