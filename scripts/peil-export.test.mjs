@@ -46,7 +46,9 @@ const kaartTekst = [...readdirSync(toolsMap)].map((f) => readFileSync(join(tools
 
 const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "rekenstappen"].sort();
 const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum"]);
-const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "gebruikte_bedragen"].sort();
+const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "gebruikte_bedragen"];
+// Alleen bij een stap die nog in controle is komen er een toelichting en een bron bij.
+const STAP_SLEUTELS_IN_CONTROLE = new Set([...STAP_SLEUTELS, "toelichting", "bron_url"]);
 
 test("toolkaarten: alleen de vaste openbare velden", () => {
   assert.ok(kaarten.length > 0);
@@ -54,8 +56,15 @@ test("toolkaarten: alleen de vaste openbare velden", () => {
     assert.deepEqual(Object.keys(k).sort(), KAART_SLEUTELS, k.slug);
     for (const b of k.bedragen) for (const key of Object.keys(b)) assert.ok(BEDRAG_SLEUTELS.has(key), `${k.slug}: ${key}`);
     for (const s of k.rekenstappen) {
-      assert.deepEqual(Object.keys(s).sort(), STAP_SLEUTELS, `${k.slug}: ${s.id}`);
       assert.ok(["gecontroleerd", "nog in controle"].includes(s.status));
+      for (const key of STAP_SLEUTELS) assert.ok(key in s, `${k.slug}: ${s.id} mist ${key}`);
+      if (s.status === "gecontroleerd") assert.deepEqual(Object.keys(s).sort(), [...STAP_SLEUTELS].sort(), `${k.slug}: ${s.id}`);
+      else for (const key of Object.keys(s)) assert.ok(STAP_SLEUTELS_IN_CONTROLE.has(key), `${k.slug}: ${s.id}: ${key}`);
+      if ("toelichting" in s) {
+        assert.equal(typeof s.toelichting, "string");
+        assert.ok(s.toelichting.length > 0);
+        assert.ok(s.bron_url === null || /^https:\/\//.test(s.bron_url), `${k.slug}: ${s.id} bron_url`);
+      }
       const ids = new Set(k.bedragen.map((b) => b.id));
       for (const id of s.gebruikte_bedragen) assert.ok(ids.has(id), `${k.slug}: ${s.id} verwijst naar onbekend bedrag ${id}`);
     }

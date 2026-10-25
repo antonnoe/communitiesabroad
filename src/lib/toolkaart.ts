@@ -22,6 +22,8 @@ export interface Rekenstap {
   bron_kenmerk: string | null;
   status: "gecontroleerd" | "nog in controle";
   gebruikte_bedragen: string[];
+  toelichting?: string;
+  bron_url?: string | null;
 }
 
 export interface Toolkaart {

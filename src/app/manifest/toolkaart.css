@@ -66,10 +66,6 @@
 .tk .meer summary { cursor: pointer; font-weight: 700; color: var(--merk); padding: 10px 0; list-style-position: inside; }
 .tk .meer .rijen { border-top: 0; }
 
-.tk .incontrole { border: 1px solid var(--let-rand); background: var(--let-bg); border-radius: 10px; padding: 12px 14px; margin: 0.3rem 0 1.2rem; }
-.tk .incontrole .label { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--let); }
-.tk .incontrole .label svg { flex: none; }
-.tk .incontrole p { margin: 0.3rem 0 0; font-size: 0.95rem; }
 .tk .eerlijk { margin: 0; padding: 12px 14px; border: 1px dashed #d6d0cb; border-radius: 8px; color: var(--tekst-2); font-size: 0.95rem; }
 .tk .stappen { list-style: none; margin: 0; padding: 0; counter-reset: st; }
 .tk .stappen li { counter-increment: st; position: relative; padding: 0 0 22px 40px; }
@@ -78,6 +74,12 @@
 .tk .stappen li.levert::after { background: var(--merk); }
 .tk .stappen h3 { font-size: 1.05rem; font-weight: 600; padding-top: 3px; margin-bottom: 0.3rem; }
 .tk .stappen p { margin: 0.3rem 0; }
+.tk .stapstatus { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; color: var(--tekst-2); }
+.tk .stapstatus.let { color: var(--let); }
+.tk .stapstatus svg { flex: none; }
+.tk .stapstatus .vink { order: 0; width: 14px; height: 14px; }
+.tk .stapstatus .vink::after { left: 4.5px; top: 2px; width: 3.5px; height: 7px; }
+.tk .toelichting { font-size: 0.95rem; padding: 8px 12px; border-left: 3px solid var(--let-rand); background: var(--let-bg); border-radius: 0 8px 8px 0; }
 .tk .gebruikt { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.88rem; }
 .tk .gebruikt span { color: var(--tekst-2); margin-right: 2px; }
 .tk .gebruikt a { background: var(--chip); border: 1px solid var(--lijn); border-radius: 12px; padding: 2px 10px; text-decoration: none; line-height: 1.35; }

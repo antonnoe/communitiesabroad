@@ -16,7 +16,7 @@ interface KaartTekst {
   peilUitleg: string;
   zoWerkenLink: string;
   bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string };
-  rekenwijze: { kop: string; label: string; zin: string; leeg: string; gebruikt: string; gecontroleerd: string };
+  rekenwijze: { kop: string; stapGecontroleerd: string; stapInControle: string; bronLink: string; leeg: string; gebruikt: string; gecontroleerd: string };
   zoWerkenWij: { kop: string; tekst: string; linkLabel: string; linkHref: string };
   melding: Record<string, string>;
   disclaimer: string;
@@ -81,7 +81,9 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
   if (!k) notFound();
   const t = getContent<KaartTekst>("toolkaart");
   const stappen = k.rekenstappen;
-  const inControle = stappen.some((s) => s.status !== "gecontroleerd");
+  const metStatus = stappen.filter((s) => s.status === "gecontroleerd" || s.status === "nog in controle");
+  const gecontroleerd = metStatus.filter((s) => s.status === "gecontroleerd").length;
+  const inControle = metStatus.length > gecontroleerd;
   const eerste = k.bedragen.slice(0, ZICHTBAAR);
   const rest = k.bedragen.slice(ZICHTBAAR);
   const bedragPerId = new Map(k.bedragen.map((b) => [b.id, b]));
@@ -111,13 +113,14 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
             <div className={"tegel" + (stappen.length === 0 || inControle ? " let" : "")}>
               <span className="getal">{stappen.length}</span>
               <span className="uitleg">
-                {t.tegels.stappenWoord},{" "}
+                {t.tegels.stappenWoord}
+                {stappen.length === 0 || metStatus.length > 0 ? ", " : null}
                 {stappen.length === 0 ? (
                   <strong>{t.tegels.stappenLeeg}</strong>
-                ) : inControle ? (
-                  <strong>{t.tegels.stappenControle}</strong>
+                ) : metStatus.length === 0 ? null : inControle ? (
+                  <strong>{t.tegels.stappenAantal.replace("{n}", String(gecontroleerd))}</strong>
                 ) : (
-                  t.tegels.stappenGecontroleerd
+                  t.tegels.stappenAantal.replace("{n}", String(gecontroleerd))
                 )}
               </span>
             </div>
@@ -177,25 +180,40 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
               <p className="eerlijk">{t.rekenwijze.leeg}</p>
             ) : (
               <>
-                {inControle && (
-                  <div className="incontrole">
-                    <span className="label">
-                      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                        <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
-                        <path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                      </svg>
-                      {t.rekenwijze.label}
-                    </span>
-                    <p>{t.rekenwijze.zin}</p>
-                  </div>
-                )}
                 <ol className="stappen">
                   {stappen.map((s) => {
                     const pijl = volgordeZin(s, stappen);
                     return (
                       <li key={s.id} className={pijl ? "levert" : undefined}>
                         <h3>{s.naam_nl}</h3>
+                        {s.status === "gecontroleerd" ? (
+                          <p className="stapstatus">
+                            <span className="vink" aria-hidden="true" />
+                            {t.rekenwijze.stapGecontroleerd}
+                          </p>
+                        ) : s.status === "nog in controle" ? (
+                          <p className="stapstatus let">
+                            <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                              <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                              <path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                            </svg>
+                            {t.rekenwijze.stapInControle}
+                          </p>
+                        ) : null}
                         {s.omschrijving ? <p>{s.omschrijving}</p> : null}
+                        {s.status !== "gecontroleerd" && s.toelichting ? (
+                          <p className="toelichting">
+                            {s.toelichting}
+                            {s.bron_url ? (
+                              <>
+                                {" "}
+                                <a href={s.bron_url} rel="noopener noreferrer">
+                                  {t.rekenwijze.bronLink} <span aria-hidden="true">&#8599;</span>
+                                </a>
+                              </>
+                            ) : null}
+                          </p>
+                        ) : null}
                         {s.gebruikte_bedragen.length > 0 && (
                           <p className="gebruikt">
                             <span>{t.rekenwijze.gebruikt}</span>

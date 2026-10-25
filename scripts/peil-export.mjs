@@ -145,16 +145,21 @@ function bouwKaart(slug, repos, openbaar) {
     ordenen.push(r);
   };
   regels.forEach(zet);
-  const rekenstappen = ordenen.map((r) => ({
-    id: r.id,
-    naam_nl: r.naam_nl,
-    omschrijving: r.omschrijving ?? "",
-    volgorde: r.volgorde ?? "",
-    bron_kenmerk: r.bron_kenmerk ?? null,
+  const rekenstappen = ordenen.map((r) => {
     // Alleen "gecontroleerd" als de regel vastgesteld is én geen enkele gebruikt_in-regel van deze tool afwijkt; de reden komt nooit in de uitvoer.
-    status: r.status === "vastgesteld" && !(r.gebruikt_in ?? []).some((g) => repos.includes(String(g.repo ?? "").toLowerCase()) && g.afwijkend === true) ? "gecontroleerd" : "nog in controle",
-    gebruikte_bedragen: (r.gebruikt_parameters ?? []).filter((id) => ids.has(id)),
-  }));
+    const status = r.status === "vastgesteld" && !(r.gebruikt_in ?? []).some((g) => repos.includes(String(g.repo ?? "").toLowerCase()) && g.afwijkend === true) ? "gecontroleerd" : "nog in controle";
+    return {
+      id: r.id,
+      naam_nl: r.naam_nl,
+      omschrijving: r.omschrijving ?? "",
+      volgorde: r.volgorde ?? "",
+      bron_kenmerk: r.bron_kenmerk ?? null,
+      status,
+      gebruikte_bedragen: (r.gebruikt_parameters ?? []).filter((id) => ids.has(id)),
+      // Toelichting en officiële bron alleen bij een stap die nog in controle is.
+      ...(status !== "gecontroleerd" && r.toelichting_openbaar ? { toelichting: r.toelichting_openbaar, bron_url: r.bron_url ?? null } : {}),
+    };
+  });
   // Bedragen: eerst die in de eerste rekenstap gebruikt worden, enzovoort; de rest daarna.
   const eersteGebruik = (id) => {
     const i = rekenstappen.findIndex((s) => s.gebruikte_bedragen.includes(id));
