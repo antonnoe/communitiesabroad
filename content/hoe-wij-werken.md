@@ -15,6 +15,13 @@ secties:
     paragrafen:
       - "Een rekentool die klopt maar niet laadt, helpt niemand. Cockpit houdt bij of onze sites en tools bereikbaar zijn, of de koppelingen met overheidsbronnen werken en of sleutels en certificaten binnenkort verlopen. Gaat er iets mis, dan krijgen wij een seintje, liefst voordat u het merkt."
       - "Wat u op een toolkaart meldt, komt ook in Cockpit terecht. Zo raakt een melding niet kwijt in een mailbox."
+  - heading: "Uw dossier blijft actueel en van u"
+    paragrafen:
+      - "In DossierFrankrijk bewaart u wat voor u belangrijk is: artikelen, uitkomsten van tools, adviezen van Café Claude, notities en deadlines. Wat u bewaart, is uw zaak en van niemand anders."
+      - "Regels en tarieven veranderen. Daarom toont het dossier bij elk item hoe oud het is, en waarschuwt de ingebouwde assistent als een item over tarieven of regelgeving verouderd kan zijn, met een verwijzing naar een actueel antwoord in Café Claude. De assistent wijst ook op tegenstrijdigheden in uw dossier. Hij geeft geen juridisch, fiscaal of medisch advies."
+    link:
+      label: "Naar DossierFrankrijk"
+      href: "https://www.dossierfrankrijk.nl"
   - heading: "Het forum heeft een gastheer"
     paragrafen:
       - "Nederlanders.fr bestaat dankzij mensen die elkaar helpen met echte kennis en ervaring. De beheerder is gastheer: hij beschermt de sfeer en neemt in discussies geen partij. Iedereen mag zeggen wat hij wil, laster en beledigingen horen er niet bij."
@@ -40,6 +47,8 @@ samenvatting:
       tekst: "Alle financiële parameters en berekeningsgrondslagen in onze tools komen uit één register, elk met een officiële bron en de datum van de laatste periodieke controle. Op de toolkaarten ziet u per tool wat is gecontroleerd en wanneer de volgende controle is."
     - kop: "Cockpit zorgt dat het werkt."
       tekst: "Hij bewaakt of onze sites, tools en koppelingen draaien, en waarschuwt voordat er iets uitvalt."
+    - kop: "Uw dossier blijft actueel."
+      tekst: "DossierFrankrijk toont hoe oud elk item is en de assistent waarschuwt als iets verouderd kan zijn."
     - kop: "Het forum heeft een gastheer."
       tekst: "Iedereen mag zeggen wat hij wil, zonder laster of beledigingen. Een ingreep ziet u altijd in de reactie zelf."
     - kop: "Het forum toetst."
