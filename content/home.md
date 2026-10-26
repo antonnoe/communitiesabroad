@@ -42,7 +42,7 @@ platforms:
       url: "https://www.cafeclaude.fr"
     - name: "DossierFrankrijk"
       subtitle: "Het persoonlijk dossier, met AI-assistent"
-      description: "Uw eigen dossier voor het leven in Frankrijk: artikelen, notities, taken, deadlines, uitkomsten van tools en adviezen van Café Claude op één plek. De ingebouwde assistent licht uw dossier door, wijst op tegenstrijdigheden en waarschuwt als een item over tarieven of regels verouderd kan zijn. Het dossier zelf is gratis; de assistent hoort bij het Infofrankrijk-abonnement."
+      description: "Uw eigen dossier voor het leven in Frankrijk: artikelen, notities, taken, deadlines, uitkomsten van tools en adviezen van Café Claude op één plek. De ingebouwde assistent licht uw dossier door, wijst op tegenstrijdigheden en waarschuwt als een item over tarieven of regels verouderd kan zijn. U activeert het dossier als abonnee van Infofrankrijk. Stopt uw abonnement, dan blijft uw dossier met alle inhoud toegankelijk; alleen toevoegen en de assistent zijn dan niet meer beschikbaar."
       url: "https://www.dossierfrankrijk.nl"
     - name: "NederGids"
       subtitle: "De dienstverlenergids"
