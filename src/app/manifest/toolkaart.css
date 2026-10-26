@@ -62,6 +62,7 @@
 .tk .datum::before { content: "Gecontroleerd"; }
 .tk .controle { grid-area: controle; display: flex; flex-direction: column; gap: 1px; font-size: 0.82rem; line-height: 1.4; color: var(--tekst-2); min-width: 0; }
 .tk .controle b { font-weight: 700; color: var(--tekst); }
+.tk .controle .reden { display: block; margin-top: 2px; }
 .tk .controlezin { margin: 0 0 1rem; font-size: 0.9rem; color: var(--tekst-2); }
 .tk .stappen .stapcontrole { font-size: 0.82rem; color: var(--tekst-2); margin: 0.1rem 0 0.3rem; }
 .tk .vink { order: -1; width: 16px; height: 16px; border-radius: 50%; background: var(--merk); display: inline-block; position: relative; flex: none; }

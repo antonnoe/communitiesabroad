@@ -80,10 +80,10 @@ function Rij({ b, t }: { b: Bedrag; t: KaartTekst }) {
       </span>
       <span className="controle">
         <span>
-          {t.bedragen.volgende}: <b>{volgendeTekst(b.volgende_controle, t)}</b> {b.volgende_controle.reden.startsWith(b.verandert) ? null : <> &middot; {b.verandert}</>}
-          {b.instantie ? <> &middot; {t.bedragen.vaststeller.replace("{x}", b.instantie)}</> : null}
+          {t.bedragen.volgende}: <b>{volgendeTekst(b.volgende_controle, t)}</b>
+          {b.instantie ? <> &middot; {t.bedragen.vaststeller.replace("{x}", b.instantie)}</> : null}.
         </span>
-        <span>{b.volgende_controle.reden}</span>
+        <span className="reden">{b.volgende_controle.reden}</span>
       </span>
     </div>
   );
