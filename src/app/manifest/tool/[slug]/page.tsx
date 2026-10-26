@@ -17,7 +17,7 @@ interface KaartTekst {
   standRegel: string;
   peilUitleg: string;
   zoWerkenLink: string;
-  bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; volgende: string; vaststeller: string };
+  bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; toonRestEen?: string; volgende: string; vaststeller: string };
   schattingen: { kop: string; intro: string; label: string; herziening: string };
   rekenwijze: { kop: string; stapGecontroleerd: string; stapInControle: string; bronLink: string; leeg: string; gebruikt: string; gecontroleerd: string; laatsteStap: string; volgendeStap: string };
   zoWerkenWij: { kop: string; tekst: string; linkLabel: string; linkHref: string };
@@ -177,7 +177,7 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
                 </div>
                 {rest.length > 0 && (
                   <details className="meer" id="alle-bedragen">
-                    <summary>{t.bedragen.toonRest.replace("{n}", String(rest.length))}</summary>
+                    <summary>{rest.length === 1 && t.bedragen.toonRestEen ? t.bedragen.toonRestEen : t.bedragen.toonRest.replace("{n}", String(rest.length))}</summary>
                     <div className="rijen">
                       {rest.map((b) => (
                         <Rij key={b.id} b={b} t={t} />

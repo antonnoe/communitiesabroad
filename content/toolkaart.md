@@ -22,6 +22,7 @@ bedragen:
   vaststeller: "Vastgesteld door {x}"
   toonAlle: "Toon alle {n} bedragen"
   toonRest: "Toon de overige {n} bedragen"
+  toonRestEen: "Toon het overige bedrag"
 schattingen:
   kop: "Schattingen in deze tool"
   intro: "Voor deze bedragen bestaat geen officieel tarief. De tool rekent met een schatting en toont die apart, dus niet als gecontroleerd bedrag."
@@ -32,7 +33,7 @@ rekenwijze:
   stapGecontroleerd: "gecontroleerd"
   stapInControle: "nog in controle"
   bronLink: "Lees de officiële bron"
-  leeg: "De rekenwijze van deze tool staat nog niet in ons register; de bedragen hierboven zijn wel gecontroleerd."
+  leeg: "De rekenwijze van deze tool staat nog niet in ons register. Bij elk bedrag hierboven staat hoe ver de controle is."
   gebruikt: "Gebruikt:"
   gecontroleerd: "Rekenwijze gecontroleerd"
   laatsteStap: "Laatst gecontroleerd"
