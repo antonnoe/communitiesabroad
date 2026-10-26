@@ -34,7 +34,7 @@ platforms:
       url: "https://www.infofrankrijk.com"
     - name: "Infopoche"
       subtitle: "De mobiele app"
-      description: "Infofrankrijk in uw broekzak. Een app voor op het beginscherm van uw telefoon, met de artikelen, tools en nieuws van Infofrankrijk, het forum van Nederlanders.fr en hulp per regio. Gratis, zonder account."
+      description: "Ons netwerk in uw broekzak. Infofrankrijk, Nederlanders.fr, Café Claude, Klussen in Frankrijk en alle tools in één app op uw telefoon, met nieuws en hulp per regio. Gratis, zonder account."
       url: "https://infopoche.fr"
     - name: "Café Claude"
       subtitle: "De AI-assistent"
