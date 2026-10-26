@@ -1,7 +1,7 @@
 ---
 hero:
   heading: "Een samenhangend netwerk van platforms voor Nederlandstaligen in Frankrijk"
-  subheading: "Communities Abroad ontwikkelt en onderhoudt het Nederlandstalige informatie- en communitynetwerk voor Nederlanders en Belgen in Frankrijk. Sinds 2002. Forum, kennisplatform, AI-assistent, persoonlijk dossier, dienstverlenergids en dagelijkse nieuwsbrief — zes platforms, één organisatie."
+  subheading: "Communities Abroad ontwikkelt en onderhoudt het Nederlandstalige informatie- en communitynetwerk voor Nederlanders en Belgen in Frankrijk. Sinds 2002. Forum, kennisplatform, mobiele app, AI-assistent, persoonlijk dossier, dienstverlenergids en dagelijkse nieuwsbrief: zeven platforms, één organisatie."
   cta1:
     label: "Bekijk de platforms"
     href: "#platforms"
@@ -22,7 +22,7 @@ pijlers:
       text: "Infofrankrijk.com bundelt de redactionele kennis en de interactieve tools. Artikelen over alle praktische aspecten van het leven in Frankrijk, aangevuld met simulators, calculators en een AI-assistent met bronvermelding."
 
 platforms:
-  intro: "Zes onderdelen, elk met een eigen functie, samen één geheel. Gebruikers bewegen vrij tussen de platforms — een vraag op het forum leidt naar een artikel, het artikel bevat een tool, het resultaat wordt bewaard in een persoonlijk dossier."
+  intro: "Zeven onderdelen, elk met een eigen functie, samen één geheel. Gebruikers bewegen vrij tussen de platforms — een vraag op het forum leidt naar een artikel, het artikel bevat een tool, het resultaat wordt bewaard in een persoonlijk dossier."
   items:
     - name: "Nederlanders.fr"
       subtitle: "Het forum"
@@ -32,6 +32,10 @@ platforms:
       subtitle: "Het kennisplatform"
       description: "Redactionele artikelen en een groeiend pakket interactieve tools over alle praktische aspecten van het leven in Frankrijk: belastingen, vastgoed, energie, zorg, ondernemen, bureaucratie en meer. Freemium — jaarabonnement €49."
       url: "https://www.infofrankrijk.com"
+    - name: "Infopoche"
+      subtitle: "De mobiele app"
+      description: "Infofrankrijk in uw broekzak. Een app voor op het beginscherm van uw telefoon, met de artikelen, tools en nieuws van Infofrankrijk, het forum van Nederlanders.fr en hulp per regio. Gratis, zonder account."
+      url: "https://infopoche.fr"
     - name: "Café Claude"
       subtitle: "De AI-assistent"
       description: "Een Nederlandstalige AI-assistent, specifiek ontwikkeld voor wonen en werken in Frankrijk. Zes domeinen, vooraf gecontroleerde antwoorden met bronvermelding en een publiek kwaliteitsdashboard."
