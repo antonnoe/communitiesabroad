@@ -220,3 +220,12 @@ test("toolkaarten: schattingen staan apart, met toelichting, en nooit onder de g
     }
   }
 });
+
+test("index.json: wijzigingen is een lijst van hoogstens drie items met datum, versie en samenvatting", () => {
+  assert.ok(Array.isArray(index.wijzigingen), "wijzigingen ontbreekt");
+  assert.ok(index.wijzigingen.length <= 3);
+  for (const w of index.wijzigingen) {
+    assert.match(w.datum, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(w.versie && w.samenvatting);
+  }
+});

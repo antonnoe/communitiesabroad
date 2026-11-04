@@ -18,6 +18,8 @@ paginas:
     href: "/over-ons"
   - name: "Diensten"
     href: "/diensten"
+  - name: "Peil"
+    href: "/peil"
   - name: "Voor partners"
     href: "/partners"
   - name: "Contact"

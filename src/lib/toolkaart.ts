@@ -86,8 +86,19 @@ export interface ToolIndexItem {
 
 const map = path.join(process.cwd(), "public", "manifest", "tools");
 
-export function getToolIndex(): { stand: string; versiedatum: string; versie: string; tools: ToolIndexItem[] } {
+export interface Wijziging {
+  datum: string;
+  versie: string;
+  samenvatting: string;
+}
+
+export function getToolIndex(): { stand: string; versiedatum: string; versie: string; wijzigingen?: Wijziging[]; tools: ToolIndexItem[] } {
   return JSON.parse(fs.readFileSync(path.join(map, "index.json"), "utf8"));
+}
+
+export function getPeilAantal(): number {
+  const zoek = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "manifest", "peil-zoek.json"), "utf8"));
+  return zoek.aantal ?? zoek.parameters?.length ?? 0;
 }
 
 export function getToolkaart(slug: string): Toolkaart | null {

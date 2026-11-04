@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Diensten", href: "/diensten" },
   { name: "Hoe wij werken", href: "/hoe-wij-werken" },
+  { name: "Peil", href: "/peil" },
   { name: "Partners", href: "/partners" },
   { name: "Over ons", href: "/over-ons" },
   { name: "Contact", href: "/contact" },
@@ -15,6 +17,7 @@ const navigation = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-40 border-b border-primary/10 bg-white/95 backdrop-blur-sm">
@@ -48,7 +51,8 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
+              aria-current={pathname === item.href ? "page" : undefined}
+              className={`text-sm font-medium transition-colors hover:text-primary ${pathname === item.href ? "text-primary" : "text-gray-700"}`}
             >
               {item.name}
             </Link>
@@ -101,7 +105,8 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
+                aria-current={pathname === item.href ? "page" : undefined}
+              className={`text-sm font-medium transition-colors hover:text-primary ${pathname === item.href ? "text-primary" : "text-gray-700"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}

@@ -123,6 +123,13 @@ const leesOptioneel = (naam, fallback) => {
 };
 const rekenregels = leesOptioneel("rekenregels.json", { rekenregels: [] }).rekenregels ?? [];
 const ijkmomenten = leesOptioneel("ijkkalender.json", { ijkmomenten: [] }).ijkmomenten ?? [];
+// Changelog van Peil: { changelog: [...] } of een kale array; nieuwste eerst. De eerste drie gaan in index.json.
+const changelogBron = leesOptioneel("changelog.json", []);
+const changelog = Array.isArray(changelogBron) ? changelogBron : Array.isArray(changelogBron?.changelog) ? changelogBron.changelog : [];
+const wijzigingen = changelog
+  .filter((c) => c && c.datum && c.versie && c.samenvatting)
+  .slice(0, 3)
+  .map((c) => ({ datum: String(c.datum).slice(0, 10), versie: String(c.versie), samenvatting: String(c.samenvatting) }));
 const MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
 const vastgesteldePerId = new Map(register.parameters.filter((p) => p.status === "vastgesteld" && !TIJDELIJK_UIT.has(p.id)).map((p) => [p.id, p]));
 
@@ -278,6 +285,7 @@ const index = {
   versiedatum,
   versie: register.meta?.versie ?? null,
   aantal: kaarten.length,
+  wijzigingen,
   tools: kaarten.map((k) => ({
     slug: k.slug,
     naam: k.naam,
