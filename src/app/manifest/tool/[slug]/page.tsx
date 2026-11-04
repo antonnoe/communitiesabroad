@@ -14,7 +14,8 @@ interface KaartTekst {
   zoSnelMogelijk: string;
   naarTool: string;
   tegels: Record<string, string>;
-  standRegel: string;
+  uitgaveRegel: string;
+  peildatumRegel: string;
   peilUitleg: string;
   zoWerkenLink: string;
   bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; toonRestEen?: string; volgende: string; vaststeller: string };
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const k = getToolkaart(slug);
   if (!k) return {};
-  const beschrijving = `Welke bedragen van ${k.naam} wij hebben gecontroleerd bij de officiële bron, en hoe de tool rekent. Stand van Peil: ${datumLang(k.stand)}.`;
+  const beschrijving = `Welke bedragen van ${k.naam} wij hebben gecontroleerd bij de officiële bron, en hoe de tool rekent. Uitgave van Peil: ${datumLang(k.versiedatum)}, bedragen gecontroleerd tot en met ${datumLang(k.stand)}.`;
   return {
     title: `Toolkaart ${k.naam}`,
     description: beschrijving,
@@ -155,7 +156,7 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
             </a>
           </p>
           <p className="stand">
-            {t.standRegel} {datumLang(k.stand)}.
+            {t.uitgaveRegel} {datumLang(k.versiedatum)}. {t.peildatumRegel} {datumLang(k.stand)}.
           </p>
 
           <section className="blok">

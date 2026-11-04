@@ -13,7 +13,8 @@ interface OverzichtTekst {
     bedragenWoord: string;
   };
   naarTool: string;
-  standRegel: string;
+  uitgaveRegelMeervoud: string;
+  peildatumRegel: string;
   tegels: Record<string, string>;
 }
 
@@ -36,7 +37,7 @@ export default function ToolkaartenPage() {
         <h1>{o.titel}</h1>
         <p>{o.intro}</p>
         <p>
-          {t.standRegel} {datumLang(index.stand)}.
+          {t.uitgaveRegelMeervoud} {datumLang(index.versiedatum)}. {t.peildatumRegel} {datumLang(index.stand)}.
         </p>
       </header>
       <div className="lijst">

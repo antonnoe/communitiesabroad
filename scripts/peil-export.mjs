@@ -45,6 +45,8 @@ function toolsVoor(p) {
   return [...gevonden.values()].sort((a, b) => a.naam.localeCompare(b.naam, "nl"));
 }
 const stand = register.meta?.peildatum ?? register.meta?.versiedatum;
+// Datum van de uitgave van Peil (sinds Peil 1.14.4 los van de peildatum): de kaart zegt bij welke uitgave zij hoort.
+const versiedatum = register.meta?.versiedatum ?? stand;
 
 // Tijdelijk niet openbaar tot de lopende keuring klaar is (naam misleidend zonder toelichting).
 // Leeg: na de keuring van 19-10-2026 staan twijfelgevallen in Peil zelf op te_verifieren.
@@ -93,7 +95,7 @@ const metTools = parameters.filter((p) => p.tools.length);
 const perTool = {};
 for (const p of metTools) for (const t of p.tools) perTool[t.naam] = (perTool[t.naam] ?? 0) + 1;
 console.log(`${metTools.length} van ${parameters.length} parameters hebben minstens één tool`, perTool);
-const uit = { stand, versie: register.meta?.versie ?? null, aantal: parameters.length, parameters };
+const uit = { stand, versiedatum, versie: register.meta?.versie ?? null, aantal: parameters.length, parameters };
 const doel = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "manifest", "peil-zoek.json");
 writeFileSync(doel, JSON.stringify(uit) + "\n");
 console.log(`${parameters.length} parameters, stand ${stand}, geschreven naar ${doel}`);
@@ -231,6 +233,7 @@ function bouwKaart(slug, repos, openbaar) {
     url: openbaar.url,
     omschrijving: openbaar.omschrijving ?? "",
     stand,
+    versiedatum,
     aantal_bedragen: bedragen.length,
     laatste_controle: datums.length ? datums[datums.length - 1] : null,
     volgende_controle: volgendeControle(landen),
@@ -255,6 +258,7 @@ const kaarten = [...perSlug].map(([slug, e]) => bouwKaart(slug, e.repos, e.openb
 for (const k of kaarten) writeFileSync(join(toolsMap, `${k.slug}.json`), JSON.stringify(k) + "\n");
 const index = {
   stand,
+  versiedatum,
   versie: register.meta?.versie ?? null,
   aantal: kaarten.length,
   tools: kaarten.map((k) => ({

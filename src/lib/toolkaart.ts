@@ -51,6 +51,7 @@ export interface Toolkaart {
   url: string;
   omschrijving: string;
   stand: string;
+  versiedatum: string;
   aantal_bedragen: number;
   laatste_controle: string | null;
   volgende_controle: { datum: string; label: string } | null;
@@ -75,7 +76,7 @@ export interface ToolIndexItem {
 
 const map = path.join(process.cwd(), "public", "manifest", "tools");
 
-export function getToolIndex(): { stand: string; tools: ToolIndexItem[] } {
+export function getToolIndex(): { stand: string; versiedatum: string; versie: string; tools: ToolIndexItem[] } {
   return JSON.parse(fs.readFileSync(path.join(map, "index.json"), "utf8"));
 }
 

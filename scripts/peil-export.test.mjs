@@ -44,7 +44,7 @@ const index = JSON.parse(readFileSync(join(toolsMap, "index.json"), "utf8"));
 const kaarten = index.tools.map((t) => ({ t, k: JSON.parse(readFileSync(join(toolsMap, `${t.slug}.json`), "utf8")) }));
 const kaartTekst = [...readdirSync(toolsMap)].map((f) => readFileSync(join(toolsMap, f), "utf8")).join("\n");
 
-const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "schattingen", "rekenstappen"].sort();
+const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "versiedatum", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "schattingen", "rekenstappen"].sort();
 const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum", "verandert", "volgende_controle"]);
 const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "laatste_controle", "volgende_controle", "gebruikte_bedragen"];
 // Alleen bij een stap die nog in controle is komen er een toelichting en een bron bij.
@@ -161,10 +161,14 @@ test("peil-zoek.json en tools/index.json dragen stand en versie van Peil (de Pei
   const index = JSON.parse(readFileSync(join(dirname(pad), "tools", "index.json"), "utf8"));
   for (const d of [data, index]) {
     assert.match(d.stand, /^\d{4}-\d{2}-\d{2}$/);
+    assert.match(d.versiedatum, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(d.versiedatum >= d.stand, "de uitgave is nooit ouder dan de stand van de bedragen");
     assert.match(d.versie, /^\d+\.\d+\.\d+$/);
   }
   assert.equal(data.versie, index.versie);
   assert.equal(data.stand, index.stand);
+  assert.equal(data.versiedatum, index.versiedatum);
+  for (const { k } of kaarten) assert.equal(k.versiedatum, index.versiedatum, k.slug);
 });
 
 test("toolkaarten: een rekenstap is alleen gecontroleerd als de regel vastgesteld is en de tool niet afwijkt", () => {

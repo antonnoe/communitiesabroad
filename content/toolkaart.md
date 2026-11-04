@@ -11,7 +11,9 @@ tegels:
   volgende: "volgende controle"
 peilUitleg: "Peil is ons register van de officiële bedragen, tarieven en grenzen. Elk bedrag wordt bij de officiële bron opgezocht en door een tweede, onafhankelijke controle bevestigd voordat het hier staat."
 zoWerkenLink: "Zo werken wij"
-standRegel: "Deze kaart hoort bij de stand van Peil van"
+uitgaveRegel: "Deze kaart hoort bij de uitgave van Peil van"
+uitgaveRegelMeervoud: "Deze kaarten horen bij de uitgave van Peil van"
+peildatumRegel: "De bedragen zijn gecontroleerd tot en met"
 bedragen:
   kop: "De bedragen"
   intro: "Elk bedrag hebben wij naast de officiële bron gelegd. Klik op de bron om die zelf te lezen."
