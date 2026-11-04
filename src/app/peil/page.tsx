@@ -42,8 +42,10 @@ interface PeilTekst {
     terugval: string;
     licentieTitel: string;
     licentie: string;
+    licentieLink: string;
+    licentieHref: string;
     apiTitel: string;
-    api: { voor: string; pad: string; midden: string; padTool: string; na: string };
+    api: { voor: string; pad: string; midden: string; padIndex: string; padToolVoor: string; padTool: string; na: string };
     samenTitel: string;
     samenTekst: string;
     samenLink: string;
@@ -84,7 +86,6 @@ export default function PeilPage() {
           <p className="bovenregel">{t.kop.bovenregel}</p>
           <h1 id="peil-t1">{t.kop.titel}</h1>
           <p className="zacht smal">{t.kop.tekst}</p>
-          <PeilZoekFrame src="/manifest/peil-zoek.html" titel={t.kop.zoekTitel} />
           <p className="datumzin">
             {datumdelen.map((d, i) =>
               d === "{versiedatum}" || d === "{stand}" ? (
@@ -94,6 +95,7 @@ export default function PeilPage() {
               ),
             )}
           </p>
+          <PeilZoekFrame src="/manifest/peil-zoek.html" titel={t.kop.zoekTitel} />
         </div>
       </section>
 
@@ -194,13 +196,19 @@ export default function PeilPage() {
             </div>
             <div className="vak">
               <h3>{p.licentieTitel}</h3>
-              <p>{p.licentie}</p>
+              <p>
+                {p.licentie}{" "}
+                <a href={p.licentieHref} rel="noopener noreferrer">
+                  {p.licentieLink}
+                </a>
+              </p>
             </div>
             <div className="vak">
               <h3>{p.apiTitel}</h3>
               <p>
-                {vul(p.api.voor, { aantal: String(getPeilAantal()) })} <span className="pad">{p.api.pad}</span>. {p.api.midden}{" "}
-                <span className="pad">{p.api.padTool}</span>. {p.api.na}
+                {vul(p.api.voor, { aantal: String(getPeilAantal()) })}{" "}
+                <a className="pad" href={p.api.pad}>{p.api.pad}</a>. {p.api.midden}{" "}
+                <a className="pad" href={p.api.padIndex}>{p.api.padIndex}</a> {p.api.padToolVoor} <span className="pad">{p.api.padTool}</span>. {p.api.na}
               </p>
             </div>
             <div className="vak">
