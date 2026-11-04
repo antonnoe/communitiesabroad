@@ -14,6 +14,16 @@ export interface Bedrag {
   verificatiedatum: string | null;
   verandert: string;
   volgende_controle: VolgendeControle;
+  // Al vastgesteld bedrag dat na de stand ingaat (bijvoorbeeld per 1 januari), met zijn eigen bron.
+  volgende_periode?: VolgendePeriode | null;
+}
+
+export interface VolgendePeriode {
+  geldig_van: string;
+  waarde_weergave: string;
+  bron_url: string | null;
+  bron_kenmerk: string | null;
+  verificatiedatum: string | null;
 }
 
 export interface VolgendeControle {

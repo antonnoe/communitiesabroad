@@ -48,6 +48,21 @@ const stand = register.meta?.peildatum ?? register.meta?.versiedatum;
 // Datum van de uitgave van Peil (sinds Peil 1.14.4 los van de peildatum): de kaart zegt bij welke uitgave zij hoort.
 const versiedatum = register.meta?.versiedatum ?? stand;
 
+// De eerstvolgende vastgestelde periode na de stand (bijvoorbeeld de woonlandfactor 2027, vastgesteld in
+// oktober 2026 en geldig vanaf 1 januari 2027). Die gaat mee, zodat de kaart en de zoekpagina het nieuwe
+// bedrag met zijn bron al noemen voordat het ingaat. Alleen periodes met status vastgesteld, nooit ramingen.
+function volgendePeriode(p) {
+  const v = (p.perioden ?? []).find((x) => x.status === "vastgesteld" && x.geldig_van > stand);
+  if (!v) return null;
+  return {
+    geldig_van: v.geldig_van,
+    waarde_weergave: v.waarde_weergave,
+    bron_url: v.bron_url ?? null,
+    bron_kenmerk: v.bron_kenmerk ?? null,
+    verificatiedatum: v.verificatiedatum ?? null,
+  };
+}
+
 // Tijdelijk niet openbaar tot de lopende keuring klaar is (naam misleidend zonder toelichting).
 // Leeg: na de keuring van 19-10-2026 staan twijfelgevallen in Peil zelf op te_verifieren.
 const TIJDELIJK_UIT = new Set([]);
@@ -84,6 +99,7 @@ const parameters = register.parameters
       bron_url: p.bron_url ?? null,
       bron_kenmerk: p.bron_kenmerk ?? null,
       verificatiedatum: p.verificatiedatum ?? null,
+      ...(volgendePeriode(p) ? { volgende_periode: volgendePeriode(p) } : {}),
       trefwoorden: trefwoordenVoor(p.id),
       categorie: categorieVoor(p.id),
       tools: toolsVoor(p),
@@ -204,6 +220,7 @@ function bouwKaart(slug, repos, openbaar) {
       verificatiedatum: p.verificatiedatum ?? null,
       verandert: veranderingTekst(p),
       volgende_controle: controleVan(p),
+      ...(volgendePeriode(p) ? { volgende_periode: volgendePeriode(p) } : {}),
     }));
   // Schattingen (status raming) van deze tool: nooit onder de gecontroleerde bedragen, altijd met het label schatting.
   // Alleen de bandbreedte, de toelichting en de herzieningsdatum gaan mee; geen bron, geen klasse, geen interne tekst.

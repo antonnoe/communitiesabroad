@@ -79,9 +79,13 @@ function kaart(p){
   var gebruikt='';
   if(p.tools&&p.tools.length){gebruikt='<div class="klein">Tools die met dit bedrag rekenen: '+p.tools.map(function(t){return '<a href="'+esc(t.url)+'" target="_blank" rel="noopener">'+esc(t.naam)+'</a>'}).join(', ')+'</div>'}
   var d=datum(p.verificatiedatum);
+  var vanaf='';
+  if(p.volgende_periode){var vp=p.volgende_periode,vk=schoon(vp.bron_kenmerk||''),vkm=/^[^()]*(\([^)]*\))?/.exec(vk);vk=(vkm?vkm[0]:vk).trim();
+    var vb=vp.bron_url?'<a href="'+esc(vp.bron_url)+'" target="_blank" rel="noopener">'+esc(vk||'bron')+'</a>':esc(vk);
+    vanaf='<div class="klein">Vanaf '+esc(datum(vp.geldig_van))+': <b>'+esc(vp.waarde_weergave)+'</b>'+(vb?' (bron: '+vb+(vp.verificatiedatum?', gecontroleerd op '+esc(datum(vp.verificatiedatum)):'')+')':'')+'</div>'}
   var meld='mailto:'+MAIL+'?subject='+encodeURIComponent('Peil: '+p.naam)+'&body='+encodeURIComponent('Bedrag: '+p.naam+'\nWaarde volgens Peil: '+p.waarde_weergave+'\nWat klopt er volgens u niet, en wat is uw bron?\n\n(kenmerk: '+p.id+')');
   return '<article class="kaart"><div class="rij"><div class="naam">'+esc(p.naam)+'</div><div class="waarde">'+esc(p.waarde_weergave)+'</div></div>'+
-   gebruikt+(geldt?'<div class="klein">'+geldt+'</div>':'')+bron+(d?'<div class="klein">Gecontroleerd op '+esc(d)+'</div>':'')+
+   vanaf+gebruikt+(geldt?'<div class="klein">'+geldt+'</div>':'')+bron+(d?'<div class="klein">Gecontroleerd op '+esc(d)+'</div>':'')+
    '<div class="klein melden"><a href="'+esc(meld)+'">Klopt dit niet? Meld het</a></div></article>';
 }
 function voorbeelden(){

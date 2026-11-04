@@ -57,6 +57,9 @@
 .tk .waarde { grid-area: waarde; font-family: var(--font-heading), Poppins, system-ui, sans-serif; font-weight: 600; font-size: 1rem; line-height: 1.35; min-width: 0; }
 .tk .bron { grid-area: bron; font-size: 0.95rem; }
 .tk .bron small, .tk .wet { color: var(--tekst-2); }
+.tk .waarde small.vanaf, .tk .bron small.vanaf { display: block; margin-top: 6px; font-weight: 500; }
+.tk .waarde small.vanaf { font-size: 0.88rem; color: var(--tekst-2); }
+.tk .waarde small.vanaf b { color: inherit; }
 .tk .bron small { display: block; margin-left: 0; font-size: 0.82rem; line-height: 1.4; margin-top: 2px; }
 .tk .datum { grid-area: datum; font-size: 0.9rem; color: var(--tekst-2); display: flex; align-items: center; gap: 6px; }
 .tk .datum::before { content: "Gecontroleerd"; }

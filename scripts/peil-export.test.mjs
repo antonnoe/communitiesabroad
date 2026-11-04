@@ -11,7 +11,7 @@ const data = JSON.parse(tekst);
 
 const TOEGESTAAN = new Set([
   "id", "naam", "naam_fr", "waarde_weergave", "eenheid", "geldig_jaar", "geldig_van", "geldig_tot",
-  "land", "bron_url", "bron_kenmerk", "verificatiedatum", "trefwoorden", "categorie", "tools",
+  "land", "bron_url", "bron_kenmerk", "verificatiedatum", "volgende_periode", "trefwoorden", "categorie", "tools",
 ]);
 
 test("geen sleutels buiten de vaste lijst openbare velden", () => {
@@ -45,7 +45,7 @@ const kaarten = index.tools.map((t) => ({ t, k: JSON.parse(readFileSync(join(too
 const kaartTekst = [...readdirSync(toolsMap)].map((f) => readFileSync(join(toolsMap, f), "utf8")).join("\n");
 
 const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "versiedatum", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "schattingen", "rekenstappen"].sort();
-const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum", "verandert", "volgende_controle"]);
+const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum", "verandert", "volgende_controle", "volgende_periode"]);
 const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "laatste_controle", "volgende_controle", "gebruikte_bedragen"];
 // Alleen bij een stap die nog in controle is komen er een toelichting en een bron bij.
 const STAP_SLEUTELS_IN_CONTROLE = new Set([...STAP_SLEUTELS, "toelichting", "bron_url"]);
@@ -154,6 +154,20 @@ test("toolkaarten: volgende controle ligt na de stand en volgt het land", () => 
     assert.ok(k.volgende_controle && k.volgende_controle.datum > k.stand, k.slug);
     const landen = new Set(k.bedragen.map((b) => b.land));
     if (landen.has("FR") && !landen.has("NL")) assert.match(k.volgende_controle.label, /april/, k.slug);
+  }
+});
+
+test("een al vastgestelde volgende periode gaat mee: de woonlandfactor 2027 staat op de zoekpagina en op de kaart", () => {
+  const zoek = data.parameters.find((p) => p.id === "p.xb.cak.woonlandfactor_fr");
+  assert.ok(zoek, "woonlandfactor ontbreekt in peil-zoek.json");
+  assert.ok(zoek.volgende_periode, "volgende_periode ontbreekt in peil-zoek.json");
+  const kaart = kaarten.map(({ k }) => k).flatMap((k) => k.bedragen).find((b) => b.id === "p.xb.cak.woonlandfactor_fr");
+  assert.ok(kaart && kaart.volgende_periode, "volgende_periode ontbreekt op de kaart");
+  for (const v of [zoek.volgende_periode, kaart.volgende_periode]) {
+    assert.ok(v.geldig_van > data.stand, "de volgende periode begint na de stand");
+    assert.deepEqual(Object.keys(v).sort(), ["bron_kenmerk", "bron_url", "geldig_van", "verificatiedatum", "waarde_weergave"]);
+    assert.match(v.bron_url, /^https:\/\//);
+    assert.ok(v.waarde_weergave && v.waarde_weergave !== zoek.waarde_weergave);
   }
 });
 

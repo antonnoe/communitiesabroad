@@ -20,6 +20,7 @@ bedragen:
   leeg: "Voor deze tool staan nog geen gecontroleerde bedragen in ons register."
   kolommen: ["Wat", "Waarde", "Bron", "Gecontroleerd"]
   gecontroleerd: "Gecontroleerd"
+  vanaf: "Vanaf"
   volgende: "Volgende controle"
   vaststeller: "Vastgesteld door {x}"
   toonAlle: "Toon alle {n} bedragen"

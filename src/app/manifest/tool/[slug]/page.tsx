@@ -18,7 +18,7 @@ interface KaartTekst {
   peildatumRegel: string;
   peilUitleg: string;
   zoWerkenLink: string;
-  bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; toonRestEen?: string; volgende: string; vaststeller: string };
+  bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; toonRestEen?: string; gecontroleerd: string; vanaf: string; volgende: string; vaststeller: string };
   schattingen: { kop: string; intro: string; label: string; herziening: string };
   rekenwijze: { kop: string; stapGecontroleerd: string; stapInControle: string; bronLink: string; leeg: string; gebruikt: string; gecontroleerd: string; laatsteStap: string; volgendeStap: string };
   zoWerkenWij: { kop: string; tekst: string; linkLabel: string; linkHref: string };
@@ -64,7 +64,14 @@ function Rij({ b, t }: { b: Bedrag; t: KaartTekst }) {
           </>
         ) : null}
       </span>
-      <span className="waarde">{b.waarde_weergave}</span>
+      <span className="waarde">
+        {b.waarde_weergave}
+        {b.volgende_periode ? (
+          <small className="vanaf">
+            {t.bedragen.vanaf} {datumKort(b.volgende_periode.geldig_van)}: <b>{b.volgende_periode.waarde_weergave}</b>
+          </small>
+        ) : null}
+      </span>
       <span className="bron">
         {b.bron_url ? (
           <a href={b.bron_url} rel="noopener noreferrer">
@@ -74,6 +81,19 @@ function Rij({ b, t }: { b: Bedrag; t: KaartTekst }) {
           <span>{b.instantie ?? "Bron"}</span>
         )}
         {b.bron_kenmerk ? <small> {b.bron_kenmerk}</small> : null}
+        {b.volgende_periode ? (
+          <small className="vanaf">
+            {t.bedragen.vanaf} {datumKort(b.volgende_periode.geldig_van)}:{" "}
+            {b.volgende_periode.bron_url ? (
+              <a href={b.volgende_periode.bron_url} rel="noopener noreferrer">
+                {b.volgende_periode.bron_kenmerk ?? b.instantie ?? "Bron"}
+              </a>
+            ) : (
+              b.volgende_periode.bron_kenmerk
+            )}
+            {b.volgende_periode.verificatiedatum ? <> ({t.bedragen.gecontroleerd.toLowerCase()} {datumKort(b.volgende_periode.verificatiedatum)})</> : null}
+          </small>
+        ) : null}
       </span>
       <span className="datum">
         <span className="vink" aria-hidden="true" />
