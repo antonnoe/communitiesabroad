@@ -25,23 +25,41 @@ content/              # Markdown content (YAML frontmatter)
 ├── diensten.md       # Diensten pagina content
 ├── over-ons.md       # Over Ons pagina content
 ├── contact.md        # Contact pagina content
-└── footer.md         # Footer content
+├── hoe-wij-werken.md # Hoe wij werken pagina content
+├── partners.md       # Partners pagina content
+├── peil.md           # Peil pagina content
+├── toolkaart.md      # Teksten van de toolkaarten onder /manifest
+├── footer.md         # Footer content
+└── legal/            # Juridische HTML-documenten (eigen styling)
+    ├── privacyverklaring.html
+    └── algemene-voorwaarden.html
 src/
 ├── app/              # App Router pagina's en layouts
 │   ├── layout.tsx    # Root layout (Header + Footer + fonts)
 │   ├── page.tsx      # Homepage
 │   ├── over-ons/     # Over Ons pagina
 │   ├── diensten/     # Diensten pagina
+│   ├── hoe-wij-werken/  # Hoe wij werken pagina
+│   ├── partners/     # Partners pagina
+│   ├── peil/         # Peil, zoekpagina voor gecontroleerde cijfers
+│   ├── manifest/     # /manifest/tools (overzicht) en /manifest/tool/[slug] (toolkaart)
+│   ├── api/peil-melding/  # POST-route voor een melding bij een toolkaart
 │   ├── contact/      # Contact pagina
-│   ├── privacyverklaring/     # Privacyverklaring (uit public/legal/)
-│   └── algemene-voorwaarden/  # Algemene Voorwaarden (uit public/legal/)
+│   ├── privacyverklaring/     # Privacyverklaring (uit content/legal/)
+│   └── algemene-voorwaarden/  # Algemene Voorwaarden (uit content/legal/)
 ├── components/       # Gedeelde React componenten
 │   ├── header.tsx    # Site header met navigatie
-│   └── footer.tsx    # Site footer (content uit footer.md)
+│   ├── footer.tsx    # Site footer (content uit footer.md)
+│   ├── melding-formulier.tsx, kopieer-bronregel.tsx, open-bij-anker.tsx, peil-zoek-frame.tsx
 ├── lib/              # Utilities
-│   └── content.ts    # Markdown/frontmatter parser (gray-matter)
+│   ├── content.ts    # Markdown/frontmatter parser (gray-matter)
+│   ├── legal.ts      # Leest de juridische HTML-documenten uit content/legal/
+│   └── toolkaart.ts  # Leest de toolkaart-data uit public/manifest/
 public/
-└── legal/            # Juridische HTML-documenten (eigen styling)
+├── logo/             # Logo's en pictogrammen
+├── manifest/         # Peil-data (peil-zoek.json, tools/*.json), peil-zoek.html en kennispiramide.html (door Infofrankrijk in een iframe getoond)
+└── manifest.webmanifest
+scripts/              # peil-export.mjs (maakt de Peil-data), peil-export.test.mjs, peil-trefwoorden.mjs
 ```
 
 ## Content Beheer
@@ -57,7 +75,19 @@ npm run dev       # Start dev server (Turbopack)
 npm run build     # Productie build
 npm run start     # Start productie server
 npm run lint      # ESLint draaien
+npm run test:peil # Test van scripts/peil-export.mjs
 ```
+
+## Live adres en hoe het live gaat
+
+- Live: https://communitiesabroad.com. Er is geen `vercel.json`; Vercel bouwt na elke commit op de hoofdtak automatisch.
+- `next.config.ts` bevat een permanente redirect van `/manifest/tool/infopoche` naar `/manifest/tool/energieportaal`.
+
+## Peil, toolkaarten en externe diensten
+
+- De Peil-data (`public/manifest/peil-zoek.json` en `public/manifest/tools/*.json`) komt uit `scripts/peil-export.mjs` (zie README, onderdeel Peil-export). De pagina's `/manifest/tools` en `/manifest/tool/<slug>` worden bij de build uit die JSON gemaakt.
+- `POST /api/peil-melding` (`src/app/api/peil-melding/route.ts`) stuurt een melding bij een toolkaart door naar de intake van de cockpit (antonnoe-antons-cockpit-private.vercel.app, pad `/api/intake/melding`). Honingpot en een rem van 5 meldingen per uur per IP, in het geheugen.
+- Google Fonts (Poppins, Mulish) worden in `layout.tsx` geladen. De repo gebruikt geen omgevingsvariabelen.
 
 ## Conventies
 
@@ -71,3 +101,5 @@ npm run lint      # ESLint draaien
 - URL-paden zijn Nederlandstalig: `/over-ons`, `/diensten`, `/contact`.
 - Geen hardcoded teksten in componenten — content komt uit `content/*.md`.
 - Juridische pagina's (`/privacyverklaring`, `/algemene-voorwaarden`) hebben eigen inline CSS en worden niet aangestuurd vanuit markdown.
+
+Laatst nagelopen: 5 november 2026
