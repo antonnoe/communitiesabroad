@@ -4,7 +4,7 @@ metadata:
   description: "Zoek een bedrag, tarief, drempel of wetsartikel voor Nederlanders in Frankrijk. Bij elk bedrag ziet u de officiële bron en de datum van controle. Overnemen mag met bronvermelding (CC BY 4.0)."
 kop:
   bovenregel: "Peil, gecontroleerde cijfers"
-  titel: "Zoek een bedrag dat klopt"
+  titel: "Elk bedrag met bron en controledatum"
   tekst: "Peil is de bron van Communities Abroad voor bedragen, tarieven, drempels en wetsartikelen voor Nederlanders in Frankrijk. Bij elk bedrag ziet u de officiële bron en de datum waarop wij het hebben gecontroleerd."
   zoekTitel: "Zoek een bedrag in Peil"
   datumzin: "Dit is de uitgave van Peil van {versiedatum} (versie {versie}). De bedragen zijn gecontroleerd tot en met {stand}."
