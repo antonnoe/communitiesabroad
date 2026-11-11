@@ -36,6 +36,43 @@ test("geen interne woorden in de uitvoer", () => {
   assert.ok(!/gebruikt_in/i.test(tekst));
 });
 
+// ---- Tellerblok: public/manifest/peil-stand.json ----
+const standPad = join(dirname(pad), "peil-stand.json");
+const standTekst = readFileSync(standPad, "utf8");
+const stand = JSON.parse(standTekst);
+const STAND_STATUSSEN = ["vastgesteld", "te_verifieren", "raming", "vervallen"];
+
+test("peil-stand.json draagt alleen tellingen, geen parameters of intern materiaal", () => {
+  assert.deepEqual(Object.keys(stand).sort(), ["peildatum", "raming", "te_verifieren", "totaal", "vastgesteld", "versie", "versiedatum", "vervallen"].sort());
+  for (const s of STAND_STATUSSEN) assert.ok(Number.isInteger(stand[s]) && stand[s] >= 0, s);
+  assert.ok(Number.isInteger(stand.totaal) && stand.totaal > 0);
+  assert.match(stand.versie, /^\d+\.\d+\.\d+$/);
+  assert.match(stand.versiedatum, /^\d{4}-\d{2}-\d{2}$/);
+  assert.match(stand.peildatum, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(!/afwijk/i.test(standTekst));
+  assert.ok(!/gebruikt_in/i.test(standTekst));
+  assert.ok(!/"parameters"\s*:/.test(standTekst));
+  assert.ok(!/"id"\s*:/.test(standTekst), "peil-stand.json mag geen losse parameter-id's bevatten");
+});
+
+test("peil-stand.json: totaal is de som van de vier statussen", () => {
+  const som = STAND_STATUSSEN.reduce((n, s) => n + stand[s], 0);
+  assert.equal(stand.totaal, som);
+});
+
+test("peil-stand.json: tellingen komen overeen met data/register.json, als die ernaast staat", () => {
+  const registerPad = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "peil-nl-fr", "data", "register.json");
+  if (!existsSync(registerPad)) return;
+  const reg = JSON.parse(readFileSync(registerPad, "utf8"));
+  assert.equal(stand.totaal, reg.parameters.length);
+  for (const s of STAND_STATUSSEN) {
+    assert.equal(stand[s], reg.parameters.filter((p) => p.status === s).length, s);
+  }
+  assert.equal(stand.versie, reg.meta.versie);
+  assert.equal(stand.versiedatum, reg.meta.versiedatum);
+  assert.equal(stand.peildatum, reg.meta.peildatum);
+});
+
 // ---- Toolkaarten: public/manifest/tools ----
 import { readdirSync, existsSync } from "node:fs";
 

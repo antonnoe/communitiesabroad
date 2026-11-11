@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peil, de stand in cijfers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{background:#fff;color:#333;font-family:Mulish,system-ui,sans-serif;font-size:16px;line-height:1.6}
+.wrap{padding:16px;max-width:820px;margin:0 auto}
+.tegels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tegel{border:1px solid #e3d8d8;border-radius:14px;padding:16px 12px;background:#fff;text-align:center}
+.getal{font-family:Poppins,sans-serif;font-weight:600;font-size:2rem;color:#800000;line-height:1.1}
+.label{margin-top:6px;font-size:.92rem;color:#555}
+.klein{margin-top:12px;font-size:.92rem;color:#555;text-align:center}
+.voet{margin-top:10px;font-size:.85rem;color:#666;text-align:center}
+@media(max-width:480px){.tegels{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap" aria-live="polite"></div>
+<script>
+(function(){
+var MND=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+function getal(n){return Number(n).toLocaleString('nl-NL')}
+function datum(s){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');return m?(+m[3])+' '+MND[+m[2]-1]+' '+m[1]:''}
+function geheel(n){return typeof n==='number'&&Number.isInteger(n)&&n>=0}
+function geldig(d){
+  if(!d||typeof d!=='object')return false;
+  if(!geheel(d.totaal)||!geheel(d.vastgesteld)||!geheel(d.te_verifieren)||!geheel(d.raming)||!geheel(d.vervallen))return false;
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(d.peildatum||''))return false;
+  return true;
+}
+function melden(){try{window.parent.postMessage({type:'ca-hoogte',id:'peil-tellers',hoogte:document.documentElement.scrollHeight},'*')}catch(e){}}
+function render(d){
+  var wrap=document.getElementById('wrap');
+  if(!geldig(d)){wrap.innerHTML='';melden();return}
+  wrap.innerHTML=
+   '<div class="tegels">'+
+    '<div class="tegel"><div class="getal">'+getal(d.totaal)+'</div><div class="label">financiële parameters en berekeningsgrondslagen in Peil</div></div>'+
+    '<div class="tegel"><div class="getal">'+getal(d.vastgesteld)+'</div><div class="label">vastgesteld bij de officiële bron</div></div>'+
+    '<div class="tegel"><div class="getal">'+getal(d.te_verifieren)+'</div><div class="label">eerlijk gemarkeerd als nog te verifiëren</div></div>'+
+   '</div>'+
+   '<div class="klein">'+getal(d.raming)+' geraamd, wachten op publicatie in het Journal officiel of de Staatscourant; '+getal(d.vervallen)+' vervallen</div>'+
+   '<div class="voet">Stand '+datum(d.peildatum)+', automatisch bijgewerkt</div>';
+  melden();
+}
+if(window.ResizeObserver)new ResizeObserver(melden).observe(document.body);
+window.addEventListener('load',melden);
+fetch('peil-stand.json').then(function(r){if(!r.ok)throw new Error();return r.json()}).then(render)
+ .catch(function(){document.getElementById('wrap').innerHTML='';melden()});
+melden();
+})();
+</script>
+</body>
+</html>

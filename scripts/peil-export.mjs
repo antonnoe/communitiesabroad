@@ -116,6 +116,23 @@ const doel = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "mani
 writeFileSync(doel, JSON.stringify(uit) + "\n");
 console.log(`${parameters.length} parameters, stand ${stand}, geschreven naar ${doel}`);
 
+// ---- Tellerblok: public/manifest/peil-stand.json ----
+// Alleen tellingen, nooit parameters, gebruikt_in of andere interne gegevens. Voedt
+// public/manifest/peil-tellers.html (het tellerblok op de manifestpagina van Infofrankrijk).
+const STATUSSEN = ["vastgesteld", "te_verifieren", "raming", "vervallen"];
+const tellingen = Object.fromEntries(STATUSSEN.map((s) => [s, 0]));
+for (const p of register.parameters) if (p.status in tellingen) tellingen[p.status]++;
+const standUit = {
+  versie: register.meta?.versie ?? null,
+  versiedatum: register.meta?.versiedatum ?? null,
+  peildatum: register.meta?.peildatum ?? null,
+  totaal: register.parameters.length,
+  ...tellingen,
+};
+const standDoel = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "manifest", "peil-stand.json");
+writeFileSync(standDoel, JSON.stringify(standUit) + "\n");
+console.log(`peil-stand.json: ${standUit.totaal} parameters (${standUit.vastgesteld} vastgesteld, ${standUit.te_verifieren} te verifiëren, ${standUit.raming} raming, ${standUit.vervallen} vervallen), geschreven naar ${standDoel}`);
+
 // ---- Toolkaarten: public/manifest/tools/<peil_slug>.json en index.json ----
 const dataMap = dirname(bron);
 const leesOptioneel = (naam, fallback) => {
