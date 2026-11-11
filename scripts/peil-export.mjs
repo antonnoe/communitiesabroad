@@ -83,6 +83,30 @@ function categorieVoor(id) {
   process.exit(1);
 }
 
+// ---- Status en volgende controle per waarde (voor de lampjes: groen, geel, oranje) ----
+// gecontroleerd: vastgesteld bij de officiële bron en geen rekenstap die deze waarde gebruikt is nog in controle.
+// rekenwijze nog in controle: de waarde zelf is vastgesteld, maar een rekenstap die haar gebruikt nog niet.
+// raming: een schatting (status raming in Peil), alleen met een openbare toelichting en nooit tussen de vastgestelde waarden.
+// Waarden met status te_verifieren of vervallen gaan nooit mee naar buiten.
+const alleRekenregels = (() => {
+  try { return JSON.parse(readFileSync(join(dirname(bron), "rekenregels.json"), "utf8")).rekenregels ?? []; } catch { return []; }
+})();
+function rekenwijzeOpen(id, regels) {
+  return regels.some((r) => (r.gebruikt_parameters ?? []).includes(id) && r.status !== "vastgesteld");
+}
+function statusVan(p, regels = alleRekenregels) {
+  if (p.status === "raming") return "raming";
+  return rekenwijzeOpen(p.id, regels) ? "rekenwijze nog in controle" : "gecontroleerd";
+}
+function controleDatum(p) {
+  const v = p.volgende_controle;
+  if (!v || !("datum" in v)) {
+    console.error(`FOUT: ${p.id} heeft geen volgende_controle. Draai in peil-nl-fr "npm run bouw" en wijs dist-intern/data/register.json aan.`);
+    process.exit(1);
+  }
+  return v.datum ?? null;
+}
+
 const parameters = register.parameters
   .filter((p) => p.status === "vastgesteld" && !TIJDELIJK_UIT.has(p.id))
   .map((p) => {
@@ -100,6 +124,8 @@ const parameters = register.parameters
       bron_kenmerk: p.bron_kenmerk ?? null,
       verificatiedatum: p.verificatiedatum ?? null,
       ...(volgendePeriode(p) ? { volgende_periode: volgendePeriode(p) } : {}),
+      status: statusVan(p),
+      volgende_controle: controleDatum(p),
       trefwoorden: trefwoordenVoor(p.id),
       categorie: categorieVoor(p.id),
       tools: toolsVoor(p),
@@ -111,7 +137,21 @@ const metTools = parameters.filter((p) => p.tools.length);
 const perTool = {};
 for (const p of metTools) for (const t of p.tools) perTool[t.naam] = (perTool[t.naam] ?? 0) + 1;
 console.log(`${metTools.length} van ${parameters.length} parameters hebben minstens één tool`, perTool);
-const uit = { stand, versiedatum, versie: register.meta?.versie ?? null, aantal: parameters.length, parameters };
+// Ramingen staan los van de vastgestelde waarden (eigen lijst), zodat een schatting nooit als vastgesteld bedrag wordt getoond.
+const ramingen = register.parameters
+  .filter((p) => p.status === "raming" && typeof p.toelichting_openbaar === "string" && p.toelichting_openbaar && !TIJDELIJK_UIT.has(p.id))
+  .map((p) => ({
+    id: p.id,
+    naam: p.naam_nl,
+    ...(p.naam_fr ? { naam_fr: p.naam_fr } : {}),
+    waarde_weergave: p.waarde_weergave,
+    toelichting: p.toelichting_openbaar,
+    land: p.land,
+    categorie: categorieVoor(p.id),
+    status: "raming",
+    volgende_controle: controleDatum(p),
+  }));
+const uit = { stand, versiedatum, versie: register.meta?.versie ?? null, aantal: parameters.length, parameters, ramingen };
 const doel = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "manifest", "peil-zoek.json");
 writeFileSync(doel, JSON.stringify(uit) + "\n");
 console.log(`${parameters.length} parameters, stand ${stand}, geschreven naar ${doel}`);
@@ -223,6 +263,8 @@ function bouwKaart(slug, repos, openbaar) {
       ...(status !== "gecontroleerd" && r.toelichting_openbaar ? { toelichting: r.toelichting_openbaar, bron_url: r.bron_url ?? null } : {}),
     };
   });
+  // Waarden die deze tool gebruikt in een rekenstap die nog in controle is.
+  const openIds = new Set(rekenstappen.filter((s) => s.status !== "gecontroleerd").flatMap((s) => s.gebruikte_bedragen));
   // Bedragen: eerst die in de eerste rekenstap gebruikt worden, enzovoort; de rest daarna.
   const eersteGebruik = (id) => {
     const i = rekenstappen.findIndex((s) => s.gebruikte_bedragen.includes(id));
@@ -243,6 +285,7 @@ function bouwKaart(slug, repos, openbaar) {
       instantie: p.instantie ?? null,
       verificatiedatum: p.verificatiedatum ?? null,
       verandert: veranderingTekst(p),
+      status: openIds.has(p.id) ? "rekenwijze nog in controle" : "gecontroleerd",
       volgende_controle: controleVan(p),
       ...(volgendePeriode(p) ? { volgende_periode: volgendePeriode(p) } : {}),
     }));
@@ -264,6 +307,8 @@ function bouwKaart(slug, repos, openbaar) {
         bandbreedte,
         toelichting: p.toelichting_openbaar,
         herziening: controleVan(p).datum,
+        status: "raming",
+        volgende_controle: controleVan(p),
       };
     });
   const datums = bedragen.map((b) => b.verificatiedatum).filter(Boolean).sort();
@@ -315,6 +360,11 @@ const index = {
     rekenwijze: k.rekenstappen.length === 0 ? "niet in register" : k.rekenstappen.every((s) => s.status === "gecontroleerd") ? "gecontroleerd" : "nog in controle",
     laatste_controle: k.laatste_controle,
     volgende_controle: k.volgende_controle,
+    // Per waarde: status en datum van de volgende controle (voor de lampjes).
+    waarden: [
+      ...k.bedragen.map((b) => ({ id: b.id, naam: b.naam, status: b.status, volgende_controle: b.volgende_controle.datum })),
+      ...k.schattingen.map((r) => ({ id: r.id, naam: r.naam, status: "raming", volgende_controle: r.volgende_controle.datum })),
+    ],
   })),
 };
 writeFileSync(join(toolsMap, "index.json"), JSON.stringify(index) + "\n");

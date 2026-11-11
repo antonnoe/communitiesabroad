@@ -12,6 +12,7 @@ const data = JSON.parse(tekst);
 const TOEGESTAAN = new Set([
   "id", "naam", "naam_fr", "waarde_weergave", "eenheid", "geldig_jaar", "geldig_van", "geldig_tot",
   "land", "bron_url", "bron_kenmerk", "verificatiedatum", "volgende_periode", "trefwoorden", "categorie", "tools",
+  "status", "volgende_controle",
 ]);
 
 test("geen sleutels buiten de vaste lijst openbare velden", () => {
@@ -82,7 +83,7 @@ const kaarten = index.tools.map((t) => ({ t, k: JSON.parse(readFileSync(join(too
 const kaartTekst = [...readdirSync(toolsMap)].map((f) => readFileSync(join(toolsMap, f), "utf8")).join("\n");
 
 const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "versiedatum", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "schattingen", "rekenstappen"].sort();
-const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum", "verandert", "volgende_controle", "volgende_periode"]);
+const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum", "verandert", "volgende_controle", "volgende_periode", "status"]);
 const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "laatste_controle", "volgende_controle", "gebruikte_bedragen"];
 // Alleen bij een stap die nog in controle is komen er een toelichting en een bron bij.
 const STAP_SLEUTELS_IN_CONTROLE = new Set([...STAP_SLEUTELS, "toelichting", "bron_url"]);
@@ -240,7 +241,7 @@ test("toolkaarten: een rekenstap is alleen gecontroleerd als de regel vastgestel
 });
 
 test("toolkaarten: schattingen staan apart, met toelichting, en nooit onder de gecontroleerde bedragen", () => {
-  const SLEUTELS = ["bandbreedte", "herziening", "id", "naam", "naam_fr", "toelichting"];
+  const SLEUTELS = ["bandbreedte", "herziening", "id", "naam", "naam_fr", "toelichting", "status", "volgende_controle"];
   const vastgoed = kaarten.find(({ k }) => k.slug === "vastgoedtransacties-in-frankrijk").k;
   assert.ok(Array.isArray(vastgoed.schattingen));
   const debours = vastgoed.schattingen.find((x) => x.id === "p.fr.notaris.debours_forfait");
@@ -264,5 +265,41 @@ test("index.json: wijzigingen is een lijst van hoogstens drie items met datum, v
   for (const w of index.wijzigingen) {
     assert.match(w.datum, /^\d{4}-\d{2}-\d{2}$/);
     assert.ok(w.versie && w.samenvatting);
+  }
+});
+
+// ---- Status en volgende controle per waarde (lampjes groen, geel, oranje) ----
+const STATUS_WAARDE = ["gecontroleerd", "raming", "rekenwijze nog in controle"];
+const datumOfNull = (d) => d === null || /^\d{4}-\d{2}-\d{2}$/.test(d);
+
+test("peil-zoek.json: elke vastgestelde waarde heeft een status (nooit raming) en een datum van de volgende controle", () => {
+  for (const p of data.parameters) {
+    assert.ok(["gecontroleerd", "rekenwijze nog in controle"].includes(p.status), `${p.id}: ${p.status}`);
+    assert.ok("volgende_controle" in p && datumOfNull(p.volgende_controle), `${p.id}: volgende_controle`);
+  }
+});
+
+test("peil-zoek.json: ramingen staan in een eigen lijst, met toelichting en status raming", () => {
+  assert.ok(Array.isArray(data.ramingen));
+  const vast = new Set(data.parameters.map((p) => p.id));
+  for (const r of data.ramingen) {
+    assert.equal(r.status, "raming");
+    assert.ok(typeof r.toelichting === "string" && r.toelichting.length > 0, r.id);
+    assert.ok(!vast.has(r.id), `${r.id} staat ook bij de vastgestelde waarden`);
+    assert.ok(datumOfNull(r.volgende_controle), r.id);
+  }
+});
+
+test("index.json: per tool de waarden met status en volgende controle, gelijk aan de toolkaart", () => {
+  for (const t of index.tools) {
+    assert.ok(Array.isArray(t.waarden), t.slug);
+    for (const w of t.waarden) {
+      assert.deepEqual(Object.keys(w).sort(), ["id", "naam", "status", "volgende_controle"], t.slug);
+      assert.ok(STATUS_WAARDE.includes(w.status), `${t.slug}: ${w.id}`);
+      assert.ok(datumOfNull(w.volgende_controle), `${t.slug}: ${w.id}`);
+    }
+    const k = kaarten.find(({ k }) => k.slug === t.slug).k;
+    assert.equal(t.waarden.length, k.bedragen.length + k.schattingen.length, t.slug);
+    for (const b of k.bedragen) assert.equal(t.waarden.find((w) => w.id === b.id).status, b.status, `${t.slug}: ${b.id}`);
   }
 });
