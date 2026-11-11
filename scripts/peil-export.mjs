@@ -73,7 +73,7 @@ const CATEGORIEEN = {
   "Erven en schenken": ["p.fr.succ", "p.fr.don", "p.fr.erf", "p.fr.av", "p.nl.erf", "p.nl.schenk"],
   "Vastgoed en wonen": ["p.fr.dmto", "p.fr.notaris", "p.fr.pv", "p.fr.ifi", "p.fr.tf", "p.fr.th", "p.fr.huur", "p.fr.vefa", "p.fr.bouw", "p.fr.diagnostics", "p.fr.gite", "p.fr.lmp", "p.fr.assur", "p.nl.ovb"],
   "Zorg, sociaal en administratie": ["p.fr.secu", "p.fr.mutuelle", "p.fr.ash", "p.fr.ajpa", "p.fr.zorg", "p.fr.apa", "p.fr.aspa", "p.fr.retraite", "p.fr.csi", "p.nl.aow", "p.nl.zorg", "p.nl.zorgtoeslag", "p.nl.zvw", "p.nl.wlz", "p.nl.leges", "p.xb.cak", "p.xb.ehic"],
-  "Ondernemen": ["p.fr.acre", "p.fr.cfe", "p.fr.cvae", "p.fr.tva", "p.fr.urssaf", "p.fr.sociaal", "p.fr.efact", "p.fr.handel", "p.nl.btw"],
+  "Ondernemen": ["p.fr.acre", "p.fr.cfe", "p.fr.cvae", "p.fr.tva", "p.fr.urssaf", "p.fr.sociaal", "p.fr.efact", "p.fr.handel", "p.fr.annonce", "p.fr.greffe", "p.fr.is", "p.fr.kalender", "p.fr.ags", "p.fr.cac", "p.fr.financiering", "p.fr.fonds", "p.fr.formaliteiten", "p.fr.jaarrekening", "p.fr.vennootschap", "p.fr.ontbinding", "p.nl.btw"],
   "Energie en verbouwen": ["p.fr.elec", "p.fr.energie", "p.fr.dpe", "p.fr.renov", "p.fr.telecom", "p.fr.markt", "p.fr.conso"],
 };
 function categorieVoor(id) {
