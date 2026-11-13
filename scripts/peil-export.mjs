@@ -71,15 +71,35 @@ const TIJDELIJK_UIT = new Set([]);
 const CATEGORIEEN = {
   "Inkomstenbelasting": ["p.fr.ir", "p.fr.lpf", "p.fr.ps", "p.fr.csg", "p.fr.micro", "p.nl.ib", "p.nl.box2", "p.nl.box3", "p.xb.verdrag", "p.xb.deruyter"],
   "Erven en schenken": ["p.fr.succ", "p.fr.don", "p.fr.erf", "p.fr.av", "p.nl.erf", "p.nl.schenk"],
-  "Vastgoed en wonen": ["p.fr.dmto", "p.fr.notaris", "p.fr.pv", "p.fr.ifi", "p.fr.tf", "p.fr.th", "p.fr.huur", "p.fr.vefa", "p.fr.bouw", "p.fr.diagnostics", "p.fr.gite", "p.fr.lmp", "p.fr.assur", "p.nl.ovb"],
-  "Zorg, sociaal en administratie": ["p.fr.secu", "p.fr.mutuelle", "p.fr.ash", "p.fr.ajpa", "p.fr.zorg", "p.fr.apa", "p.fr.aspa", "p.fr.retraite", "p.fr.csi", "p.nl.aow", "p.nl.zorg", "p.nl.zorgtoeslag", "p.nl.zvw", "p.nl.wlz", "p.nl.leges", "p.xb.cak", "p.xb.ehic"],
-  "Ondernemen": ["p.fr.acre", "p.fr.cfe", "p.fr.cvae", "p.fr.tva", "p.fr.urssaf", "p.fr.sociaal", "p.fr.efact", "p.fr.handel", "p.fr.annonce", "p.fr.greffe", "p.fr.is", "p.fr.kalender", "p.fr.ags", "p.fr.cac", "p.fr.financiering", "p.fr.fonds", "p.fr.formaliteiten", "p.fr.jaarrekening", "p.fr.vennootschap", "p.fr.ontbinding", "p.nl.btw"],
+  "Vastgoed en wonen": ["p.fr.dmto", "p.fr.notaris", "p.fr.pv", "p.fr.ifi", "p.fr.tf", "p.fr.th", "p.fr.huur", "p.fr.vefa", "p.fr.bouw", "p.fr.diagnostics", "p.fr.gite", "p.fr.lmp", "p.fr.assur", "p.fr.koopakte", "p.fr.vastgoed", "p.nl.ovb"],
+  "Zorg, sociaal en administratie": ["p.fr.secu", "p.fr.mutuelle", "p.fr.ash", "p.fr.ajpa", "p.fr.zorg", "p.fr.apa", "p.fr.aspa", "p.fr.retraite", "p.fr.csi", "p.fr.etatcivil", "p.nl.aow", "p.nl.zorg", "p.nl.zorgtoeslag", "p.nl.zvw", "p.nl.wlz", "p.nl.leges", "p.xb.cak", "p.xb.ehic", "p.xb.s1", "p.xb.vo883"],
+  "Ondernemen": ["p.fr.acre", "p.fr.cfe", "p.fr.cvae", "p.fr.tva", "p.fr.urssaf", "p.fr.sociaal", "p.fr.efact", "p.fr.handel", "p.fr.annonce", "p.fr.greffe", "p.fr.is", "p.fr.kalender", "p.fr.ags", "p.fr.cac", "p.fr.financiering", "p.fr.fonds", "p.fr.formaliteiten", "p.fr.jaarrekening", "p.fr.vennootschap", "p.fr.ontbinding", "p.fr.sancties", "p.fr.insolventie", "p.fr.ei", "p.fr.rbe", "p.fr.artisanaat", "p.fr.enreg", "p.fr.handelshuur", "p.nl.btw"],
   "Energie en verbouwen": ["p.fr.elec", "p.fr.energie", "p.fr.dpe", "p.fr.renov", "p.fr.telecom", "p.fr.markt", "p.fr.conso"],
 };
-function categorieVoor(id) {
-  const onderwerp = String(id).split(".").slice(0, 3).join(".");
+const onderwerpVan = (id) => String(id).split(".").slice(0, 3).join(".");
+function zoekCategorie(id) {
+  const onderwerp = onderwerpVan(id);
   for (const [naam, lijst] of Object.entries(CATEGORIEEN)) if (lijst.includes(onderwerp)) return naam;
-  console.error(`FOUT: id "${id}" valt in geen categorie. Voeg "${onderwerp}" toe aan CATEGORIEEN in scripts/peil-export.mjs.`);
+  return null;
+}
+// Vooraf: alle onbekende prefixen in één melding, niet alleen het eerste (alleen statussen die naar buiten gaan).
+{
+  const ontbrekend = new Map();
+  for (const p of register.parameters) {
+    if ((p.status !== "vastgesteld" && p.status !== "raming") || TIJDELIJK_UIT.has(p.id) || zoekCategorie(p.id)) continue;
+    const o = onderwerpVan(p.id);
+    if (!ontbrekend.has(o)) ontbrekend.set(o, p.id);
+  }
+  if (ontbrekend.size) {
+    console.error(`FOUT: ${ontbrekend.size} prefix(en) vallen in geen categorie. Voeg ze toe aan CATEGORIEEN in scripts/peil-export.mjs:`);
+    for (const [o, id] of ontbrekend) console.error(`  ${o}  (bijvoorbeeld ${id})`);
+    process.exit(1);
+  }
+}
+function categorieVoor(id) {
+  const naam = zoekCategorie(id);
+  if (naam) return naam;
+  console.error(`FOUT: id "${id}" valt in geen categorie. Voeg "${onderwerpVan(id)}" toe aan CATEGORIEEN in scripts/peil-export.mjs.`);
   process.exit(1);
 }
 
