@@ -9,7 +9,7 @@ import KopieerBronregel from "@/components/kopieer-bronregel";
 
 interface PeilTekst {
   metadata: { title: string; description: string };
-  kop: { bovenregel: string; titel: string; tekst: string; zoekTitel: string; datumzin: string };
+  kop: { beeld?: string; bovenregel: string; titel: string; tekst: string; zoekTitel: string; datumzin: string };
   werking: {
     titel: string;
     stappen: { titel: string; tekst: string }[];
@@ -81,6 +81,12 @@ export default function PeilPage() {
 
   return (
     <div className="tk pl">
+      {t.kop.beeld && (
+        <div className="kopbeeld" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={t.kop.beeld} alt="" width={1448} height={1086} fetchPriority="high" />
+        </div>
+      )}
       <section className="zoekkop gutter" aria-labelledby="peil-t1">
         <div className="in">
           <p className="bovenregel">{t.kop.bovenregel}</p>

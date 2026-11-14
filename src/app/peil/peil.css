@@ -10,6 +10,9 @@
 .pl .verder:hover { text-decoration: underline; }
 .pl .bovenregel { margin: 0; font-size: 0.82rem; font-weight: 700; color: var(--merk); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; }
 
+.pl .kopbeeld { position: relative; height: clamp(200px, 32vw, 420px); overflow: hidden; background: #1a0d0b; }
+.pl .kopbeeld img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 0%; filter: saturate(0.75); }
+.pl .kopbeeld::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,8,8,0.42) 0%, rgba(20,8,8,0.55) 55%, rgba(20,8,8,0.75) 100%); }
 .pl .zoekkop { background: var(--vlak); border-bottom: 1px solid var(--lijn); border-top: 6px solid var(--merk); }
 .pl .zoekkop .in { padding-block: 28px 26px; display: grid; gap: 14px; }
 .pl .zoekkop h1 { font-size: clamp(1.6rem, 5.2vw, 2.4rem); }
