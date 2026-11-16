@@ -10,6 +10,10 @@ export interface Bedrag {
   land: string;
   bron_url: string | null;
   bron_kenmerk: string | null;
+  // Documentnaam voor de linktekst, overige vindplaatsen en de datum waarop de bronpagina zelf is bijgewerkt.
+  bron_naam?: string | null;
+  bron_rest?: string;
+  bron_bijgewerkt?: string | null;
   instantie: string | null;
   verificatiedatum: string | null;
   verandert: string;

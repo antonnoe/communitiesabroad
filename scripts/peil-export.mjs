@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { trefwoordenVoor } from "./peil-trefwoorden.mjs";
+import { bronVelden, normaliseerKenmerk } from "./peil-bron.mjs";
 
 const bron = process.argv[2];
 if (!bron) {
@@ -58,7 +59,7 @@ function volgendePeriode(p) {
     geldig_van: v.geldig_van,
     waarde_weergave: v.waarde_weergave,
     bron_url: v.bron_url ?? null,
-    bron_kenmerk: v.bron_kenmerk ?? null,
+    bron_kenmerk: v.bron_kenmerk ? normaliseerKenmerk(v.bron_kenmerk) : null,
     verificatiedatum: v.verificatiedatum ?? null,
   };
 }
@@ -141,7 +142,7 @@ const parameters = register.parameters
       geldig_tot: p.geldig_tot ?? null,
       land: p.land,
       bron_url: p.bron_url ?? null,
-      bron_kenmerk: p.bron_kenmerk ?? null,
+      bron_kenmerk: p.bron_kenmerk ? normaliseerKenmerk(p.bron_kenmerk) : null,
       verificatiedatum: p.verificatiedatum ?? null,
       ...(volgendePeriode(p) ? { volgende_periode: volgendePeriode(p) } : {}),
       status: statusVan(p),
@@ -276,7 +277,7 @@ function bouwKaart(slug, repos, openbaar) {
       naam_nl: r.naam_nl,
       omschrijving: r.omschrijving ?? "",
       volgorde: r.volgorde ?? "",
-      bron_kenmerk: r.bron_kenmerk ?? null,
+      bron_kenmerk: r.bron_kenmerk ? normaliseerKenmerk(r.bron_kenmerk) : null,
       status,
       laatste_controle: r.verificatiedatum ?? null,
       volgende_controle: controleVan(r),
@@ -303,7 +304,11 @@ function bouwKaart(slug, repos, openbaar) {
       eenheid: p.eenheid ?? null,
       land: p.land,
       bron_url: p.bron_url ?? null,
-      bron_kenmerk: p.bron_kenmerk ?? null,
+      bron_kenmerk: p.bron_kenmerk ? normaliseerKenmerk(p.bron_kenmerk) : null,
+      // Documentnaam voor de linktekst, de overige vindplaatsen en de datum waarop de bronpagina zelf is bijgewerkt.
+      bron_naam: bronVelden(p.bron_kenmerk).naam,
+      bron_rest: bronVelden(p.bron_kenmerk).rest,
+      bron_bijgewerkt: bronVelden(p.bron_kenmerk).bijgewerkt,
       instantie: p.instantie ?? null,
       verificatiedatum: p.verificatiedatum ?? null,
       verandert: veranderingTekst(p),

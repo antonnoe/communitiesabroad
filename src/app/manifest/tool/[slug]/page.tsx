@@ -18,7 +18,11 @@ interface KaartTekst {
   peildatumRegel: string;
   peilUitleg: string;
   zoWerkenLink: string;
-  bedragen: { kop: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; toonRestEen?: string; gecontroleerd: string; vanaf: string; volgende: string; vaststeller: string };
+  rekenwijzeLabel: string;
+  rekenwijzeUitleg: string;
+  rekenwijzeOpen: string;
+  rekenwijzeNogN: string;
+  bedragen: { kop: string; bronBijgewerkt: string; intro: string; leeg: string; kolommen: string[]; toonRest: string; toonRestEen?: string; gecontroleerd: string; vanaf: string; volgende: string; vaststeller: string };
   schattingen: { kop: string; intro: string; label: string; herziening: string };
   rekenwijze: { kop: string; stapGecontroleerd: string; stapInControle: string; bronLink: string; leeg: string; gebruikt: string; gecontroleerd: string; laatsteStap: string; volgendeStap: string };
   zoWerkenWij: { kop: string; tekst: string; linkLabel: string; linkHref: string };
@@ -53,6 +57,8 @@ function volgendeTekst(v: VolgendeControle, t: KaartTekst): string {
 }
 
 function Rij({ b, t }: { b: Bedrag; t: KaartTekst }) {
+  const naam = b.bron_naam ?? b.bron_kenmerk ?? b.instantie ?? "Bron";
+  const rest = b.bron_naam === undefined ? "" : (b.bron_rest ?? "");
   return (
     <div className="rij" id={bedragAnker(b.id)}>
       <span className="naam">
@@ -75,12 +81,14 @@ function Rij({ b, t }: { b: Bedrag; t: KaartTekst }) {
       <span className="bron">
         {b.bron_url ? (
           <a href={b.bron_url} rel="noopener noreferrer">
-            {b.instantie ?? "Bron"}
+            {naam}
           </a>
         ) : (
-          <span>{b.instantie ?? "Bron"}</span>
+          <span>{naam}</span>
         )}
-        {b.bron_kenmerk ? <small> {b.bron_kenmerk}</small> : null}
+        {b.instantie ? <small className="instantie">{b.instantie}</small> : null}
+        {b.bron_bijgewerkt ? <small>{t.bedragen.bronBijgewerkt.replace("{datum}", datumLang(b.bron_bijgewerkt))}</small> : null}
+        {rest ? <small>{rest}</small> : null}
         {b.volgende_periode ? (
           <small className="vanaf">
             {t.bedragen.vanaf} {datumKort(b.volgende_periode.geldig_van)}:{" "}
@@ -119,6 +127,7 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
   const metStatus = stappen.filter((s) => s.status === "gecontroleerd" || s.status === "nog in controle");
   const gecontroleerd = metStatus.filter((s) => s.status === "gecontroleerd").length;
   const inControle = metStatus.length > gecontroleerd;
+  const openStappen = metStatus.filter((x) => x.status === "nog in controle");
   const eerste = k.bedragen.slice(0, ZICHTBAAR);
   const rest = k.bedragen.slice(ZICHTBAAR);
   const bedragPerId = new Map(k.bedragen.map((b) => [b.id, b]));
@@ -169,6 +178,18 @@ export default async function ToolkaartPage({ params }: { params: Promise<{ slug
               <span className="uitleg">{t.tegels.volgende}</span>
             </div>
           </section>
+          {inControle ? (
+            <div className="rwuitleg">
+              <span className="label">{t.rekenwijzeLabel}</span>
+              <p>{t.rekenwijzeUitleg}</p>
+              {openStappen.length > 0 ? (
+                <p>
+                  {t.rekenwijzeOpen} {openStappen.slice(0, 5).map((x) => x.naam_nl).join("; ")}
+                  {openStappen.length > 5 ? ` ${t.rekenwijzeNogN.replace("{n}", String(openStappen.length - 5))}` : ""}.
+                </p>
+              ) : null}
+            </div>
+          ) : null}
           <p className="peiluitleg">
             {t.peilUitleg}{" "}
             <a href={t.zoWerkenWij.linkHref} rel="noopener noreferrer">

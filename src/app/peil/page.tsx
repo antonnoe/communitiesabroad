@@ -13,22 +13,15 @@ interface PeilTekst {
   werking: {
     titel: string;
     stappen: { titel: string; tekst: string }[];
-    momentenLabel: string;
-    momenten: { kop: string; tekst: string }[];
     link: string;
     linkHref: string;
   };
   tools: {
     titel: string;
     tekst: string;
-    bedragen: string;
-    laatste: string;
-    volgende: string;
-    label: string;
-    toolkaart: string;
-    naarTool: string;
-    alle: string;
-    alleHref: string;
+    knop: string;
+    knopHref: string;
+    rekenwijzeAantal: string;
   };
   wijzigingen: { titel: string; versie: string };
   partners: {
@@ -78,6 +71,8 @@ export default function PeilPage() {
   };
   const datumdelen = t.kop.datumzin.split(/(\{versiedatum\}|\{stand\})/);
   const p = t.partners;
+  const k = getContent<{ rekenwijzeLabel: string; rekenwijzeUitleg: string }>("toolkaart");
+  const inControle = index.tools.filter((x) => x.rekenwijze === "nog in controle").length;
 
   return (
     <div className="tk pl">
@@ -118,15 +113,7 @@ export default function PeilPage() {
               </li>
             ))}
           </ol>
-          <ul className="ijk" aria-label={t.werking.momentenLabel}>
-            {t.werking.momenten.map((m) => (
-              <li key={m.kop}>
-                <b>{m.kop}</b>
-                <span>{m.tekst}</span>
-              </li>
-            ))}
-          </ul>
-          <Link className="verder" href={t.werking.linkHref}>
+          <Link className="naartool" href={t.werking.linkHref}>
             {t.werking.link} &rarr;
           </Link>
         </div>
@@ -136,34 +123,15 @@ export default function PeilPage() {
         <div className="in">
           <h2 id="peil-t3">{t.tools.titel}</h2>
           <p className="zacht smal">{t.tools.tekst}</p>
-          <div className="tegels">
-            {index.tools.map((k) => (
-              <article className="tool" key={k.slug}>
-                <h3>{k.naam}</h3>
-                {k.rekenwijze === "nog in controle" ? <span className="label">{t.tools.label}</span> : null}
-                <dl>
-                  <dt>{t.tools.bedragen}</dt>
-                  <dd>{k.aantal_bedragen}</dd>
-                  <dt>{t.tools.laatste}</dt>
-                  <dd>{datumLang(k.laatste_controle)}</dd>
-                  {k.volgende_controle ? (
-                    <>
-                      <dt>{t.tools.volgende}</dt>
-                      <dd>{k.volgende_controle.label}</dd>
-                    </>
-                  ) : null}
-                </dl>
-                <div className="acties">
-                  <Link href={`/manifest/tool/${k.slug}`}>{t.tools.toolkaart}</Link>
-                  <a href={k.url} target="_blank" rel="noopener noreferrer">
-                    {t.tools.naarTool} <span aria-hidden="true">&#8599;</span>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-          <Link className="verder" href={t.tools.alleHref}>
-            {t.tools.alle} &rarr;
+          {inControle > 0 ? (
+            <div className="rwuitleg">
+              <span className="label">{k.rekenwijzeLabel}</span>
+              <p>{k.rekenwijzeUitleg}</p>
+              <p>{vul(t.tools.rekenwijzeAantal, { n: String(inControle), m: String(index.tools.length) })}</p>
+            </div>
+          ) : null}
+          <Link className="naartool" href={t.tools.knopHref}>
+            {t.tools.knop} &rarr;
           </Link>
         </div>
       </section>

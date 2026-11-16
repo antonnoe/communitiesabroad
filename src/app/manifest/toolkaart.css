@@ -62,7 +62,8 @@
 .tk .waarde small.vanaf b { color: inherit; }
 .tk .bron small { display: block; margin-left: 0; font-size: 0.82rem; line-height: 1.4; margin-top: 2px; }
 .tk .datum { grid-area: datum; font-size: 0.9rem; color: var(--tekst-2); display: flex; align-items: center; gap: 6px; }
-.tk .datum::before { content: "Gecontroleerd"; }
+.tk .datum::before { content: "Gecontroleerd op"; }
+.tk .datum .vink { order: -1; }
 .tk .controle { grid-area: controle; display: flex; flex-direction: column; gap: 1px; font-size: 0.82rem; line-height: 1.4; color: var(--tekst-2); min-width: 0; }
 .tk .controle b { font-weight: 700; color: var(--tekst); }
 .tk .controle .reden { display: block; margin-top: 2px; }
@@ -157,3 +158,9 @@
 .tk .schatlabel { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--merk); background: var(--merk-zacht); border-radius: 999px; padding: 1px 10px; margin-right: 6px; }
 .tk .schatwaarde { font-weight: 700; font-size: 1.15rem; }
 .tk .schattoelichting, .tk .schatherziening { color: var(--tekst-2); font-size: 0.95rem; }
+
+/* Uitleg bij het label "Rekenwijze nog in controle" (toolkaart, overzicht en /peil). */
+.tk .rwuitleg { margin: 10px 0 0; padding: 10px 14px; background: var(--let-bg); border: 1px solid var(--let-rand); border-radius: 10px; font-size: 0.92rem; line-height: 1.55; display: grid; gap: 6px; justify-items: start; }
+.tk .rwuitleg p { margin: 0; color: var(--tekst); }
+.tk .rwuitleg .label { font-size: 0.78rem; font-weight: 700; color: var(--let); background: #fff; border: 1px solid var(--let-rand); border-radius: 999px; padding: 1px 10px; }
+.tk .bron small.instantie { font-style: normal; }

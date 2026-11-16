@@ -13,6 +13,8 @@ interface OverzichtTekst {
     bedragenWoord: string;
   };
   naarTool: string;
+  rekenwijzeLabel: string;
+  rekenwijzeUitleg: string;
   uitgaveRegelMeervoud: string;
   peildatumRegel: string;
   tegels: Record<string, string>;
@@ -50,6 +52,12 @@ export default function ToolkaartenPage() {
                 <div className="in">
                   <h2>{k.naam}</h2>
                   {k.omschrijving ? <p className="wat">{k.omschrijving}</p> : null}
+                  {!leeg && controle ? (
+                    <div className="rwuitleg">
+                      <span className="label">{t.rekenwijzeLabel}</span>
+                      <p>{t.rekenwijzeUitleg}</p>
+                    </div>
+                  ) : null}
                   <div className="acties">
                     <Link className="naartool" href={`/manifest/tool/${k.slug}`}>
                       {o.bekijk}

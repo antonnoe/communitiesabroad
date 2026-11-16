@@ -84,7 +84,7 @@ const kaarten = index.tools.map((t) => ({ t, k: JSON.parse(readFileSync(join(too
 const kaartTekst = [...readdirSync(toolsMap)].map((f) => readFileSync(join(toolsMap, f), "utf8")).join("\n");
 
 const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "versiedatum", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "schattingen", "rekenstappen"].sort();
-const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "instantie", "verificatiedatum", "verandert", "volgende_controle", "volgende_periode", "status"]);
+const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "bron_naam", "bron_rest", "bron_bijgewerkt", "instantie", "verificatiedatum", "verandert", "volgende_controle", "volgende_periode", "status"]);
 const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "laatste_controle", "volgende_controle", "gebruikte_bedragen"];
 // Alleen bij een stap die nog in controle is komen er een toelichting en een bron bij.
 const STAP_SLEUTELS_IN_CONTROLE = new Set([...STAP_SLEUTELS, "toelichting", "bron_url"]);
@@ -303,4 +303,27 @@ test("index.json: per tool de waarden met status en volgende controle, gelijk aa
     assert.equal(t.waarden.length, k.bedragen.length + k.schattingen.length, t.slug);
     for (const b of k.bedragen) assert.equal(t.waarden.find((w) => w.id === b.id).status, b.status, `${t.slug}: ${b.id}`);
   }
+});
+
+// ---- Vindplaats leesbaar: geen Franse datumtekst, documentnaam als linktekst, bronpagina-datum apart ----
+import { bronVelden, normaliseerKenmerk } from "./peil-bron.mjs";
+
+test("normaliseerKenmerk: vérifié en modifié worden Nederlandse tekst", () => {
+  assert.equal(normaliseerKenmerk("F35794 (vérifié le 19 augustus 2026)"), "F35794 (bijgewerkt door de bron op 19 augustus 2026)");
+  assert.equal(normaliseerKenmerk("F1 vérifié 01-06-2026"), "F1 bijgewerkt door de bron op 1 juni 2026");
+  assert.equal(normaliseerKenmerk("F2 vérifié le 5 décembre 2025"), "F2 bijgewerkt door de bron op 5 december 2025");
+  assert.equal(normaliseerKenmerk("q (modifié le 09-04-2026)"), "q (bijgewerkt door de bron op 9 april 2026)");
+});
+
+test("bronVelden: naam zonder datum, rest en bronpagina-datum", () => {
+  const v = bronVelden("service-public.gouv.fr F35794 (vérifié le 19 augustus 2026), rubriek 'Enfant'; BOFiP BOI-ENR-DMTG-10-50-20 (versie 24-05-2023); art. 779 I CGI");
+  assert.equal(v.naam, "service-public.gouv.fr F35794, rubriek 'Enfant'");
+  assert.equal(v.bijgewerkt, "2026-08-19");
+  assert.equal(v.rest, "BOFiP BOI-ENR-DMTG-10-50-20 (versie 24-05-2023); art. 779 I CGI");
+  assert.equal(bronVelden("").naam, null);
+});
+
+test("geen Franse controletekst zichtbaar in peil-zoek.json en de toolkaarten", () => {
+  const tekstenAlles = [tekst, ...readdirSync(join(dirname(pad), "tools")).map((f) => readFileSync(join(dirname(pad), "tools", f), "utf8"))].join("\n");
+  assert.ok(!/vérifié|modifié|mis à jour/i.test(tekstenAlles));
 });

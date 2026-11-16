@@ -9,6 +9,10 @@ tegels:
   stappenWoord: "rekenstappen"
   laatste: "laatst gecontroleerd"
   volgende: "volgende controle"
+rekenwijzeLabel: "Rekenwijze nog in controle"
+rekenwijzeUitleg: "De bedragen zelf zijn gecontroleerd bij de officiële bron. Van de rekenstappen van deze tool zijn nog niet alle stappen met de hand nagerekend."
+rekenwijzeOpen: "Nog niet nagerekend:"
+rekenwijzeNogN: "en nog {n} andere"
 peilUitleg: "Peil is ons register van de officiële bedragen, tarieven en grenzen. Elk bedrag wordt bij de officiële bron opgezocht en door een tweede, onafhankelijke controle bevestigd voordat het hier staat."
 zoWerkenLink: "Zo werken wij"
 uitgaveRegel: "Deze kaart hoort bij de uitgave van Peil van"
@@ -16,6 +20,7 @@ uitgaveRegelMeervoud: "Deze kaarten horen bij de uitgave van Peil van"
 peildatumRegel: "De bedragen zijn gecontroleerd tot en met"
 bedragen:
   kop: "De bedragen"
+  bronBijgewerkt: "Bronpagina zelf bijgewerkt op {datum}"
   intro: "Elk bedrag hebben wij naast de officiële bron gelegd. Klik op de bron om die zelf te lezen."
   leeg: "Voor deze tool staan nog geen gecontroleerde bedragen in ons register."
   kolommen: ["Wat", "Waarde", "Bron", "Gecontroleerd"]
