@@ -188,6 +188,8 @@ const standUit = {
   peildatum: register.meta?.peildatum ?? null,
   totaal: register.parameters.length,
   ...tellingen,
+  rekenregels_totaal: alleRekenregels.length,
+  rekenregels_vastgesteld: alleRekenregels.filter((r) => r.status === "vastgesteld").length,
 };
 const standDoel = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "manifest", "peil-stand.json");
 writeFileSync(standDoel, JSON.stringify(standUit) + "\n");

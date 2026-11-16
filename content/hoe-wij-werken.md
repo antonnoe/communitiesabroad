@@ -9,8 +9,8 @@ secties:
       - "Alles staat in één register, Peil. Elke parameter en elke grondslag heeft een officiële bron, de datum van de laatste controle en de datum van de volgende. Om de twee maanden kijken wij of de bronnen zijn gewijzigd; in december worden de Nederlandse bedragen bijgewerkt, in april de Franse."
       - "Uw eigen situatie kan afwijken van onze voorbeelden. Een tool is een goede eerste berekening, geen advies."
     link:
-      label: "Bekijk de toolkaarten"
-      href: "/manifest/tools"
+      label: "Zo controleren wij elk cijfer"
+      href: "/zo-controleren-wij"
   - heading: "Cockpit zorgt dat het werkt"
     paragrafen:
       - "Een rekentool die klopt maar niet laadt, helpt niemand. Cockpit houdt bij of onze sites en tools bereikbaar zijn, of de koppelingen met overheidsbronnen werken en of sleutels en certificaten binnenkort verlopen. Gaat er iets mis, dan krijgen wij een seintje, liefst voordat u het merkt."

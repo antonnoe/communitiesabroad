@@ -146,3 +146,14 @@ export function volgordeZin(stap: Rekenstap, stappen: Rekenstap[]): string | nul
   const na = tekst.split(";").pop()!.trim();
   return na.charAt(0).toUpperCase() + na.slice(1) + ".";
 }
+
+export interface PeilStand {
+  versie: string;
+  versiedatum: string;
+  vastgesteld: number;
+  rekenregels_vastgesteld?: number;
+}
+
+export function getPeilStand(): PeilStand {
+  return JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "manifest", "peil-stand.json"), "utf8"));
+}

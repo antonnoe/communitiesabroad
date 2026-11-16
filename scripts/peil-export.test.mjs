@@ -44,7 +44,8 @@ const stand = JSON.parse(standTekst);
 const STAND_STATUSSEN = ["vastgesteld", "te_verifieren", "raming", "vervallen"];
 
 test("peil-stand.json draagt alleen tellingen, geen parameters of intern materiaal", () => {
-  assert.deepEqual(Object.keys(stand).sort(), ["peildatum", "raming", "te_verifieren", "totaal", "vastgesteld", "versie", "versiedatum", "vervallen"].sort());
+  assert.deepEqual(Object.keys(stand).sort(), ["peildatum", "raming", "rekenregels_totaal", "rekenregels_vastgesteld", "te_verifieren", "totaal", "vastgesteld", "versie", "versiedatum", "vervallen"].sort());
+  assert.ok(Number.isInteger(stand.rekenregels_vastgesteld) && stand.rekenregels_vastgesteld > 0 && stand.rekenregels_vastgesteld <= stand.rekenregels_totaal);
   for (const s of STAND_STATUSSEN) assert.ok(Number.isInteger(stand[s]) && stand[s] >= 0, s);
   assert.ok(Number.isInteger(stand.totaal) && stand.totaal > 0);
   assert.match(stand.versie, /^\d+\.\d+\.\d+$/);

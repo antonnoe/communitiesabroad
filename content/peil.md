@@ -26,8 +26,8 @@ werking:
       tekst: "Franse bedragen, na de aangiftecampagne"
     - kop: "Elke twee maanden"
       tekst: "automatisch nagaan of een bron is veranderd"
-  link: "Lees hoe wij werken"
-  linkHref: "/hoe-wij-werken"
+  link: "Zo controleren wij elk cijfer"
+  linkHref: "/zo-controleren-wij"
 tools:
   titel: "Tools die met deze cijfers rekenen"
   tekst: "Elke tool heeft een toolkaart: welke bedragen erin zitten, waar ze vandaan komen en hoe de tool ermee rekent."
