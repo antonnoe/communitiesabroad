@@ -28,7 +28,7 @@ stroom:
   rekenregels: "vastgestelde rekenregels"
   dubbel: "2×"
   dubbelTekst: "gecontroleerd"
-  ritmeRegel: "↻ Bronnen elke 2 maanden · ijk april FR, december NL"
+  ritmeRegel: "↻ Bronnen elke 2 maanden nagelopen · vaste ronde in april (Frankrijk) en december (Nederland)"
   voorUKop: "Voor u:"
   voorU: "elke tool en elk antwoord rekent met dezelfde gecontroleerde cijfers"
   bedragen: "bedragen"
