@@ -59,3 +59,5 @@
 .pl .pad { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.86rem; background: var(--chip); border-radius: 6px; padding: 1px 6px; overflow-wrap: anywhere; }
 .pl .voorbehoud { font-size: 0.88rem; color: var(--tekst-2); }
 @media (max-width: 760px) { .pl .vakken { grid-template-columns: 1fr; } }
+
+.pl .zoekanker { scroll-margin-top: 96px; }

@@ -10,7 +10,7 @@ kop:
 stroom:
   bovenregel: "De stroom"
   titel: "Veel bronnen, één register, alle tools"
-  tekst: "Bovenin de bronnen met hun rang, in het midden Peil, onderin de tools die met dezelfde cijfers rekenen."
+  tekst: "Bovenin de bronnen met hun rang: hoe dichter bij de overheid die het bedrag vaststelt, hoe hoger. In het midden Peil, onderin de tools die met dezelfde cijfers rekenen."
   bronnen:
     - chip: "AAA · officieel"
       soort: "aaa"
@@ -51,7 +51,7 @@ heenTerug:
     - kop: "Vorm:"
       tekst: "acht automatische controles op opbouw en bronnen."
     - kop: "Inhoud:"
-      tekst: "een aparte auditor toetst bedragen, termijnen en wetsartikelen. Alleen 8 op 10 of hoger wordt bewaard."
+      tekst: "een aparte auditor, een tweede AI-model dat alleen controleert, toetst bedragen, termijnen en wetsartikelen. Alleen 8 op 10 of hoger wordt bewaard."
   terugTitel: "Terug: Peil stuurt bij"
   terug:
     - kop: "Peil wijzigt een waarde:"
@@ -63,6 +63,7 @@ heenTerug:
 onderAntwoord:
   bovenregel: "Onder elk antwoord"
   titel: "U kunt het tot in detail controleren"
+  tekst: "Onder elk antwoord van Café Claude staan vier lagen:"
   lagen:
     - kop: "Inhoud"
       vraag: "Klopt het?"
@@ -92,10 +93,10 @@ ritme:
       tekst: "IJkmoment Nederland: tarieven en bedragen voor het nieuwe jaar."
 zelf:
   titel: "Zelf nakijken"
-  tekst: "Wat wij meten, staat open."
+  tekst: "Wat wij meten, staat open. Een bedrag nakijken gaat in drie stappen: zoek het in Peil, open de bron die erbij staat en vergelijk het bedrag met wat daar staat."
   knoppen:
     - label: "Zoek een bedrag in Peil"
-      href: "/peil"
+      href: "/peil#zoek"
     - label: "Toolkaarten"
       href: "/manifest/tools"
     - label: "Kwaliteit van Café Claude"

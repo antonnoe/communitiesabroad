@@ -101,7 +101,9 @@ export default function PeilPage() {
               ),
             )}
           </p>
-          <PeilZoekFrame src="/manifest/peil-zoek.html" titel={t.kop.zoekTitel} />
+          <div id="zoek" className="zoekanker">
+            <PeilZoekFrame src="/manifest/peil-zoek.html" titel={t.kop.zoekTitel} />
+          </div>
         </div>
       </section>
 

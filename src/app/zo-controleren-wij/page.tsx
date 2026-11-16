@@ -17,7 +17,7 @@ interface Tekst {
     cafeNaam: string; cafeTekst: string; cafeHref: string; verder: string; verderHref: string;
   };
   heenTerug: { bovenregel: string; titel: string; heenTitel: string; heen: KopTekst[]; terugTitel: string; terug: KopTekst[] };
-  onderAntwoord: { bovenregel: string; titel: string; lagen: { kop: string; vraag: string; tekst: string }[] };
+  onderAntwoord: { bovenregel: string; titel: string; tekst: string; lagen: { kop: string; vraag: string; tekst: string }[] };
   ritme: { bovenregel: string; titel: string; momenten: KopTekst[] };
   zelf: { titel: string; tekst: string; knoppen: { label: string; href: string }[] };
 }
@@ -129,6 +129,7 @@ export default function ZoControlerenWijPage() {
         <div className="w">
           <p className="oog">{t.onderAntwoord.bovenregel}</p>
           <h2 id="zc-onder">{t.onderAntwoord.titel}</h2>
+          <p className="intro">{t.onderAntwoord.tekst}</p>
           <div className="vier">
             {t.onderAntwoord.lagen.map((l) => (
               <div className="kaart" key={l.kop}>
