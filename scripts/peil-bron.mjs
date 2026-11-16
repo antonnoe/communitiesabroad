@@ -26,6 +26,7 @@ export function normaliseerKenmerk(k) {
     const iso = isoUit(d, mm, j);
     return iso ? `bijgewerkt door de bron op ${datumNl(iso)}` : m;
   });
+  t = t.replace(/(?:écrit|publié) le (\d{2})\/(\d{2})\/(\d{4})/gi, (m, d, mm, j) => `geschreven op ${datumNl(`${j}-${mm}-${d}`)}`);
   t = t.replace(/\bpublié\s+(\d{2})-(\d{2})-(\d{4})/gi, (m, d, mm, j) => `gepubliceerd op ${datumNl(`${j}-${mm}-${d}`)}`);
   return t;
 }
