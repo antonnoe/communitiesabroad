@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "run": "2026-11-21T07:49:10.695Z",
+    "droog": true,
+    "samenvatting": {
+      "kandidaten": 0,
+      "waakpunten": 8,
+      "voorstel_b": 0,
+      "voorstel_a": 0,
+      "naar_opdrachtgever": 1,
+      "geen": 0,
+      "niet_opgehaald": 7,
+      "niet_beoordeeld": 0
+    },
+    "fouten": 0
+  },
+  "besluiten": [
+    {
+      "mutatie": "m.2026.0037",
+      "parameter": "p.nl.ib.aow_leeftijd",
+      "naam": "AOW-leeftijd",
+      "titel": null,
+      "bron_url": "https://www.rijksoverheid.nl/themas/belastingen-uitkeringen-en-toeslagen/algemene-ouderdomswet-aow/aow-leeftijd",
+      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
+          "fase": "b",
+          "nieuwe_waarde": "67 jaar en 3 maanden",
+          "ingangsdatum": null,
+          "citaat": "2028 67 jaar en 3 maanden",
+          "citaat_klopt": true,
+          "toelichting": "De tekst meldt dat de AOW-leeftijd vanaf 2028 vastgesteld is op 67 jaar en 3 maanden en niet meer wijzigt, maar noemt geen exacte ingangsdatum en verwijst alleen zonder nummer of datum naar een Kamerbrief."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
+          "fase": "a",
+          "nieuwe_waarde": "67 jaar en 3 maanden",
+          "ingangsdatum": "2028-01-01",
+          "citaat": "2027 67 jaar 2028 67 jaar en 3 maanden",
+          "citaat_klopt": true,
+          "toelichting": "De Rijksoverheid-pagina noemt een AOW-leeftijd van 67 jaar en 3 maanden vanaf 2028 en die is volgens de pagina al vastgesteld, maar de tekst verwijst niet naar een gepubliceerd besluit met nummer en datum (alleen naar een Kamerbrief), dus fase b is formeel niet aangetoond."
+        }
+      ]
+    }
+  ],
+  "niet_opgehaald": [
+    {
+      "mutatie": "m.2026.0034",
+      "naam": "Startpunt afbouw arbeidskorting",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "HTTP 403; ook https://zoek.officielebekendmakingen.nl/blg-1271616.html: HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0035",
+      "naam": "Algemene heffingskorting, maximum",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "HTTP 403; ook https://zoek.officielebekendmakingen.nl/blg-1271616.html: HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0036",
+      "naam": "Alleenstaande ouderenkorting",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "HTTP 403; ook https://zoek.officielebekendmakingen.nl/blg-1271616.html: HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0038",
+      "naam": "Arbeidskorting, maximum",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "HTTP 403; ook https://zoek.officielebekendmakingen.nl/blg-1271616.html: HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0039",
+      "naam": "Eigenwoningforfait",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "HTTP 403; ook https://zoek.officielebekendmakingen.nl/blg-1271616.html: HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0040",
+      "naam": "Grens eerste schijf box 1",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/kst-37022-2.html",
+      "reden": "HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0041",
+      "naam": "Grens tweede schijf box 1",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/kst-37022-2.html",
+      "reden": "HTTP 403"
+    }
+  ]
+}
