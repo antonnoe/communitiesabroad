@@ -145,6 +145,9 @@ const parameters = register.parameters
       bron_kenmerk: p.bron_kenmerk ? normaliseerKenmerk(p.bron_kenmerk) : null,
       verificatiedatum: p.verificatiedatum ?? null,
       ...(volgendePeriode(p) ? { volgende_periode: volgendePeriode(p) } : {}),
+      // Aangekondigde wijziging (verhoogde aandacht, bijvoorbeeld een wetsvoorstel in debat).
+      // Geen nieuwe waarde: wie de parameter raadpleegt, hoort dat er iets speelt en wat het is.
+      ...(aangekondigd(p) ? { aangekondigd: aangekondigd(p) } : {}),
       status: statusVan(p),
       volgende_controle: controleDatum(p),
       trefwoorden: trefwoordenVoor(p.id),
@@ -225,6 +228,12 @@ function controleVan(x) {
 }
 // Hoe vaak een bedrag verandert, in gewone taal (een zin die met een hoofdletter begint).
 const BIJ_WET = /bij wet\b|wetswijziging/i;
+function aangekondigd(p) {
+  const a = p.aangekondigde_wijziging;
+  if (!a || typeof a.omschrijving !== "string" || !a.omschrijving.trim()) return null;
+  return { datum: a.datum ?? null, omschrijving: a.omschrijving.trim(), bron: typeof a.bron === "string" && a.bron.startsWith("https://") ? a.bron : null };
+}
+
 function veranderingTekst(p) {
   const f = p.levensduur_a?.aanpassingsfrequentie ?? "onbekend";
   const wet = BIJ_WET.test(p.publicatiemoment ?? "");
@@ -312,6 +321,7 @@ function bouwKaart(slug, repos, openbaar) {
       instantie: p.instantie ?? null,
       verificatiedatum: p.verificatiedatum ?? null,
       verandert: veranderingTekst(p),
+      ...(aangekondigd(p) ? { aangekondigd: aangekondigd(p) } : {}),
       status: openIds.has(p.id) ? "rekenwijze nog in controle" : "gecontroleerd",
       volgende_controle: controleVan(p),
       ...(volgendePeriode(p) ? { volgende_periode: volgendePeriode(p) } : {}),
