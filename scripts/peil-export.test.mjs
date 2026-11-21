@@ -11,7 +11,7 @@ const data = JSON.parse(tekst);
 
 const TOEGESTAAN = new Set([
   "id", "naam", "naam_fr", "waarde_weergave", "eenheid", "geldig_jaar", "geldig_van", "geldig_tot",
-  "land", "bron_url", "bron_kenmerk", "verificatiedatum", "volgende_periode", "trefwoorden", "categorie", "tools",
+  "land", "bron_url", "bron_kenmerk", "verificatiedatum", "volgende_periode", "aangekondigd", "trefwoorden", "categorie", "tools",
   "status", "volgende_controle",
 ]);
 
@@ -84,7 +84,7 @@ const kaarten = index.tools.map((t) => ({ t, k: JSON.parse(readFileSync(join(too
 const kaartTekst = [...readdirSync(toolsMap)].map((f) => readFileSync(join(toolsMap, f), "utf8")).join("\n");
 
 const KAART_SLEUTELS = ["slug", "naam", "url", "omschrijving", "stand", "versiedatum", "aantal_bedragen", "laatste_controle", "volgende_controle", "bedragen", "schattingen", "rekenstappen"].sort();
-const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "bron_naam", "bron_rest", "bron_bijgewerkt", "instantie", "verificatiedatum", "verandert", "volgende_controle", "volgende_periode", "status"]);
+const BEDRAG_SLEUTELS = new Set(["id", "naam", "naam_fr", "waarde_weergave", "eenheid", "land", "bron_url", "bron_kenmerk", "bron_naam", "bron_rest", "bron_bijgewerkt", "instantie", "verificatiedatum", "verandert", "volgende_controle", "volgende_periode", "aangekondigd", "status"]);
 const STAP_SLEUTELS = ["id", "naam_nl", "omschrijving", "volgorde", "bron_kenmerk", "status", "laatste_controle", "volgende_controle", "gebruikte_bedragen"];
 // Alleen bij een stap die nog in controle is komen er een toelichting en een bron bij.
 const STAP_SLEUTELS_IN_CONTROLE = new Set([...STAP_SLEUTELS, "toelichting", "bron_url"]);
@@ -326,4 +326,13 @@ test("bronVelden: naam zonder datum, rest en bronpagina-datum", () => {
 test("geen Franse controletekst zichtbaar in peil-zoek.json en de toolkaarten", () => {
   const tekstenAlles = [tekst, ...readdirSync(join(dirname(pad), "tools")).map((f) => readFileSync(join(dirname(pad), "tools", f), "utf8"))].join("\n");
   assert.ok(!/vérifié|modifié|mis à jour/i.test(tekstenAlles));
+});
+
+test("aangekondigd: alleen omschrijving, datum en een https-bron", () => {
+  for (const p of data.parameters.filter((x) => x.aangekondigd)) {
+    const a = p.aangekondigd;
+    assert.deepEqual(Object.keys(a).sort(), ["bron", "datum", "omschrijving"], p.id);
+    assert.ok(typeof a.omschrijving === "string" && a.omschrijving.length > 0, p.id);
+    assert.ok(a.bron === null || a.bron.startsWith("https://"), p.id);
+  }
 });
