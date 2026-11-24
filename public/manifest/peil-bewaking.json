@@ -1,14 +1,14 @@
 {
   "meta": {
-    "run": "2026-11-23T04:28:40.527Z",
+    "run": "2026-11-24T04:27:37.070Z",
     "droog": true,
     "samenvatting": {
-      "kandidaten": 0,
+      "kandidaten": 1,
       "waakpunten": 8,
-      "voorstel_b": 0,
-      "voorstel_a": 2,
+      "voorstel_b": 1,
+      "voorstel_a": 1,
       "naar_opdrachtgever": 6,
-      "geen": 0,
+      "geen": 1,
       "niet_opgehaald": 0,
       "niet_beoordeeld": 0
     },
@@ -16,9 +16,39 @@
   },
   "besluiten": [
     {
-      "mutatie": "m.2026.0034",
-      "parameter": "p.nl.ib.ak_afbouw_start",
-      "naam": "Startpunt afbouw arbeidskorting",
+      "mutatie": null,
+      "parameter": "p.fr.energie.prijs_gas_prix_repere",
+      "naam": "Gasprijs, prix repère van de CRE (variabel deel, verwarmingsprofiel)",
+      "titel": null,
+      "bron_url": "https://www.economiematin.fr/decembre-smic-2026-noel-certains-gaz-change",
+      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
+          "fase": "a",
+          "nieuwe_waarde": null,
+          "ingangsdatum": "2026-12-01",
+          "citaat": "La hausse atteint 7,2 % pour le chauffage et 5,9 % pour la cuisson et l’eau chaude.",
+          "citaat_klopt": true,
+          "toelichting": "De krant meldt dat de CRE het prix repère per 1 december 2026 verhoogt, met 7,2 % voor verwarming, maar noemt geen gepubliceerd besluit met nummer en datum en geeft geen nieuw bedrag per kWh voor het verwarmingsprofiel."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
+          "fase": "a",
+          "nieuwe_waarde": null,
+          "ingangsdatum": "2026-12-01",
+          "citaat": "La hausse atteint 7,2 % pour le chauffage et 5,9 % pour la cuisson et l’eau chaude.",
+          "citaat_klopt": true,
+          "toelichting": "Volgens het krantenartikel verhoogt de CRE de prix repère voor december 2026 (gemiddeld van 194,90 naar 206,26 €/MWh TTC, +7,2 % voor verwarming), maar het noemt geen gepubliceerde tekst met nummer en datum en geeft geen nieuw variabel deel per kWh, zodat de nieuwe registerwaarde (een driemaandsgemi"
+        }
+      ]
+    },
+    {
+      "mutatie": "m.2026.0042",
+      "parameter": "p.nl.ib.hk_afbouw_start",
+      "naam": "Startpunt afbouw algemene heffingskorting",
       "titel": null,
       "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
@@ -31,24 +61,24 @@
           "ingangsdatum": null,
           "citaat": null,
           "citaat_klopt": false,
-          "toelichting": "De tekst is een sleuteltabel met budgettaire effecten voor 2027 en vermeldt 'Afbouwpunt arbeidskorting € 47.834' als niveau in 2027; dit is een indicatief rekenniveau, geen voorgestelde of vastgestelde wijziging van de parameter."
+          "toelichting": "De tekst is een sleuteltabel met budgettaire effecten (2027: afbouwpunt algemene heffingskorting € 30.910) en kondigt of stelt geen wijziging van deze parameter voor; het is een indicatieve rekenhulp, geen maatregel."
         },
         {
           "door": "auditor-2",
           "model": "claude-opus-5-5",
           "fase": "a",
-          "nieuwe_waarde": "47834",
+          "nieuwe_waarde": "30910",
           "ingangsdatum": "2027-01-01",
-          "citaat": "Afbouwpunt arbeidskorting € 47.834 € 1.000 -212",
+          "citaat": "Afbouwpunt algemene heffingskorting € 30.910",
           "citaat_klopt": true,
-          "toelichting": "De sleuteltabel 2027 (versie september 2026) noemt als niveau voor 2027 een afbouwpunt van € 47.834 in plaats van € 45.592, maar het is een budgettaire indicatietabel zonder vaststelling of wetsverwijzing, en de tekst zegt niet letterlijk dat het om een wijziging gaat (mogelijk alleen indexatie of e"
+          "toelichting": "De sleuteltabel (versie september 2026) noemt als niveau voor 2027 een afbouwpunt van € 30.910 in plaats van € 29.736, maar dit is een budgettaire indicatietabel zonder vaststelling, wetsnummer of benoemde instantie, dus hooguit een verwachte waarde."
         }
       ]
     },
     {
-      "mutatie": "m.2026.0035",
-      "parameter": "p.nl.ib.algemene_heffingskorting_max",
-      "naam": "Algemene heffingskorting, maximum",
+      "mutatie": "m.2026.0044",
+      "parameter": "p.nl.ib.ouderenkorting",
+      "naam": "Ouderenkorting",
       "titel": null,
       "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
@@ -59,26 +89,26 @@
           "fase": "geen",
           "nieuwe_waarde": null,
           "ingangsdatum": null,
-          "citaat": "Algemene heffingskorting € 3.154 € 100 -853",
+          "citaat": "Ouderenkorting € 1.993 € 100 -196",
           "citaat_klopt": true,
-          "toelichting": "De tekst is een sleuteltabel met budgettaire effecten voor 2027 en kondigt geen wijziging aan; het niveau 2027 van € 3.154 is slechts een referentieniveau, geen voorstel of vastgestelde wijziging."
+          "toelichting": "De sleuteltabel noemt alleen het niveau 2027 (€ 1.993, afbouwpunt € 46.577) als basis voor een budgettaire indicatie en kondigt geen maatregel of wijziging van de ouderenkorting aan, al wijkt dit niveau af van de registerwaarde."
         },
         {
           "door": "auditor-2",
           "model": "claude-opus-5-5",
           "fase": "a",
-          "nieuwe_waarde": "3154",
+          "nieuwe_waarde": "1.993 euro, verminderd met 15 procent van het verzamelinkomen boven 46.577 euro",
           "ingangsdatum": "2027-01-01",
-          "citaat": "Algemene heffingskorting € 3.154 € 100 -853",
+          "citaat": "Ouderenkorting € 1.993 € 100 -196",
           "citaat_klopt": true,
-          "toelichting": "De sleuteltabel 2027 (versie september 2026) noemt als niveau voor 2027 € 3.154 in plaats van de geregistreerde € 3.115, maar dit is een budgettaire raming (waarschijnlijk na indexatie) en geen vastgestelde wettekst."
+          "toelichting": "De sleuteltabel 2027 (versie september 2026) noemt als niveau voor 2027 een ouderenkorting van € 1.993 en een afbouwpunt van € 46.577, wat afwijkt van het register; dit is echter een budgettaire indicatie en geen vastgestelde regel, en de tekst zegt niet of het om indexatie of beleid gaat."
         }
       ]
     },
     {
-      "mutatie": "m.2026.0036",
-      "parameter": "p.nl.ib.alleenstaande_ouderenkorting",
-      "naam": "Alleenstaande ouderenkorting",
+      "mutatie": "m.2026.0045",
+      "parameter": "p.nl.ib.premie_volksverzekeringen",
+      "naam": "Premiepercentages volksverzekeringen",
       "titel": null,
       "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
@@ -89,56 +119,56 @@
           "fase": "geen",
           "nieuwe_waarde": null,
           "ingangsdatum": null,
-          "citaat": "Alleenstaande ouderenkorting € 547 € 100 -112",
+          "citaat": "Verlengen grens premie volksverzekeringen (b) € 39.247 (€ 41.637) € 1.000 -273",
           "citaat_klopt": true,
-          "toelichting": "De tekst is een sleuteltabel met budgettaire effecten voor 2027 en kondigt geen wijziging aan; het genoemde niveau van € 547 voor 2027 is een uitgangsniveau en geen voorgestelde of vastgestelde wijziging."
+          "toelichting": "De tekst is een sleuteltabel met indicatieve budgettaire effecten van hypothetische maatregelen in 2027 en noemt geen wijziging van de premiepercentages AOW, Anw of Wlz."
         },
         {
           "door": "auditor-2",
           "model": "claude-opus-5-5",
-          "fase": "a",
-          "nieuwe_waarde": "547",
-          "ingangsdatum": "2027-01-01",
-          "citaat": "Alleenstaande ouderenkorting € 547 € 100 -112",
+          "fase": "geen",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": "Verlengen grens premie volksverzekeringen (b) € 39.247 (€ 41.637)",
           "citaat_klopt": true,
-          "toelichting": "De sleuteltabel (versie september 2026) noemt als 'Niveau 2027' € 547 in plaats van de geregistreerde € 540, maar dit is een budgettaire raming, waarschijnlijk geïndexeerd, en geen vastgestelde of expliciet aangekondigde wijziging; de tekst noemt ook geen vaststellende instantie."
+          "toelichting": "De sleuteltabel 2027 is een indicatieve budgettaire tabel die alleen een niveau voor de premiegrens in 2027 (€ 39.247, vermoedelijk geïndexeerd) en een gecombineerd tarief eerste schijf noemt, maar geen wijziging van de afzonderlijke AOW-, Anw- of Wlz-percentages aankondigt of vaststelt."
         }
       ]
     },
     {
-      "mutatie": "m.2026.0037",
-      "parameter": "p.nl.ib.aow_leeftijd",
-      "naam": "AOW-leeftijd",
+      "mutatie": "m.2026.0046",
+      "parameter": "p.nl.ib.tarieven_boven_aow",
+      "naam": "Tarieven box 1 boven de AOW-leeftijd",
       "titel": null,
-      "bron_url": "https://www.rijksoverheid.nl/themas/belastingen-uitkeringen-en-toeslagen/algemene-ouderdomswet-aow/aow-leeftijd",
-      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/kst-37022-2.html",
+      "reden": "geen van beide auditors kon oordelen",
       "oordelen": [
         {
           "door": "auditor-1",
           "model": "claude-sonnet-5-5",
-          "fase": "a",
-          "nieuwe_waarde": "67 jaar en 3 maanden",
+          "fase": "geen",
+          "nieuwe_waarde": null,
           "ingangsdatum": null,
-          "citaat": "2028 67 jaar en 3 maanden",
-          "citaat_klopt": true,
-          "toelichting": "De tekst toont een AOW-leeftijd van 67 jaar en 3 maanden vanaf 2028 (nu 67 jaar), maar verwijst alleen naar een Kamerbrief zonder nummer of datum en noemt geen exacte ingangsdatum of Staatsblad-publicatie, dus fase b is niet aantoonbaar."
+          "citaat": null,
+          "citaat_klopt": false,
+          "toelichting": "geen geldig antwoord (stop: max_tokens; begin:  {\"fase\":\"a\",\"nieuwe_waarde\":\"Voorgesteld in tabel B (kennelijk artikel 2.10a): 8,58% tot 41.637 euro, 38,16% tot 78.426)"
         },
         {
           "door": "auditor-2",
           "model": "claude-opus-5-5",
-          "fase": "a",
-          "nieuwe_waarde": "67 jaar en 3 maanden",
-          "ingangsdatum": "2028-01-01",
-          "citaat": "2028 67 jaar en 3 maanden",
-          "citaat_klopt": true,
-          "toelichting": "De Rijksoverheid-pagina meldt dat de AOW-leeftijd vanaf 2028 67 jaar en 3 maanden wordt (de tekst noemt alleen het jaar, dus 1 januari is afgeleid), maar verwijst niet met nummer en datum naar de vaststellende publicatie in het Staatsblad, dus fase 'b' kan op basis van deze tekst niet worden toegeke"
+          "fase": "geen",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": null,
+          "citaat_klopt": false,
+          "toelichting": "geen geldig antwoord (stop: max_tokens; begin:  ```json\n{\"fase\":\"a\",\"nieuwe_waarde\":\"Voorgestelde tabel art. 2.10 Wet IB 2001: belastingtarief (zonder premie volksverz)"
         }
       ]
     },
     {
-      "mutatie": "m.2026.0038",
-      "parameter": "p.nl.ib.arbeidskorting_max",
-      "naam": "Arbeidskorting, maximum",
+      "mutatie": "m.2026.0047",
+      "parameter": "p.nl.ib.tarieven_onder_aow",
+      "naam": "Tarieven box 1 onder de AOW-leeftijd",
       "titel": null,
       "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
@@ -151,47 +181,17 @@
           "ingangsdatum": null,
           "citaat": null,
           "citaat_klopt": false,
-          "toelichting": "De tekst is een sleuteltabel met budgettaire effecten voor 2027 (niveau arbeidskorting maximum € 5.929) en kondigt geen wijziging aan; het is een indicatieve berekening, geen voorstel of vastgestelde regel."
+          "toelichting": "De sleuteltabel geeft alleen indicatieve budgettaire effecten per 1%-punt en de 2027-niveaus (36,23% gecombineerd, 38,16%, 49,50%), maar kondigt geen wijziging aan en stelt er geen vast; die niveaus wijken wel af van de registerwaarden, dus enige onzekerheid blijft."
         },
         {
           "door": "auditor-2",
           "model": "claude-opus-5-5",
           "fase": "a",
-          "nieuwe_waarde": "5929",
+          "nieuwe_waarde": "36,23 procent (gecombineerd) tot 39.247 euro, 38,16 procent tot 78.426 euro, 49,50 procent daarboven",
           "ingangsdatum": "2027-01-01",
-          "citaat": "Arbeidskorting: maximum € 5.929 € 100 -503",
+          "citaat": "Tarief eerste schijf (gecombineerd) 36,23% 1%-punt 3947",
           "citaat_klopt": true,
-          "toelichting": "De sleuteltabel (versie september 2026) noemt voor 2027 een niveau van € 5.929 voor de maximale arbeidskorting, maar dit is een budgettaire raming en geen vastgestelde of gepubliceerde wetswijziging; de tekst noemt ook geen vaststellende instantie."
-        }
-      ]
-    },
-    {
-      "mutatie": "m.2026.0039",
-      "parameter": "p.nl.ib.eigenwoningforfait",
-      "naam": "Eigenwoningforfait",
-      "titel": null,
-      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
-      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
-      "oordelen": [
-        {
-          "door": "auditor-1",
-          "model": "claude-sonnet-5-5",
-          "fase": "geen",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": null,
-          "citaat_klopt": false,
-          "toelichting": "De tekst is een sleuteltabel met budgettaire effecten van hypothetische tariefwijzigingen en kondigt geen wijziging van het eigenwoningforfait aan; de genoemde 0,35% tot € 1.360.000 is alleen het niveau voor 2027, voor het budgettaire effect van een eventuele verhoging."
-        },
-        {
-          "door": "auditor-2",
-          "model": "claude-opus-5-5",
-          "fase": "geen",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": "Eigenwoningforfait tot € 1.360.000 0,35% 0,05%-punt 419",
-          "citaat_klopt": true,
-          "toelichting": "De sleuteltabel 2027 kondigt geen wijziging aan en geeft alleen budgettaire effecten van hypothetische aanpassingen; wel noemt hij als niveau voor 2027 een grens van € 1.360.000 (register: € 1.350.000), wat op indexatie wijst maar niet als vastgestelde of voorgestelde wijziging wordt gepresenteerd."
+          "toelichting": "De sleuteltabel (versie september 2026) noemt als 'Niveau 2027' andere tarieven en een andere eerste schijfgrens dan het register, maar zegt niet letterlijk dat de parameter wijzigt; het is een budgettaire rekenhulp, geen vastgestelde regel, en de vaststellende instantie wordt niet genoemd."
         }
       ]
     }
