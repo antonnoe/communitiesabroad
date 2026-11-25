@@ -1,13 +1,13 @@
 {
   "meta": {
-    "run": "2026-11-24T04:27:37.070Z",
+    "run": "2026-11-25T04:27:15.839Z",
     "droog": true,
     "samenvatting": {
       "kandidaten": 1,
       "waakpunten": 8,
-      "voorstel_b": 1,
-      "voorstel_a": 1,
-      "naar_opdrachtgever": 6,
+      "voorstel_b": 0,
+      "voorstel_a": 4,
+      "naar_opdrachtgever": 4,
       "geen": 1,
       "niet_opgehaald": 0,
       "niet_beoordeeld": 0
@@ -31,7 +31,7 @@
           "ingangsdatum": "2026-12-01",
           "citaat": "La hausse atteint 7,2 % pour le chauffage et 5,9 % pour la cuisson et l’eau chaude.",
           "citaat_klopt": true,
-          "toelichting": "De krant meldt dat de CRE het prix repère per 1 december 2026 verhoogt, met 7,2 % voor verwarming, maar noemt geen gepubliceerd besluit met nummer en datum en geeft geen nieuw bedrag per kWh voor het verwarmingsprofiel."
+          "toelichting": "De krant meldt dat de CRE het prix repère voor december 2026 verhoogt (+7,2 % voor verwarming; gemiddeld van 194,90 naar 206,26 euro TTC/MWh), maar verwijst niet naar een gepubliceerde tekst met nummer en datum, en een absolute waarde voor het verwarmingsprofiel wordt niet genoemd."
         },
         {
           "door": "auditor-2",
@@ -39,108 +39,48 @@
           "fase": "a",
           "nieuwe_waarde": null,
           "ingangsdatum": "2026-12-01",
-          "citaat": "La hausse atteint 7,2 % pour le chauffage et 5,9 % pour la cuisson et l’eau chaude.",
+          "citaat": "La hausse atteint 7,2 % pour le chauffage",
           "citaat_klopt": true,
-          "toelichting": "Volgens het krantenartikel verhoogt de CRE de prix repère voor december 2026 (gemiddeld van 194,90 naar 206,26 €/MWh TTC, +7,2 % voor verwarming), maar het noemt geen gepubliceerde tekst met nummer en datum en geeft geen nieuw variabel deel per kWh, zodat de nieuwe registerwaarde (een driemaandsgemi"
+          "toelichting": "Volgens dit krantenbericht verhoogt de CRE de prix repère gas per december 2026 met 7,2 % voor het verwarmingsprofiel, maar de tekst geeft geen nieuw variabel tarief per kWh en verwijst niet naar een gepubliceerde regel met nummer en datum, dus de nieuwe waarde en de status van vaststelling blijven "
         }
       ]
     },
     {
-      "mutatie": "m.2026.0042",
-      "parameter": "p.nl.ib.hk_afbouw_start",
-      "naam": "Startpunt afbouw algemene heffingskorting",
+      "mutatie": "m.2026.0016",
+      "parameter": "p.fr.secu.franchise_transport",
+      "naam": "Franchise medisch transport",
       "titel": null,
-      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "bron_url": "https://www.vidal.fr/actualites/38384-plfss-quelles-mesures-prevues-pour-2027.html",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
       "oordelen": [
         {
           "door": "auditor-1",
           "model": "claude-sonnet-5-5",
+          "fase": "a",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": "baisses des remboursements de certains soins par l'Assurance maladie (soins dentaires, transports sanitaires...)",
+          "citaat_klopt": true,
+          "toelichting": "De tekst noemt een lagere vergoeding van sanitair vervoer door de Assurance maladie (kosten naar de aanvullende verzekeringen), maar geeft geen bedrag voor de franchise en het gaat om een wetsontwerp (PLFSS) dat nog niet is vastgesteld, al worden de maatregelen 'déjà actées' genoemd."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
           "fase": "geen",
           "nieuwe_waarde": null,
           "ingangsdatum": null,
           "citaat": null,
           "citaat_klopt": false,
-          "toelichting": "De tekst is een sleuteltabel met budgettaire effecten (2027: afbouwpunt algemene heffingskorting € 30.910) en kondigt of stelt geen wijziging van deze parameter voor; het is een indicatieve rekenhulp, geen maatregel."
-        },
-        {
-          "door": "auditor-2",
-          "model": "claude-opus-5-5",
-          "fase": "a",
-          "nieuwe_waarde": "30910",
-          "ingangsdatum": "2027-01-01",
-          "citaat": "Afbouwpunt algemene heffingskorting € 30.910",
-          "citaat_klopt": true,
-          "toelichting": "De sleuteltabel (versie september 2026) noemt als niveau voor 2027 een afbouwpunt van € 30.910 in plaats van € 29.736, maar dit is een budgettaire indicatietabel zonder vaststelling, wetsnummer of benoemde instantie, dus hooguit een verwachte waarde."
+          "toelichting": "De tekst noemt alleen een lagere vergoeding door de Assurance maladie voor onder meer 'transports sanitaires' (verschoven naar de complémentaires), maar zegt niets over het bedrag van de franchise per vervoer, het dagmaximum of het jaarplafond van 70 euro."
         }
       ]
     },
     {
-      "mutatie": "m.2026.0044",
-      "parameter": "p.nl.ib.ouderenkorting",
-      "naam": "Ouderenkorting",
+      "mutatie": "m.2026.0019",
+      "parameter": "p.fr.succ.hernieuwingstermijn",
+      "naam": "Hernieuwingstermijn van de schenkingsvrijstelling",
       "titel": null,
-      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
-      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
-      "oordelen": [
-        {
-          "door": "auditor-1",
-          "model": "claude-sonnet-5-5",
-          "fase": "geen",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": "Ouderenkorting € 1.993 € 100 -196",
-          "citaat_klopt": true,
-          "toelichting": "De sleuteltabel noemt alleen het niveau 2027 (€ 1.993, afbouwpunt € 46.577) als basis voor een budgettaire indicatie en kondigt geen maatregel of wijziging van de ouderenkorting aan, al wijkt dit niveau af van de registerwaarde."
-        },
-        {
-          "door": "auditor-2",
-          "model": "claude-opus-5-5",
-          "fase": "a",
-          "nieuwe_waarde": "1.993 euro, verminderd met 15 procent van het verzamelinkomen boven 46.577 euro",
-          "ingangsdatum": "2027-01-01",
-          "citaat": "Ouderenkorting € 1.993 € 100 -196",
-          "citaat_klopt": true,
-          "toelichting": "De sleuteltabel 2027 (versie september 2026) noemt als niveau voor 2027 een ouderenkorting van € 1.993 en een afbouwpunt van € 46.577, wat afwijkt van het register; dit is echter een budgettaire indicatie en geen vastgestelde regel, en de tekst zegt niet of het om indexatie of beleid gaat."
-        }
-      ]
-    },
-    {
-      "mutatie": "m.2026.0045",
-      "parameter": "p.nl.ib.premie_volksverzekeringen",
-      "naam": "Premiepercentages volksverzekeringen",
-      "titel": null,
-      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
-      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
-      "oordelen": [
-        {
-          "door": "auditor-1",
-          "model": "claude-sonnet-5-5",
-          "fase": "geen",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": "Verlengen grens premie volksverzekeringen (b) € 39.247 (€ 41.637) € 1.000 -273",
-          "citaat_klopt": true,
-          "toelichting": "De tekst is een sleuteltabel met indicatieve budgettaire effecten van hypothetische maatregelen in 2027 en noemt geen wijziging van de premiepercentages AOW, Anw of Wlz."
-        },
-        {
-          "door": "auditor-2",
-          "model": "claude-opus-5-5",
-          "fase": "geen",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": "Verlengen grens premie volksverzekeringen (b) € 39.247 (€ 41.637)",
-          "citaat_klopt": true,
-          "toelichting": "De sleuteltabel 2027 is een indicatieve budgettaire tabel die alleen een niveau voor de premiegrens in 2027 (€ 39.247, vermoedelijk geïndexeerd) en een gecombineerd tarief eerste schijf noemt, maar geen wijziging van de afzonderlijke AOW-, Anw- of Wlz-percentages aankondigt of vaststelt."
-        }
-      ]
-    },
-    {
-      "mutatie": "m.2026.0046",
-      "parameter": "p.nl.ib.tarieven_boven_aow",
-      "naam": "Tarieven box 1 boven de AOW-leeftijd",
-      "titel": null,
-      "bron_url": "https://zoek.officielebekendmakingen.nl/kst-37022-2.html",
+      "bron_url": "https://www.assemblee-nationale.fr/dyn/17/textes/l17b3210_projet-loi.pdf",
       "reden": "geen van beide auditors kon oordelen",
       "oordelen": [
         {
@@ -149,9 +89,9 @@
           "fase": "geen",
           "nieuwe_waarde": null,
           "ingangsdatum": null,
-          "citaat": null,
-          "citaat_klopt": false,
-          "toelichting": "geen geldig antwoord (stop: max_tokens; begin:  {\"fase\":\"a\",\"nieuwe_waarde\":\"Voorgesteld in tabel B (kennelijk artikel 2.10a): 8,58% tot 41.637 euro, 38,16% tot 78.426)"
+          "citaat": "Mesure temporaire d’allègement de la fiscalité des donations pour encourager les transmissions intergénérationnelles",
+          "citaat_klopt": true,
+          "toelichting": "De tekst is alleen de inhoudsopgave van het wetsontwerp PLF 2027; artikel 4 kondigt een tijdelijke verlichting van de schenkingsbelasting aan, maar de hernieuwingstermijn van 15 jaar wordt niet genoemd, dus een wijziging van deze parameter is niet aantoonbaar."
         },
         {
           "door": "auditor-2",
@@ -159,39 +99,39 @@
           "fase": "geen",
           "nieuwe_waarde": null,
           "ingangsdatum": null,
-          "citaat": null,
-          "citaat_klopt": false,
-          "toelichting": "geen geldig antwoord (stop: max_tokens; begin:  ```json\n{\"fase\":\"a\",\"nieuwe_waarde\":\"Voorgestelde tabel art. 2.10 Wet IB 2001: belastingtarief (zonder premie volksverz)"
+          "citaat": "Mesure temporaire d’allègement de la fiscalité des donations pour encourager les transmissions intergénérationnelles",
+          "citaat_klopt": true,
+          "toelichting": "De opgehaalde tekst is alleen de inhoudsopgave van het wetsvoorstel voor de begroting 2027; artikel 4 noemt een tijdelijke verlichting van de schenkingsbelasting, maar de tekst zegt nergens dat de hernieuwingstermijn van 15 jaar verandert, dus de inhoud van artikel 4 moet nog gecontroleerd worden."
         }
       ]
     },
     {
-      "mutatie": "m.2026.0047",
-      "parameter": "p.nl.ib.tarieven_onder_aow",
-      "naam": "Tarieven box 1 onder de AOW-leeftijd",
+      "mutatie": "m.2026.0021",
+      "parameter": "p.fr.tva.regime_drempels",
+      "naam": "Btw, drempels van het régime simplifié (RSD)",
       "titel": null,
-      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "bron_url": "https://www.impots.gouv.fr/actualite/le-regime-simplifie-dimposition-la-tva-est-supprime-compter-du-1er-janvier-2027",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
       "oordelen": [
         {
           "door": "auditor-1",
           "model": "claude-sonnet-5-5",
-          "fase": "geen",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": null,
-          "citaat_klopt": false,
-          "toelichting": "De sleuteltabel geeft alleen indicatieve budgettaire effecten per 1%-punt en de 2027-niveaus (36,23% gecombineerd, 38,16%, 49,50%), maar kondigt geen wijziging aan en stelt er geen vast; die niveaus wijken wel af van de registerwaarden, dus enige onzekerheid blijft."
+          "fase": "b",
+          "nieuwe_waarde": "Het régime simplifié d'imposition (RSI) voor de btw wordt afgeschaft en vervangen door het réel normal; de drempels van ",
+          "ingangsdatum": "2027-01-01",
+          "citaat": "L’article 38 de la loi de finances 2025 supprime, à compter du 1er janvier 2027, le régime simplifié d’imposition (RSI) en matière de TVA.",
+          "citaat_klopt": true,
+          "toelichting": "De tekst verwijst naar artikel 38 van de loi de finances 2025 en meldt dat het btw-régime simplifié per 1 januari 2027 vervalt, waardoor de drempels van het RSD niet meer gelden; er is geen publicatienummer of datum genoemd, maar de wet wordt als vastgesteld gepresenteerd."
         },
         {
           "door": "auditor-2",
           "model": "claude-opus-5-5",
-          "fase": "a",
-          "nieuwe_waarde": "36,23 procent (gecombineerd) tot 39.247 euro, 38,16 procent tot 78.426 euro, 49,50 procent daarboven",
+          "fase": "b",
+          "nieuwe_waarde": "Régime simplifié (RSI) voor de btw afgeschaft; drempels vervallen; vervangen door réel normal: per kwartaal aangifte zol",
           "ingangsdatum": "2027-01-01",
-          "citaat": "Tarief eerste schijf (gecombineerd) 36,23% 1%-punt 3947",
+          "citaat": "L’article 38 de la loi de finances 2025 supprime, à compter du 1er janvier 2027, le régime simplifié d’imposition (RSI) en matière de TVA.",
           "citaat_klopt": true,
-          "toelichting": "De sleuteltabel (versie september 2026) noemt als 'Niveau 2027' andere tarieven en een andere eerste schijfgrens dan het register, maar zegt niet letterlijk dat de parameter wijzigt; het is een budgettaire rekenhulp, geen vastgestelde regel, en de vaststellende instantie wordt niet genoemd."
+          "toelichting": "Volgens de DGFiP schaft artikel 38 van de loi de finances 2025 het RSI (in het register RSD genoemd) per 1 januari 2027 af, maar de tekst noemt geen officieel wetsnummer of publicatiedatum; daarom staat onzeker op true."
         }
       ]
     }
