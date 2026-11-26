@@ -1,56 +1,116 @@
 {
   "meta": {
-    "run": "2026-11-25T04:27:15.839Z",
+    "run": "2026-11-26T04:27:56.582Z",
     "droog": true,
     "samenvatting": {
       "kandidaten": 1,
       "waakpunten": 8,
       "voorstel_b": 0,
-      "voorstel_a": 4,
+      "voorstel_a": 1,
       "naar_opdrachtgever": 4,
-      "geen": 1,
-      "niet_opgehaald": 0,
+      "geen": 0,
+      "niet_opgehaald": 4,
       "niet_beoordeeld": 0
     },
     "fouten": 0
   },
   "besluiten": [
     {
-      "mutatie": null,
-      "parameter": "p.fr.energie.prijs_gas_prix_repere",
-      "naam": "Gasprijs, prix repère van de CRE (variabel deel, verwarmingsprofiel)",
+      "mutatie": "m.2026.0026",
+      "parameter": "p.nl.box2.tarieven",
+      "naam": "Tarieven box 2",
       "titel": null,
-      "bron_url": "https://www.economiematin.fr/decembre-smic-2026-noel-certains-gaz-change",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "geen van beide auditors kon oordelen",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
+          "fase": "geen",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": "Tarief lage schijf 24,50% 1%-punt 139",
+          "citaat_klopt": true,
+          "toelichting": "De sleuteltabel is alleen een raming van budgettaire effecten en noemt geen tariefwijziging: de tarieven blijven 24,5% en 31%. De genoemde schijfgrens van € 69.703 (register: € 68.843) lijkt een geïndexeerd basisniveau voor 2027 en geen maatregel, maar dat is niet zeker."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
+          "fase": "geen",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": "Schijfgrens op € 69.703",
+          "citaat_klopt": true,
+          "toelichting": "Deze sleuteltabel noemt voor 2027 ongewijzigde tarieven (24,50% en 31,00%) en een schijfgrens van € 69.703 in plaats van € 68.843, maar dat is een niveau voor budgettaire berekeningen (vermoedelijk indexatie) en geen aangekondigde of vastgestelde wijziging; controleer de grens voor 2027 daarom in he"
+        }
+      ]
+    },
+    {
+      "mutatie": "m.2026.0027",
+      "parameter": "p.nl.box3.heffingsvrij_alleenstaand",
+      "naam": "Heffingsvrij vermogen box 3, alleenstaand",
+      "titel": null,
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
       "oordelen": [
         {
           "door": "auditor-1",
           "model": "claude-sonnet-5-5",
-          "fase": "a",
+          "fase": "geen",
           "nieuwe_waarde": null,
-          "ingangsdatum": "2026-12-01",
-          "citaat": "La hausse atteint 7,2 % pour le chauffage et 5,9 % pour la cuisson et l’eau chaude.",
+          "ingangsdatum": null,
+          "citaat": "Heffingsvrij vermogen € 60.098 € 1.000 -16",
           "citaat_klopt": true,
-          "toelichting": "De krant meldt dat de CRE het prix repère voor december 2026 verhoogt (+7,2 % voor verwarming; gemiddeld van 194,90 naar 206,26 euro TTC/MWh), maar verwijst niet naar een gepubliceerde tekst met nummer en datum, en een absolute waarde voor het verwarmingsprofiel wordt niet genoemd."
+          "toelichting": "De tekst is een sleuteltabel voor 2027 met budgettaire effecten; het vermeldt een niveau van € 60.098 voor het heffingsvrij vermogen in 2027 maar kondigt geen wijziging aan, en dit is bovendien een ander jaar dan de registerwaarde (59.357) en geen vaststelling of voorstel."
         },
         {
           "door": "auditor-2",
           "model": "claude-opus-5-5",
           "fase": "a",
-          "nieuwe_waarde": null,
-          "ingangsdatum": "2026-12-01",
-          "citaat": "La hausse atteint 7,2 % pour le chauffage",
+          "nieuwe_waarde": "60098",
+          "ingangsdatum": "2027-01-01",
+          "citaat": "Heffingsvrij vermogen € 60.098 € 1.000 -16",
           "citaat_klopt": true,
-          "toelichting": "Volgens dit krantenbericht verhoogt de CRE de prix repère gas per december 2026 met 7,2 % voor het verwarmingsprofiel, maar de tekst geeft geen nieuw variabel tarief per kWh en verwijst niet naar een gepubliceerde regel met nummer en datum, dus de nieuwe waarde en de status van vaststelling blijven "
+          "toelichting": "De sleuteltabel 2027 (versie september 2026) noemt als niveau voor 2027 een heffingsvrij vermogen van € 60.098 in plaats van de geregistreerde € 59.357, maar dit is een budgettaire raming, waarschijnlijk op basis van indexatie, en geen vastgestelde regel met wet- of Staatsbladverwijzing, en de tekst"
         }
       ]
     },
     {
-      "mutatie": "m.2026.0016",
-      "parameter": "p.fr.secu.franchise_transport",
-      "naam": "Franchise medisch transport",
+      "mutatie": "m.2026.0028",
+      "parameter": "p.nl.box3.heffingsvrij_partners",
+      "naam": "Heffingsvrij vermogen box 3, partners",
       "titel": null,
-      "bron_url": "https://www.vidal.fr/actualites/38384-plfss-quelles-mesures-prevues-pour-2027.html",
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
+          "fase": "geen",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": null,
+          "citaat_klopt": false,
+          "toelichting": "De tekst is een sleuteltabel met budgettaire effecten voor 2027; het heffingsvrij vermogen van € 60.098 (per persoon) is slechts een rekenniveau en geen aangekondigde of vastgestelde wijziging van de partnerwaarde van € 118.714."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
+          "fase": "geen",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": "Heffingsvrij vermogen € 60.098 € 1.000 -16",
+          "citaat_klopt": true,
+          "toelichting": "De sleuteltabel noemt alleen als indicatief niveau voor 2027 een heffingsvrij vermogen van € 60.098 per persoon (niet het partnerbedrag) om budgettaire effecten te illustreren; er wordt geen wijziging van de partnerparameter voorgesteld of vastgesteld, al zou dit niveau op een (indexatie)wijziging k"
+        }
+      ]
+    },
+    {
+      "mutatie": "m.2026.0029",
+      "parameter": "p.nl.box3.rendement_beleggingen",
+      "naam": "Forfaitair rendement box 3, overige bezittingen (beleggingen en onroerend goed)",
+      "titel": null,
+      "bron_url": "https://zoek.officielebekendmakingen.nl/kst-1270843.pdf",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
       "oordelen": [
         {
@@ -59,9 +119,9 @@
           "fase": "a",
           "nieuwe_waarde": null,
           "ingangsdatum": null,
-          "citaat": "baisses des remboursements de certains soins par l'Assurance maladie (soins dentaires, transports sanitaires...)",
+          "citaat": "parameterwijzigingen om de belastingdruk box 3 te verlagen",
           "citaat_klopt": true,
-          "toelichting": "De tekst noemt een lagere vergoeding van sanitair vervoer door de Assurance maladie (kosten naar de aanvullende verzekeringen), maar geeft geen bedrag voor de franchise en het gaat om een wetsontwerp (PLFSS) dat nog niet is vastgesteld, al worden de maatregelen 'déjà actées' genoemd."
+          "toelichting": "De brief noemt als mogelijke maatregel in scenario 1 parameterwijzigingen om de belastingdruk in box 3 te verlagen, maar noemt geen concreet percentage voor het rendement op overige bezittingen en geen vastgestelde wijziging of ingangsdatum."
         },
         {
           "door": "auditor-2",
@@ -71,70 +131,35 @@
           "ingangsdatum": null,
           "citaat": null,
           "citaat_klopt": false,
-          "toelichting": "De tekst noemt alleen een lagere vergoeding door de Assurance maladie voor onder meer 'transports sanitaires' (verschoven naar de complémentaires), maar zegt niets over het bedrag van de franchise per vervoer, het dagmaximum of het jaarplafond van 70 euro."
-        }
-      ]
-    },
-    {
-      "mutatie": "m.2026.0019",
-      "parameter": "p.fr.succ.hernieuwingstermijn",
-      "naam": "Hernieuwingstermijn van de schenkingsvrijstelling",
-      "titel": null,
-      "bron_url": "https://www.assemblee-nationale.fr/dyn/17/textes/l17b3210_projet-loi.pdf",
-      "reden": "geen van beide auditors kon oordelen",
-      "oordelen": [
-        {
-          "door": "auditor-1",
-          "model": "claude-sonnet-5-5",
-          "fase": "geen",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": "Mesure temporaire d’allègement de la fiscalité des donations pour encourager les transmissions intergénérationnelles",
-          "citaat_klopt": true,
-          "toelichting": "De tekst is alleen de inhoudsopgave van het wetsontwerp PLF 2027; artikel 4 kondigt een tijdelijke verlichting van de schenkingsbelasting aan, maar de hernieuwingstermijn van 15 jaar wordt niet genoemd, dus een wijziging van deze parameter is niet aantoonbaar."
-        },
-        {
-          "door": "auditor-2",
-          "model": "claude-opus-5-5",
-          "fase": "geen",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": "Mesure temporaire d’allègement de la fiscalité des donations pour encourager les transmissions intergénérationnelles",
-          "citaat_klopt": true,
-          "toelichting": "De opgehaalde tekst is alleen de inhoudsopgave van het wetsvoorstel voor de begroting 2027; artikel 4 noemt een tijdelijke verlichting van de schenkingsbelasting, maar de tekst zegt nergens dat de hernieuwingstermijn van 15 jaar verandert, dus de inhoud van artikel 4 moet nog gecontroleerd worden."
-        }
-      ]
-    },
-    {
-      "mutatie": "m.2026.0021",
-      "parameter": "p.fr.tva.regime_drempels",
-      "naam": "Btw, drempels van het régime simplifié (RSD)",
-      "titel": null,
-      "bron_url": "https://www.impots.gouv.fr/actualite/le-regime-simplifie-dimposition-la-tva-est-supprime-compter-du-1er-janvier-2027",
-      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
-      "oordelen": [
-        {
-          "door": "auditor-1",
-          "model": "claude-sonnet-5-5",
-          "fase": "b",
-          "nieuwe_waarde": "Het régime simplifié d'imposition (RSI) voor de btw wordt afgeschaft en vervangen door het réel normal; de drempels van ",
-          "ingangsdatum": "2027-01-01",
-          "citaat": "L’article 38 de la loi de finances 2025 supprime, à compter du 1er janvier 2027, le régime simplifié d’imposition (RSI) en matière de TVA.",
-          "citaat_klopt": true,
-          "toelichting": "De tekst verwijst naar artikel 38 van de loi de finances 2025 en meldt dat het btw-régime simplifié per 1 januari 2027 vervalt, waardoor de drempels van het RSD niet meer gelden; er is geen publicatienummer of datum genoemd, maar de wet wordt als vastgesteld gepresenteerd."
-        },
-        {
-          "door": "auditor-2",
-          "model": "claude-opus-5-5",
-          "fase": "b",
-          "nieuwe_waarde": "Régime simplifié (RSI) voor de btw afgeschaft; drempels vervallen; vervangen door réel normal: per kwartaal aangifte zol",
-          "ingangsdatum": "2027-01-01",
-          "citaat": "L’article 38 de la loi de finances 2025 supprime, à compter du 1er janvier 2027, le régime simplifié d’imposition (RSI) en matière de TVA.",
-          "citaat_klopt": true,
-          "toelichting": "Volgens de DGFiP schaft artikel 38 van de loi de finances 2025 het RSI (in het register RSD genoemd) per 1 januari 2027 af, maar de tekst noemt geen officieel wetsnummer of publicatiedatum; daarom staat onzeker op true."
+          "toelichting": "De brief noemt alleen in algemene termen mogelijke 'parameterwijzigingen om de belastingdruk box 3 te verlagen' binnen een scenario, maar noemt geen wijziging van het forfaitaire rendement voor overige bezittingen (6,00 procent) en geen nieuwe waarde."
         }
       ]
     }
   ],
-  "niet_opgehaald": []
+  "niet_opgehaald": [
+    {
+      "mutatie": "m.2026.0022",
+      "naam": "Taxe de publicité foncière bij VEFA",
+      "bron_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000054566924",
+      "reden": "HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0023",
+      "naam": "AOW bruto per jaar, alleenstaand",
+      "bron_url": "https://www.svb.nl/nl/aow/bedragen-aow/aow-bedragen",
+      "reden": "HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0024",
+      "naam": "AOW bruto per jaar, per partner",
+      "bron_url": "https://www.svb.nl/nl/aow/bedragen-aow/aow-bedragen",
+      "reden": "HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0025",
+      "naam": "AOW-vakantiegeld per maand (vakantie-uitkering)",
+      "bron_url": "https://www.svb.nl/nl/aow/bedragen-aow/vakantiegeld",
+      "reden": "HTTP 403"
+    }
+  ]
 }
