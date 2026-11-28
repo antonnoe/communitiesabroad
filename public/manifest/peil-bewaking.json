@@ -1,20 +1,80 @@
 {
   "meta": {
-    "run": "2026-11-27T04:28:06.427Z",
+    "run": "2026-11-28T04:26:33.534Z",
     "droog": true,
     "samenvatting": {
-      "kandidaten": 1,
+      "kandidaten": 4,
       "waakpunten": 8,
       "voorstel_b": 0,
-      "voorstel_a": 3,
-      "naar_opdrachtgever": 4,
-      "geen": 2,
-      "niet_opgehaald": 0,
+      "voorstel_a": 1,
+      "naar_opdrachtgever": 7,
+      "geen": 0,
+      "niet_opgehaald": 4,
       "niet_beoordeeld": 0
     },
     "fouten": 0
   },
   "besluiten": [
+    {
+      "mutatie": null,
+      "parameter": "p.fr.apa.participation_drempels",
+      "naam": "APA, inkomensgrenzen en schijven voor de eigen bijdrage (thuis en in een instelling)",
+      "titel": null,
+      "bron_url": "https://www.publicsenat.fr/actualites/economie/seniors-le-gouvernement-modifie-le-mode-de-calcul-de-lallocation-personnalisee-dautonomie",
+      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
+          "fase": "a",
+          "nieuwe_waarde": null,
+          "ingangsdatum": "2027-01-01",
+          "citaat": "sera modifié à partir du 1er janvier 2027",
+          "citaat_klopt": true,
+          "toelichting": "De krant meldt een décret in de Journal officiel dat de berekening van de APA-thuisbijdrage per 1 januari 2027 wijzigt, maar noemt geen nummer of datum van het décret en geen nieuwe drempels of schijven, dus volgens de regel geen fase b; alleen de vrijstelling onder 940 euro wordt genoemd."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
+          "fase": "a",
+          "nieuwe_waarde": null,
+          "ingangsdatum": "2027-01-01",
+          "citaat": "sera modifié à partir du 1er janvier 2027, ce qui augmentera le reste à charge de certains bénéficiaires, indique un décret paru vendredi au Journal officiel",
+          "citaat_klopt": true,
+          "toelichting": "Het krantenbericht meldt een décret in de Journal officiel dat de berekening van de APA thuis per 1 januari 2027 wijzigt, maar noemt geen nummer of exacte datum (dus geen fase b) en geeft geen nieuwe drempels of schijven; de 940 euro is waarschijnlijk een afgeronde weergave van de huidige 933,89 eur"
+        }
+      ]
+    },
+    {
+      "mutatie": null,
+      "parameter": "p.fr.apa.participation_drempels",
+      "naam": "APA, inkomensgrenzen en schijven voor de eigen bijdrage (thuis en in een instelling)",
+      "titel": null,
+      "bron_url": "https://www.sudouest.fr/sante/seniors/seniors-le-mode-de-calcul-de-l-aide-a-l-autonomie-a-domicile-sera-modifie-a-partir-de-2027-le-reste-a-charge-va-augmenter-31691763.php",
+      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
+          "fase": "a",
+          "nieuwe_waarde": null,
+          "ingangsdatum": "2027-01-01",
+          "citaat": "sera modifié à partir du 1er janvier 2027",
+          "citaat_klopt": true,
+          "toelichting": "De krant meldt een décret in het Journal officiel dat de berekening van de APA-bijdrage per 1 januari 2027 wijzigt, maar noemt geen decreetnummer en geen nieuwe drempels of schijven; alleen de vrijstelling onder ongeveer 940 euro blijft behouden, dus ik kan geen vaststelling (b) bevestigen."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
+          "fase": "a",
+          "nieuwe_waarde": null,
+          "ingangsdatum": "2027-01-01",
+          "citaat": "sera modifié à partir du 1er janvier 2027, ce qui augmentera le reste à charge de certains bénéficiaires, indique un décret paru vendredi au Journal officiel",
+          "citaat_klopt": true,
+          "toelichting": "Het krantenartikel meldt een in de Journal officiel gepubliceerd décret dat vanaf 2027-01-01 de berekening van de APA thuis wijzigt, maar noemt geen nummer of datum van het décret en geen nieuwe schijven (de 'moins de 940 euros' kan een afronding van 933,89 zijn), en zegt niets over de instelling; d"
+        }
+      ]
+    },
     {
       "mutatie": null,
       "parameter": "p.fr.energie.prijs_gas_prix_repere",
@@ -29,9 +89,9 @@
           "fase": "a",
           "nieuwe_waarde": null,
           "ingangsdatum": "2026-12-01",
-          "citaat": "La hausse atteint 7,2 % pour le chauffage et 5,9 % pour la cuisson et l’eau chaude.",
+          "citaat": "La hausse atteint 7,2 % pour le chauffage",
           "citaat_klopt": true,
-          "toelichting": "De krant meldt dat de CRE het prix repère voor december 2026 verhoogt (+7,2 % voor verwarming), maar noemt geen gepubliceerd besluit met nummer of datum en geeft geen absolute kWh-waarde voor het verwarmingsprofiel."
+          "toelichting": "De krant meldt dat de CRE het prix repère per 1 december 2026 verhoogt (+7,2 % voor verwarming), maar het artikel is geen gepubliceerde vaststellingstekst met nummer en datum en noemt geen nieuwe prijs per kWh voor het verwarmingsprofiel."
         },
         {
           "door": "auditor-2",
@@ -41,57 +101,117 @@
           "ingangsdatum": "2026-12-01",
           "citaat": "La hausse atteint 7,2 % pour le chauffage et 5,9 % pour la cuisson et l’eau chaude.",
           "citaat_klopt": true,
-          "toelichting": "De krant meldt dat de CRE de prix repère per december 2026 voor het verwarmingsprofiel met 7,2 % verhoogt, maar noemt geen nieuw variabel tarief per kWh, verwijst niet naar een gepubliceerde tekst met nummer en datum, en het blijft onduidelijk of en hoe dit het driemaandsgemiddelde in het register r"
+          "toelichting": "Het artikel meldt dat de CRE de prix repère voor december 2026 verhoogt (gemiddeld van 194,90 naar 206,26 €/MWh TTC, +7,2 % voor verwarming), maar het is een krantenbericht zonder verwijzing naar een gepubliceerde tekst met nummer en datum, en het geeft niet het nieuwe variabele kWh-tarief voor het "
         }
       ]
     },
     {
-      "mutatie": "m.2026.0016",
-      "parameter": "p.fr.secu.franchise_transport",
-      "naam": "Franchise medisch transport",
+      "mutatie": "m.2026.0021",
+      "parameter": "p.fr.tva.regime_drempels",
+      "naam": "Btw, drempels van het régime simplifié (RSD)",
       "titel": null,
-      "bron_url": "https://www.vidal.fr/actualites/38384-plfss-quelles-mesures-prevues-pour-2027.html",
+      "bron_url": "https://www.impots.gouv.fr/actualite/le-regime-simplifie-dimposition-la-tva-est-supprime-compter-du-1er-janvier-2027",
       "reden": "de auditors zijn het niet eens of een van beide is onzeker",
       "oordelen": [
         {
           "door": "auditor-1",
           "model": "claude-sonnet-5-5",
-          "fase": "a",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": "baisses des remboursements de certains soins par l'Assurance maladie (soins dentaires, transports sanitaires...)",
+          "fase": "b",
+          "nieuwe_waarde": "Het régime simplifié d'imposition (RSI) voor de btw wordt afgeschaft en vervangen door het réel normal; de drempels van ",
+          "ingangsdatum": "2027-01-01",
+          "citaat": "L’article 38 de la loi de finances 2025 supprime, à compter du 1er janvier 2027, le régime simplifié d’imposition (RSI) en matière de TVA.",
           "citaat_klopt": true,
-          "toelichting": "De tekst noemt voor 2027 lagere vergoedingen voor onder meer sanitair vervoer (als 'déjà actées'), maar geeft geen nieuw bedrag voor de franchise en geen publicatie met ingangsdatum, dus hooguit een verwachte wijziging."
+          "toelichting": "De tekst verwijst naar artikel 38 van de loi de finances 2025, dat het btw-RSI per 1 januari 2027 afschaft, waardoor de drempelwaarden van het register vervallen; het artikel noemt echter geen datum of nummer van publicatie in de Journal officiel."
         },
         {
           "door": "auditor-2",
           "model": "claude-opus-5-5",
+          "fase": "b",
+          "nieuwe_waarde": "Régime simplifié (RSI) voor de btw afgeschaft per 2027-01-01, dus geen RSD-drempels meer. Vervangen door réel normal: tr",
+          "ingangsdatum": "2027-01-01",
+          "citaat": "L’article 38 de la loi de finances 2025 supprime, à compter du 1er janvier 2027, le régime simplifié d’imposition (RSI) en matière de TVA.",
+          "citaat_klopt": true,
+          "toelichting": "De DGFiP-pagina verwijst naar een vastgesteld wetsartikel (art. 38 loi de finances 2025) dat het vereenvoudigde btw-regime en dus deze drempels per 1 januari 2027 afschaft; onzeker omdat het wetsnummer en de publicatiedatum in het JO niet letterlijk worden genoemd en de bron RSI noemt, terwijl het r"
+        }
+      ]
+    },
+    {
+      "mutatie": "m.2026.0026",
+      "parameter": "p.nl.box2.tarieven",
+      "naam": "Tarieven box 2",
+      "titel": null,
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
+          "fase": "geen",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": "Tarief lage schijf 24,50% 1%-punt 139",
+          "citaat_klopt": true,
+          "toelichting": "De sleuteltabel noemt voor 2027 dezelfde tarieven (24,50% en 31,00%) en geeft slechts budgettaire indicaties, geen wijziging; de genoemde schijfgrens van € 69.703 wijkt af van de registerwaarde (68.843) maar wordt niet als wijziging aangekondigd."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
+          "fase": "a",
+          "nieuwe_waarde": "24,5 procent tot en met 69.703 euro, 31 procent daarboven",
+          "ingangsdatum": "2027-01-01",
+          "citaat": "Schijfgrens op € 69.703",
+          "citaat_klopt": true,
+          "toelichting": "De sleuteltabel 2027 (versie september 2026) noemt als niveau voor 2027 een box 2-schijfgrens van € 69.703 in plaats van € 68.843, met ongewijzigde tarieven van 24,50% en 31,00%; dit is vermoedelijk een indicatieve indexatie in een budgettaire bijlage en geen vastgestelde regel, en de tekst noemt ge"
+        }
+      ]
+    },
+    {
+      "mutatie": "m.2026.0027",
+      "parameter": "p.nl.box3.heffingsvrij_alleenstaand",
+      "naam": "Heffingsvrij vermogen box 3, alleenstaand",
+      "titel": null,
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
+          "fase": "geen",
+          "nieuwe_waarde": null,
+          "ingangsdatum": null,
+          "citaat": "Heffingsvrij vermogen € 60.098 € 1.000 -16",
+          "citaat_klopt": true,
+          "toelichting": "De sleuteltabel 2027 toont alleen het budgettaire effect van een eventuele maatregel (heffingsvrij vermogen box 3 op € 60.098 in 2027, voor alleenstaanden) en kondigt geen wijziging van de parameter aan of stelt die vast."
+        },
+        {
+          "door": "auditor-2",
+          "model": "claude-opus-5-5",
+          "fase": "a",
+          "nieuwe_waarde": "60098",
+          "ingangsdatum": null,
+          "citaat": "Heffingsvrij vermogen € 60.098 € 1.000 -16",
+          "citaat_klopt": true,
+          "toelichting": "De sleuteltabel noemt voor box 3 een niveau 2027 van € 60.098 (afwijkend van de huidige € 59.357), maar dit is een indicatieve budgettaire bijlage zonder vaststelling, ingangsdatum of benoemde vaststellende instantie, dus hooguit een verwachte wijziging."
+        }
+      ]
+    },
+    {
+      "mutatie": "m.2026.0028",
+      "parameter": "p.nl.box3.heffingsvrij_partners",
+      "naam": "Heffingsvrij vermogen box 3, partners",
+      "titel": null,
+      "bron_url": "https://zoek.officielebekendmakingen.nl/blg-1271616.pdf",
+      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
+      "oordelen": [
+        {
+          "door": "auditor-1",
+          "model": "claude-sonnet-5-5",
           "fase": "geen",
           "nieuwe_waarde": null,
           "ingangsdatum": null,
           "citaat": null,
           "citaat_klopt": false,
-          "toelichting": "De tekst noemt alleen een al besloten verlaging van de terugbetaling van onder meer 'transports sanitaires' ten gunste van de aanvullende verzekeraars, wat de terugbetalingsgraad betreft en niet de franchise van 4 euro per vervoer, 8 euro per dag of het jaarplafond van 70 euro."
-        }
-      ]
-    },
-    {
-      "mutatie": "m.2026.0019",
-      "parameter": "p.fr.succ.hernieuwingstermijn",
-      "naam": "Hernieuwingstermijn van de schenkingsvrijstelling",
-      "titel": null,
-      "bron_url": "https://www.assemblee-nationale.fr/dyn/17/textes/l17b3210_projet-loi.pdf",
-      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
-      "oordelen": [
-        {
-          "door": "auditor-1",
-          "model": "claude-sonnet-5-5",
-          "fase": "a",
-          "nieuwe_waarde": null,
-          "ingangsdatum": null,
-          "citaat": "Mesure temporaire d’allègement de la fiscalité des donations pour encourager les transmissions intergénérationnelles",
-          "citaat_klopt": true,
-          "toelichting": "Het wetsontwerp (PLF 2027, nog niet aangenomen) bevat in artikel 4 een tijdelijke versoepeling van de schenkingsbelasting, maar in het beschikbare deel (alleen de inhoudsopgave) staat niets over de hernieuwingstermijn van 15 jaar, dus een wijziging van deze parameter blijkt niet."
+          "toelichting": "De tekst is een budgettaire slekeltabel 2027 met alleen de indicatieve opbrengst van een verhoging van het heffingsvrij vermogen (niveau € 60.098 per persoon) en kondigt geen wijziging van het heffingsvrij vermogen voor partners aan."
         },
         {
           "door": "auditor-2",
@@ -99,42 +219,37 @@
           "fase": "geen",
           "nieuwe_waarde": null,
           "ingangsdatum": null,
-          "citaat": "ARTICLE 4 : Mesure temporaire d’allègement de la fiscalité des donations pour encourager les transmissions intergénérationnelles",
+          "citaat": "Heffingsvrij vermogen € 60.098 € 1.000 -16",
           "citaat_klopt": true,
-          "toelichting": "De tekst is alleen de inhoudsopgave van het wetsvoorstel PLF 2027; artikel 4 gaat over een tijdelijke verlichting van de schenkingsbelasting, maar noemt de termijn van 15 jaar niet letterlijk, dus een wijziging van deze parameter blijkt er niet uit."
-        }
-      ]
-    },
-    {
-      "mutatie": "m.2026.0020",
-      "parameter": "p.fr.tf.revalorisation_valeurs_locatives",
-      "naam": "Jaarlijkse herwaardering valeur locative (woningen en industriële panden)",
-      "titel": null,
-      "bron_url": "https://bofip.impots.gouv.fr/bofip/975-PGP.html/identifiant=BOI-IF-TFB-20-20-20-20-20260610",
-      "reden": "de auditors zijn het niet eens of een van beide is onzeker",
-      "oordelen": [
-        {
-          "door": "auditor-1",
-          "model": "claude-sonnet-5-5",
-          "fase": "b",
-          "nieuwe_waarde": null,
-          "ingangsdatum": "2027-01-01",
-          "citaat": "Revalorisation forfaitaire annuelle spécifique applicable aux valeurs locatives des établissements industriels à compter de 2027",
-          "citaat_klopt": true,
-          "toelichting": "Vanaf 2027 wordt de jaarlijkse herwaardering van industriële panden niet meer via de IPCH-coëfficiënt (1,008) bepaald maar via het nationale gemiddelde van de departementale huurevolutiecoëfficiënten (vastgesteld in loi 2026-103), zonder genoemde nieuwe waarde; de woningen blijven op de IPCH-methode"
-        },
-        {
-          "door": "auditor-2",
-          "model": "claude-opus-5-5",
-          "fase": "b",
-          "nieuwe_waarde": null,
-          "ingangsdatum": "2027-01-01",
-          "citaat": "À compter de 2027, conformément au dernier alinéa de l’ article 1518 bis du CGI , dans sa rédaction issue de l’ article 45 de la loi n° 2026-103 du 19 février 2026 de finances pour 2026",
-          "citaat_klopt": true,
-          "toelichting": "Volgens art. 45 van loi n° 2026-103 du 19 février 2026 krijgen industriële panden (art. 1499 CGI) vanaf de belastingen over 2027 een eigen coëfficiënt: het nationale gemiddelde van de departementale huurcoëfficiënten (art. 1518 ter CGI), dat de administratie jaarlijks berekent. Daardoor geldt de IPC"
+          "toelichting": "De sleuteltabel noemt alleen een niveau voor 2027 per persoon (€ 60.098, wat verdubbeld € 120.196 zou zijn), maar het is een budgettaire indicatie zonder voorstel of vaststelling van een wijziging en zonder vermelding van de partnerwaarde."
         }
       ]
     }
   ],
-  "niet_opgehaald": []
+  "niet_opgehaald": [
+    {
+      "mutatie": "m.2026.0022",
+      "naam": "Taxe de publicité foncière bij VEFA",
+      "bron_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000054566924",
+      "reden": "HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0023",
+      "naam": "AOW bruto per jaar, alleenstaand",
+      "bron_url": "https://www.svb.nl/nl/aow/bedragen-aow/aow-bedragen",
+      "reden": "HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0024",
+      "naam": "AOW bruto per jaar, per partner",
+      "bron_url": "https://www.svb.nl/nl/aow/bedragen-aow/aow-bedragen",
+      "reden": "HTTP 403"
+    },
+    {
+      "mutatie": "m.2026.0025",
+      "naam": "AOW-vakantiegeld per maand (vakantie-uitkering)",
+      "bron_url": "https://www.svb.nl/nl/aow/bedragen-aow/vakantiegeld",
+      "reden": "HTTP 403"
+    }
+  ]
 }
